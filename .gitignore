@@ -1,0 +1,27 @@
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+*credentials*.json
+*.pem
+*.key
+
+# Python and development artifacts
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.cache/
+.idea/
+.vscode/
+
+# Temporary work and generated indexes
+work/
+data/cache/
+data/indexes/
+*.log
+Thumbs.db
+.DS_Store
