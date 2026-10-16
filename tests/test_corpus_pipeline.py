@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import httpx
 
@@ -122,6 +123,13 @@ class PersistenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ServiceError, "incompatible"):
             self.store.ensure_index(create=True)
         self.assertFalse(any(method != "GET" for method, _, _ in self.remote.requests))
+
+    def test_query_requires_response_object_before_callers_use_get(self):
+        for invalid in (None, [], "unexpected"):
+            with self.subTest(response=invalid):
+                with patch.object(self.store, "data_request", return_value=invalid):
+                    with self.assertRaisesRegex(ServiceError, "invalid query response"):
+                        self.store.search("test", [0.1] * DIMENSION, "version")
 
     def test_missing_index_created_only_explicitly(self):
         self.remote.exists = False

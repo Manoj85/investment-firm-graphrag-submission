@@ -196,8 +196,12 @@ class PineconeStore:
     def stats(self):
         return self.data_request("POST", "describe_index_stats", json={})
 
-    def search(self, namespace, vector, corpus_version, top_k=4):
+    def search(self, namespace, vector, corpus_version, top_k=4) -> dict[str, Any]:
+        """Return a query response object, or raise before callers use .get()."""
         validate_vector(vector)
-        return self.data_request("POST", "query", json={"namespace": namespace,
+        result = self.data_request("POST", "query", json={"namespace": namespace,
             "vector": vector, "topK": top_k, "includeMetadata": True, "includeValues": False,
             "filter": {"corpus_version": {"$eq": corpus_version}}})
+        if not isinstance(result, dict):
+            raise ServiceError("Pinecone returned an invalid query response object")
+        return result
