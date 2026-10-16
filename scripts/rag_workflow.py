@@ -10,6 +10,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import END, START, StateGraph
 
 from corpus_pipeline import atomic_json, retrieve
+from neighbor_retrieval import retrieve_with_neighbors
 from project_config import PROJECT_ROOT
 from qwen_tokenizer import count_tokens, load_tokenizer
 from service_clients import ServiceError, request_json, tls_context
@@ -149,5 +150,6 @@ def build_workflow(retrieve_evidence, chat):
     return graph.compile()
 
 
-def application(settings, store, embeddings, chat):
-    return build_workflow(lambda question: retrieve(settings, store, embeddings, question), chat)
+def application(settings, store, embeddings, chat, *, expand_source_neighbors=False):
+    retrieval = retrieve_with_neighbors if expand_source_neighbors else retrieve
+    return build_workflow(lambda question: retrieval(settings, store, embeddings, question), chat)

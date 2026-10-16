@@ -15,6 +15,8 @@ from tracing_setup import TracingSession
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("question")
+    parser.add_argument("--expand-neighbors", action="store_true",
+                        help="Experiment: fetch at most four adjacent source passages after vector search")
     args = parser.parse_args()
     store = embeddings = chat = tracing = None
     try:
@@ -22,16 +24,19 @@ def main():
         store = PineconeStore(settings)
         embeddings = NebiusEmbeddings(settings)
         chat = GroundedChat(settings)
-        graph = application(settings, store, embeddings, chat)
+        mode = "vector_neighbors" if args.expand_neighbors else "vector"
+        graph = application(settings, store, embeddings, chat,
+                            expand_source_neighbors=args.expand_neighbors)
         tracing = TracingSession(settings)
         started = perf_counter()
         print("Retrieving persisted evidence, then generating a cited answer...", flush=True)
         config = tracing.invoke_config()
         config["metadata"] = {"prompt_version": PROMPT_VERSION,
+            "retrieval_mode": mode,
             "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model}
         result = graph.invoke({"question": args.question}, config=config)
         elapsed = round(perf_counter() - started, 3)
-        report = {"mode": "vector", "question": args.question,
+        report = {"mode": mode, "question": args.question,
             "answer": result["answer"], "sources": result["sources"],
             "namespace": result["retrieval"]["namespace"],
             "corpus_version": result["retrieval"]["corpus_version"],
@@ -40,6 +45,10 @@ def main():
             "requested_chat_model": settings.nebius_chat_model,
             "response_model": result["response_model"], "usage": result["usage"],
             "elapsed_seconds": elapsed, "tracing": tracing.finish()}
+        if args.expand_neighbors:
+            report["seed_evidence"] = result["retrieval"]["seed_evidence"]
+            report["neighbor_expansion"] = result["retrieval"]["neighbor_expansion"]
+            report["neighbor_expansion"]["selected_passages"] = len(result["sources"])
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
         path = PROJECT_ROOT / "work" / "answers" / f"answer-{stamp}.json"
         atomic_json(path, report)
