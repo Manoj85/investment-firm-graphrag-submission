@@ -15,7 +15,8 @@ from corpus_pipeline import active_manifest, ingest, prepare_corpus, retrieve, v
 from project_config import PROJECT_ROOT, load_settings
 from qwen_tokenizer import TOKENIZER_PATH
 from service_clients import (DIMENSION, NebiusEmbeddings, PineconeStore,
-                             QUERY_INSTRUCTION, ServiceError)
+                             QUERY_INSTRUCTION, ServiceError, document_embedding_input,
+                             embedding_identity, CONTEXTUAL_EMBEDDING_PROTOCOL)
 
 
 def settings():
@@ -24,7 +25,7 @@ def settings():
         "NEBIUS_BASE_URL": "https://api.tokenfactory.nebius.com/v1/",
         "NEBIUS_CHAT_MODEL": "test-chat", "NEBIUS_EMBEDDING_MODEL": "Qwen/Qwen3-Embedding-8B",
         "PINECONE_API_KEY": "invented-pinecone-test-key", "PINECONE_INDEX": "test-index",
-        "PINECONE_NAMESPACE": "test"})
+        "PINECONE_NAMESPACE": "test", "EMBEDDING_DOCUMENT_CONTEXT": "true"})
 
 
 class FakePinecone:
@@ -106,6 +107,30 @@ class PersistenceTests(unittest.TestCase):
         for directory in ("docs", "outputs/evaluation", "outputs"):
             with self.assertRaisesRegex(ValueError, "must be outputs/corpus"):
                 prepare_corpus(replace(self.settings, corpus_dir=directory))
+
+    def test_context_changes_embedding_input_but_preserves_source_and_query_cache(self):
+        baseline_protocol = "qwen-document-raw-query-instruct-v1"
+        result = ingest(self.settings, self.store, self.embeddings, manifest_path=self.path / "active.json")
+        manifest = prepare_corpus(self.settings)
+        target = next(record for record in manifest["records"]
+                      if record["metadata"]["document_id"] == "DOC-003"
+                      and record["metadata"]["section"] == "Approval and accountability")
+        meta = target["metadata"]
+        enriched = document_embedding_input(meta)
+        self.assertIn("Document: Beacon Evidence Hub selection decision", enriched)
+        self.assertIn(enriched, self.inputs)
+        self.assertNotIn("Document: Beacon Evidence Hub selection decision", meta["chunk_text"])
+        self.assertEqual(self.remote.records[result["namespace"]][target["id"]]["metadata"]["chunk_text"],
+                         meta["chunk_text"])
+        query = embedding_identity(self.settings, "Who approved it?", query=True)
+        self.assertEqual(query[2], baseline_protocol)
+        self.assertEqual(query[-1], f"Instruct: {QUERY_INSTRUCTION}\nQuery:Who approved it?")
+        self.assertNotEqual(CONTEXTUAL_EMBEDDING_PROTOCOL, baseline_protocol)
+        raw_settings = replace(self.settings, embedding_document_context=False)
+        self.assertNotEqual(prepare_corpus(raw_settings)["namespace"], manifest["namespace"])
+        self.assertNotEqual(embedding_identity(raw_settings, enriched),
+                            embedding_identity(self.settings, enriched))
+        self.assertEqual(embedding_identity(raw_settings, "Who approved it?", query=True), query)
 
     def test_query_uses_instructions_and_remote_namespace_with_provenance(self):
         path = self.path / "active.json"

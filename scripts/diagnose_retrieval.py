@@ -8,8 +8,9 @@ import math
 
 from corpus_pipeline import active_manifest, atomic_json
 from project_config import PROJECT_ROOT, load_settings
-from service_clients import (DIMENSION, EMBEDDING_PROTOCOL, QUERY_INSTRUCTION,
-                             PineconeStore, ServiceError, validate_vector)
+from service_clients import (DIMENSION, QUERY_INSTRUCTION,
+                             PineconeStore, ServiceError, validate_vector,
+                             document_embedding_input, embedding_identity)
 
 
 DEFAULT_QUESTION = "Who approved the selection of Beacon Evidence Hub for Project Atlas?"
@@ -17,10 +18,8 @@ DEFAULT_QUESTION = "Who approved the selection of Beacon Evidence Hub for Projec
 
 def cached_vector(settings, text, *, query=False):
     """Read the exact existing cache entry; this diagnostic never calls Nebius."""
-    # Match NebiusEmbeddings.embed's identity, including query-only instructions.
-    prepared = f"Instruct: {QUERY_INSTRUCTION}\nQuery:{text}" if query else text
-    identity = [settings.nebius_base_url.rstrip("/"), settings.nebius_embedding_model,
-                EMBEDDING_PROTOCOL, prepared]
+    # Share the client's identity function so diagnostics cannot drift from it.
+    identity = embedding_identity(settings, text, query=query)
     digest = hashlib.sha256(json.dumps(identity).encode()).hexdigest()
     path = PROJECT_ROOT / "data" / "cache" / "embeddings" / f"{digest}.json"
     if not path.is_file():
@@ -83,8 +82,7 @@ def analyze(manifest, fetched, matches, query_vector, cached_vectors, target_id)
             "max_absolute_difference": max(row["score_absolute_difference"] for row in rows),
             "all_within_1e_5": all(row["score_absolute_difference"] <= 1e-5 for row in rows)},
         "target": {**target, "text": fetched[target_id]["metadata"]["chunk_text"],
-                   "dimension": DIMENSION, "document_embedding_input": expected[target_id]["chunk_text"],
-                   "embedding_input_includes_source_title": False},
+                   "dimension": DIMENSION},
         "ranking": rows}
 
 
@@ -108,7 +106,8 @@ def main():
             raise ServiceError("Choose a document/section with exactly one chunk for this diagnostic")
         target_id = targets[0]["id"]
         query_vector = cached_vector(settings, args.question, query=True)
-        cached_vectors = {record["id"]: cached_vector(settings, record["metadata"]["chunk_text"])
+        cached_vectors = {record["id"]: cached_vector(settings, document_embedding_input(
+                              record["metadata"], context=settings.embedding_document_context))
                           for record in records}
         store = PineconeStore(settings)
         store.ensure_index()
@@ -122,13 +121,17 @@ def main():
         fetched = store.fetch(namespace, [record["id"] for record in records])
         result = store.search(namespace, query_vector, manifest["corpus_version"], top_k=len(records))
         analysis = analyze(manifest, fetched, result.get("matches", []), query_vector, cached_vectors, target_id)
+        analysis["target"].update({
+            "document_embedding_input": document_embedding_input(
+                targets[0]["metadata"], context=settings.embedding_document_context),
+            "embedding_input_includes_source_title": settings.embedding_document_context})
         # Include the separate targeted fetch in the checks, not just the batch read.
         analysis["checks"]["targeted_fetch_matches_batch"] = target_fetch[target_id] == fetched[target_id]
         report = {"timestamp_utc": datetime.now(timezone.utc).isoformat(),
             "question": args.question, "namespace": namespace, "corpus_version": manifest["corpus_version"],
             "documents": len(manifest["documents"]), "records": len(records),
             "query_input": f"Instruct: {QUERY_INSTRUCTION}\nQuery:{args.question}",
-            "embedding_protocol": EMBEDDING_PROTOCOL, "model_calls": 0,
+            "embedding_protocol": manifest["embedding_protocol"], "model_calls": 0,
             "cache_entries_read": len(records) + 1, **analysis}
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
         path = PROJECT_ROOT / "work" / "pinecone" / f"diagnosis-{stamp}.json"

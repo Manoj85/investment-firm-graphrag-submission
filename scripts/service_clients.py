@@ -20,6 +20,26 @@ DIMENSION = 4096  # Measured in the successful Qwen diagnostic, not guessed.
 API_VERSION = "2025-10"
 QUERY_INSTRUCTION = "Given a question about organizational knowledge, retrieve passages that answer it."
 EMBEDDING_PROTOCOL = "qwen-document-raw-query-instruct-v1"
+CONTEXTUAL_EMBEDDING_PROTOCOL = "qwen-document-title-section-query-instruct-v2"
+# The query input did not change. Retain its prior cache identity so this
+# experiment compares passage representations using the exact same query vector.
+QUERY_CACHE_PROTOCOL = "qwen-document-raw-query-instruct-v1"
+DOCUMENT_INPUT_TEMPLATE = "Document: {title}\nSection: {section}\n\n{chunk_text}"
+
+
+def document_embedding_input(metadata, *, context=True):
+    """Enrich embedding text without modifying the source slice used in citations."""
+    return DOCUMENT_INPUT_TEMPLATE.format(**metadata) if context else metadata["chunk_text"]
+
+
+def embedding_protocol(settings):
+    return CONTEXTUAL_EMBEDDING_PROTOCOL if settings.embedding_document_context else EMBEDDING_PROTOCOL
+
+
+def embedding_identity(settings, text, *, query=False):
+    prepared = f"Instruct: {QUERY_INSTRUCTION}\nQuery:{text}" if query else text
+    protocol = QUERY_CACHE_PROTOCOL if query else embedding_protocol(settings)
+    return [settings.nebius_base_url.rstrip("/"), MODEL_ID, protocol, prepared]
 
 
 class ServiceError(RuntimeError):
@@ -79,9 +99,8 @@ class NebiusEmbeddings:
             raise ValueError("Embedding input is empty")
         # Qwen's upstream retrieval examples instruct queries, not document text.
         # We send this string explicitly; no SDK silently inserts another prefix.
-        prepared = f"Instruct: {QUERY_INSTRUCTION}\nQuery:{text}" if query else text
-        identity = [self.settings.nebius_base_url.rstrip("/"), MODEL_ID,
-                    EMBEDDING_PROTOCOL, prepared]
+        identity = embedding_identity(self.settings, text, query=query)
+        prepared = identity[-1]
         key = hashlib.sha256(json.dumps(identity).encode()).hexdigest()
         cache_path = self.cache_dir / f"{key}.json"
         if cache_path.is_file():

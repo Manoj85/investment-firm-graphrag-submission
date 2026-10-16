@@ -33,6 +33,7 @@ class Settings:
     chunk_max_tokens: int = 256
     chunk_overlap: int = 32
     langsmith_endpoint: str = "https://api.smith.langchain.com"
+    embedding_document_context: bool = False
 
     def service_readiness(self) -> dict[str, bool]:
         """Report required settings' presence, not authentication or account access."""
@@ -66,6 +67,9 @@ def load_settings(
     if tracing not in {"true", "false"}:
         # Name the setting, but never include its supplied value in the error.
         raise ValueError("LANGSMITH_TRACING must be true or false")
+    document_context = value("EMBEDDING_DOCUMENT_CONTEXT", "false").lower()
+    if document_context not in {"true", "false"}:
+        raise ValueError("EMBEDDING_DOCUMENT_CONTEXT must be true or false")
 
     try:
         chunk_max_tokens = int(value("CHUNK_MAX_TOKENS", "256"))
@@ -92,4 +96,5 @@ def load_settings(
         chunk_max_tokens=chunk_max_tokens,
         chunk_overlap=chunk_overlap,
         langsmith_endpoint=value("LANGSMITH_ENDPOINT", "https://api.smith.langchain.com"),
+        embedding_document_context=document_context == "true",
     )

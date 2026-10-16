@@ -8,7 +8,8 @@ import time
 from inspect_atlas import load_markdown
 from project_config import CORPUS_DIR, PROJECT_ROOT
 from qwen_tokenizer import MODEL_ID, load_tokenizer
-from service_clients import DIMENSION, EMBEDDING_PROTOCOL, QUERY_INSTRUCTION, ServiceError
+from service_clients import (DIMENSION, DOCUMENT_INPUT_TEMPLATE,
+                             QUERY_INSTRUCTION, ServiceError, document_embedding_input, embedding_protocol)
 from token_chunks import split_token_chunks, validate_chunks
 
 
@@ -50,12 +51,14 @@ def prepare_corpus(settings):
     manifest = {"manifest_version": 1, "documents": documents,
         "embedding_model": MODEL_ID, "dimension": DIMENSION, "metric": "cosine",
         "embedding_endpoint": settings.nebius_base_url.rstrip("/"),
-        "embedding_protocol": EMBEDDING_PROTOCOL, "query_instruction": QUERY_INSTRUCTION,
+        "embedding_protocol": embedding_protocol(settings), "query_instruction": QUERY_INSTRUCTION,
         "chunk_config_id": chunks[0].metadata["chunking_config_id"],
         "index": settings.pinecone_index,
         "records": [{"id": chunk.metadata["chunk_id"],
                      "metadata": {**chunk.metadata, "chunk_text": chunk.page_content}}
                     for chunk in chunks]}
+    if settings.embedding_document_context:
+        manifest["document_input_template"] = DOCUMENT_INPUT_TEMPLATE
     version = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
     namespace = f"{settings.pinecone_namespace}-{version[:16]}"
     if len(namespace) > 200:
@@ -88,8 +91,14 @@ def verify_persisted(store, manifest, *, timeout=30):
 def ingest(settings, store, embeddings, *, manifest_path=MANIFEST_PATH):
     manifest = prepare_corpus(settings)
     store.ensure_index()  # Creation is a separate explicit command.
-    records = [{**record, "values": embeddings.embed(record["metadata"]["chunk_text"])}
-               for record in manifest["records"]]
+    # Only the embedding input is enriched. Stored chunk_text remains an exact
+    # source slice, so citation offsets and user-visible evidence stay faithful.
+    records = []
+    for record in manifest["records"]:
+        embedding_text = document_embedding_input(
+            record["metadata"], context=settings.embedding_document_context)
+        vector = embeddings.embed(embedding_text)
+        records.append({**record, "values": vector})
     store.upsert(manifest["namespace"], records)
     count = verify_persisted(store, manifest)
     # Publish only after all remote IDs, text, metadata, and count are confirmed.
