@@ -2,3 +2,5 @@
 python-dotenv==1.2.4
 # Explicit HTTP requests keep this first provider diagnostic easy to inspect.
 httpx==0.28.1
+# Load the embedding model's tokenizer JSON without downloading model weights.
+tokenizers==0.23.3
