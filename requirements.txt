@@ -1,2 +1,4 @@
 # Add provider and application packages when we introduce their first real call.
 python-dotenv==1.2.4
+# Explicit HTTP requests keep this first provider diagnostic easy to inspect.
+httpx==0.28.1
