@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import ssl
 import time
+from typing import Any
 
 import httpx
 
@@ -127,7 +128,8 @@ class PineconeStore:
     def describe(self):
         return request_json(self.client, "GET", f"indexes/{self.settings.pinecone_index}", allow_missing=True)
 
-    def ensure_index(self, *, create=False):
+    def ensure_index(self, *, create=False) -> dict[str, Any]:
+        """Return a checked index description, or raise; never return None."""
         description = self.describe()
         if description is None:
             if not create:
@@ -139,6 +141,10 @@ class PineconeStore:
                                          "region": self.settings.pinecone_region}},
                 "deletion_protection": "enabled",
                 "tags": {"project": "investment-firm-graphrag"}})
+        # The HTTP helper can return None for a missing resource. Even creation
+        # must produce an object before callers can safely use description[...].
+        if not isinstance(description, dict):
+            raise ServiceError("Pinecone returned an invalid index description")
         self.validate_index(description)
         # Readiness polls have a short bound and do not create more resources.
         deadline = time.monotonic() + 30
@@ -149,6 +155,8 @@ class PineconeStore:
             description = self.describe()
             if description is None:
                 raise ServiceError("Index disappeared during readiness check")
+            if not isinstance(description, dict):
+                raise ServiceError("Pinecone returned an invalid index description")
             self.validate_index(description)
         host = description.get("host", "")
         if not re.fullmatch(r"[A-Za-z0-9.-]+\.pinecone\.io", host):
