@@ -32,6 +32,7 @@ class Settings:
     corpus_dir: str = "outputs/corpus"
     chunk_max_tokens: int = 256
     chunk_overlap: int = 32
+    langsmith_endpoint: str = "https://api.smith.langchain.com"
 
     def service_readiness(self) -> dict[str, bool]:
         """Report required settings' presence, not authentication or account access."""
@@ -90,4 +91,5 @@ def load_settings(
         corpus_dir=value("CORPUS_DIR", "outputs/corpus"),
         chunk_max_tokens=chunk_max_tokens,
         chunk_overlap=chunk_overlap,
+        langsmith_endpoint=value("LANGSMITH_ENDPOINT", "https://api.smith.langchain.com"),
     )

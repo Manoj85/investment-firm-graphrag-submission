@@ -1,0 +1,66 @@
+"""Run a new question through persisted retrieval and cited generation."""
+
+import argparse
+from datetime import datetime, timezone
+import json
+from time import perf_counter
+
+from corpus_pipeline import atomic_json
+from project_config import PROJECT_ROOT, load_settings
+from rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, GroundedChat, application
+from service_clients import NebiusEmbeddings, PineconeStore, ServiceError
+from tracing_setup import TracingSession
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("question")
+    args = parser.parse_args()
+    store = embeddings = chat = tracing = None
+    try:
+        settings = load_settings()
+        store = PineconeStore(settings)
+        embeddings = NebiusEmbeddings(settings)
+        chat = GroundedChat(settings)
+        graph = application(settings, store, embeddings, chat)
+        tracing = TracingSession(settings)
+        started = perf_counter()
+        print("Retrieving persisted evidence, then generating a cited answer...", flush=True)
+        config = tracing.invoke_config()
+        config["metadata"] = {"prompt_version": PROMPT_VERSION,
+            "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model}
+        result = graph.invoke({"question": args.question}, config=config)
+        elapsed = round(perf_counter() - started, 3)
+        report = {"mode": "vector", "question": args.question,
+            "answer": result["answer"], "sources": result["sources"],
+            "namespace": result["retrieval"]["namespace"],
+            "corpus_version": result["retrieval"]["corpus_version"],
+            "prompt_version": PROMPT_VERSION, "evidence_budget": EVIDENCE_BUDGET,
+            "evidence_budget_method": "pinned Qwen content tokens",
+            "requested_chat_model": settings.nebius_chat_model,
+            "response_model": result["response_model"], "usage": result["usage"],
+            "elapsed_seconds": elapsed, "tracing": tracing.finish()}
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+        path = PROJECT_ROOT / "work" / "answers" / f"answer-{stamp}.json"
+        atomic_json(path, report)
+        print(f"Status: {report['answer']['status']}")
+        print(report["answer"]["answer"])
+        for source in report["sources"]:
+            if source["citation"] in report["answer"]["citations"]:
+                meta = source["metadata"]
+                print(f"[{source['citation']}] {meta['document_id']} | {meta['section']} | {meta['source']}")
+        print(f"Elapsed: {report['elapsed_seconds']} seconds")
+        print(f"Full evidence/usage receipt: {path.relative_to(PROJECT_ROOT).as_posix()}")
+        print(f"LangSmith tracing: {report['tracing']['status']}")
+        return 0
+    except (ValueError, ServiceError, OSError) as error:
+        print(f"Answering failed: {error}")
+        return 1
+    finally:
+        for client in (tracing, chat, embeddings, store):
+            if client is not None:
+                client.close()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

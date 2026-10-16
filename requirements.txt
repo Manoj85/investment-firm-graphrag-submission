@@ -4,3 +4,9 @@ python-dotenv==1.2.4
 httpx==0.28.1
 # Load the embedding model's tokenizer JSON without downloading model weights.
 tokenizers==0.23.3
+# Track 2: prompt composition and an explicit retrieval/answer state graph.
+langchain-core==1.6.11
+langgraph==1.2.15
+# Explicit tracing client and its HTTP session, introduced with the answer flow.
+langsmith==0.14.11
+requests==2.34.2
