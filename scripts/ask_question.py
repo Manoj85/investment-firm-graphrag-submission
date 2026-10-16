@@ -7,7 +7,7 @@ from time import perf_counter
 
 from corpus_pipeline import atomic_json
 from project_config import PROJECT_ROOT, load_settings
-from rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, GroundedChat, application
+from rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, GroundedChat, application
 from service_clients import NebiusEmbeddings, PineconeStore, ServiceError
 from tracing_setup import TracingSession
 
@@ -17,13 +17,15 @@ def main():
     parser.add_argument("question")
     parser.add_argument("--expand-neighbors", action="store_true",
                         help="Experiment: fetch at most four adjacent source passages after vector search")
+    parser.add_argument("--prompt-version", choices=tuple(PROMPTS), default=PROMPT_VERSION,
+                        help="Versioned answer instructions; v2 remains the default")
     args = parser.parse_args()
     store = embeddings = chat = tracing = None
     try:
         settings = load_settings()
         store = PineconeStore(settings)
         embeddings = NebiusEmbeddings(settings)
-        chat = GroundedChat(settings)
+        chat = GroundedChat(settings, prompt_version=args.prompt_version)
         mode = "vector_neighbors" if args.expand_neighbors else "vector"
         graph = application(settings, store, embeddings, chat,
                             expand_source_neighbors=args.expand_neighbors)
@@ -31,7 +33,7 @@ def main():
         started = perf_counter()
         print("Retrieving persisted evidence, then generating a cited answer...", flush=True)
         config = tracing.invoke_config()
-        config["metadata"] = {"prompt_version": PROMPT_VERSION,
+        config["metadata"] = {"prompt_version": chat.prompt_version,
             "retrieval_mode": mode,
             "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model}
         result = graph.invoke({"question": args.question}, config=config)
@@ -40,7 +42,7 @@ def main():
             "answer": result["answer"], "sources": result["sources"],
             "namespace": result["retrieval"]["namespace"],
             "corpus_version": result["retrieval"]["corpus_version"],
-            "prompt_version": PROMPT_VERSION, "evidence_budget": EVIDENCE_BUDGET,
+            "prompt_version": chat.prompt_version, "evidence_budget": EVIDENCE_BUDGET,
             "evidence_budget_method": "pinned Qwen content tokens",
             "requested_chat_model": settings.nebius_chat_model,
             "response_model": result["response_model"], "usage": result["usage"],

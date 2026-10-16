@@ -37,6 +37,25 @@ PROMPT = ChatPromptTemplate.from_messages([
     ("system", SYSTEM_INSTRUCTIONS),
     ("human", "Question:\n{question}\n\nSource passages:\n{context}")])
 
+# Keep v2 intact as the comparison baseline. This experiment changes instructions
+# only: no expected person, decision ID, or source-specific answer is inserted.
+DOCUMENT_SCOPE_PROMPT_VERSION = "grounded-answer-v3-document-scope"
+DOCUMENT_SCOPE_INSTRUCTIONS = SYSTEM_INSTRUCTIONS + """
+Read all supplied passages before deciding whether the requested fact is absent.
+A statement that one document does not identify a fact applies to that document
+only. Another supplied document can explicitly establish the fact. Keep each
+statement scoped to its source; a local absence is not a global contradiction.
+Connect explicit identifiers across passages when they refer to the same entity.
+Answer the specific information requested: a who question asks for an identified
+person or role, not merely an associated date, event, or tool.
+Use insufficient_evidence only if the supplied passages cannot establish the
+requested fact; describe the limitation as being in the retrieved passages.
+If returning no factual answer, use an empty citations list. Otherwise ensure all
+citations in the list also occur inline in the answer string."""
+PROMPTS = {PROMPT_VERSION: PROMPT, DOCUMENT_SCOPE_PROMPT_VERSION: ChatPromptTemplate.from_messages([
+    ("system", DOCUMENT_SCOPE_INSTRUCTIONS),
+    ("human", "Question:\n{question}\n\nSource passages:\n{context}")])}
+
 
 class AnswerState(TypedDict, total=False):
     question: str
@@ -89,7 +108,11 @@ def validate_answer(content, sources):
 
 
 class GroundedChat:
-    def __init__(self, settings, *, transport=None):
+    def __init__(self, settings, *, transport=None, prompt_version=PROMPT_VERSION):
+        if prompt_version not in PROMPTS:
+            raise ValueError("Unknown grounded-answer prompt version")
+        self.prompt_version = prompt_version
+        self.prompt = PROMPTS[prompt_version]
         self.model = settings.nebius_chat_model
         self.client = httpx.Client(base_url=validate_settings(settings, "chat"),
             headers={"Authorization": f"Bearer {settings.nebius_api_key}"},
@@ -99,7 +122,7 @@ class GroundedChat:
         self.client.close()
 
     def generate(self, question, context, sources):
-        messages = PROMPT.format_messages(question=question, context=context)
+        messages = self.prompt.format_messages(question=question, context=context)
         roles = {"system": "system", "human": "user", "ai": "assistant"}
         result = request_json(self.client, "POST", "chat/completions", json={
             "model": self.model,
