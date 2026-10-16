@@ -16,6 +16,10 @@ def main():
     try:
         store = PineconeStore(load_settings())
         description = store.ensure_index(create=args.create)
+        # Check at the point of use as well as inside the shared client.
+        # After this guard, description[...] always operates on a dictionary.
+        if not isinstance(description, dict):
+            raise ServiceError("Expected a Pinecone index description dictionary")
         report = {"status": "ready", "index": description["name"],
             "dimension": DIMENSION, "metric": description["metric"],
             "host": description["host"], "spec": description["spec"], "stats": store.stats()}
