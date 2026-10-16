@@ -1,0 +1,2 @@
+# Add provider and application packages when we introduce their first real call.
+python-dotenv==1.2.4
