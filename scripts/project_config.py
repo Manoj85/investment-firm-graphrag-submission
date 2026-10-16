@@ -27,6 +27,11 @@ class Settings:
     langsmith_api_key: str = field(repr=False)
     langsmith_project: str
     langsmith_tracing: bool
+    pinecone_cloud: str = "aws"
+    pinecone_region: str = "us-east-1"
+    corpus_dir: str = "outputs/corpus"
+    chunk_max_tokens: int = 256
+    chunk_overlap: int = 32
 
     def service_readiness(self) -> dict[str, bool]:
         """Report required settings' presence, not authentication or account access."""
@@ -61,6 +66,14 @@ def load_settings(
         # Name the setting, but never include its supplied value in the error.
         raise ValueError("LANGSMITH_TRACING must be true or false")
 
+    try:
+        chunk_max_tokens = int(value("CHUNK_MAX_TOKENS", "256"))
+        chunk_overlap = int(value("CHUNK_OVERLAP", "32"))
+    except ValueError:
+        raise ValueError("CHUNK_MAX_TOKENS and CHUNK_OVERLAP must be integers") from None
+    if not 0 <= chunk_overlap < chunk_max_tokens <= 2048:
+        raise ValueError("Require 0 <= CHUNK_OVERLAP < CHUNK_MAX_TOKENS <= 2048")
+
     return Settings(
         nebius_api_key=value("NEBIUS_API_KEY"),
         nebius_base_url=value("NEBIUS_BASE_URL"),
@@ -72,4 +85,9 @@ def load_settings(
         langsmith_api_key=value("LANGSMITH_API_KEY"),
         langsmith_project=value("LANGSMITH_PROJECT"),
         langsmith_tracing=tracing == "true",
+        pinecone_cloud=value("PINECONE_CLOUD", "aws"),
+        pinecone_region=value("PINECONE_REGION", "us-east-1"),
+        corpus_dir=value("CORPUS_DIR", "outputs/corpus"),
+        chunk_max_tokens=chunk_max_tokens,
+        chunk_overlap=chunk_overlap,
     )
