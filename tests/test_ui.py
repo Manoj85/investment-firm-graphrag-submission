@@ -34,6 +34,13 @@ def fake_report(question, *, mode):
 class WorkspaceTests(unittest.TestCase):
     @patch("scripts.ui.app.run_question", side_effect=fake_report)
     def test_load_selection_compare_history_and_clear_make_only_explicit_calls(self, backend):
+        def with_claims(question, *, mode):
+            report = fake_report(question, mode=mode)
+            report["structured_claims"] = {"status": "answered", "message": "", "claims": [
+                {"text": "Taylor approved Decision X.", "evidence": [
+                    {"source": "S1", "quote": "Taylor approved Decision X."}]}]}
+            return report
+        backend.side_effect = with_claims
         app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
         self.assertFalse(app.exception)
         backend.assert_not_called()
@@ -47,11 +54,25 @@ class WorkspaceTests(unittest.TestCase):
         self.assertEqual([tab.label for tab in app.tabs], ["Answer", "Sources", "Graph paths", "Run details"])
         self.assertEqual(len(app.session_state.run_history), 1)
         self.assertEqual(len(app.session_state.run_history[0]["reports"]), 2)
+        self.assertEqual(sum(item.label == "Claims and their exact source excerpts" for item in app.expander), 2)
+        self.assertEqual(sum(item.value == "Taylor approved Decision X." for item in app.text), 2)
         app.run()  # All tab renderers execute; none may call the backend again.
         self.assertEqual(backend.call_count, 2)
         next(button for button in app.button if button.label == "Clear session view").click().run()
         self.assertEqual(backend.call_count, 2)
         self.assertEqual(app.session_state.run_history, [])
+
+    @patch("scripts.ui.app.run_question")
+    def test_structured_format_is_explicit_and_shared_between_modes(self, backend):
+        backend.side_effect = lambda question, mode, prompt_version: fake_report(question, mode=mode)
+        app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
+        app.selectbox(key="answer_format").set_value("Structured claims (experimental)").run()
+        backend.assert_not_called()
+        app.radio(key="retrieval_choice").set_value("Compare both")
+        next(button for button in app.button if button.label == "Run question").click().run()
+        self.assertFalse(app.exception)
+        self.assertEqual(backend.call_count, 2)
+        self.assertTrue(all(call.kwargs["prompt_version"] == "grounded-answer-v5-claims" for call in backend.call_args_list))
 
     @patch("scripts.ui.app.run_question")
     def test_partial_comparison_failure_keeps_the_successful_side(self, backend):

@@ -8,6 +8,7 @@ import streamlit as st
 
 from scripts.config.project_config import PROJECT_ROOT, load_settings
 from scripts.rag.answer_service import run_question
+from scripts.rag.structured_claims import CLAIMS_PROMPT_VERSION
 from scripts.services.service_clients import ServiceError
 from scripts.ui.presentation import citation_usage, path_diagram
 
@@ -53,13 +54,14 @@ def local_snapshot():
     return result
 
 
-def execute_request(question, choice):
+def execute_request(question, choice, *, prompt_version=None):
     """Keep a successful comparison side even when the other side fails."""
     entry = {"id": uuid4().hex, "question": question, "choice": choice,
              "created_utc": datetime.now(timezone.utc).isoformat(), "reports": {}, "errors": {}}
     for mode in MODES[choice]:
         try:
-            entry["reports"][mode] = run_question(question, mode=mode)
+            options = {"prompt_version": prompt_version} if prompt_version else {}
+            entry["reports"][mode] = run_question(question, mode=mode, **options)
         except (ValueError, ServiceError, OSError) as error:
             entry["errors"][mode] = str(error)
         except Exception as error:
@@ -208,6 +210,9 @@ def render_app():
     with st.form("question_form"):
         question = st.text_area("Your question", key="question_input", height=90, max_chars=2000)
         choice = st.radio("Retrieval method", list(MODES), index=1, horizontal=True, key="retrieval_choice")
+        answer_format = st.selectbox("Answer format", ["Current default", "Structured claims (experimental)"], key="answer_format")
+        if answer_format == "Structured claims (experimental)":
+            st.caption("Shows individual claims and exact source excerpts. Stricter checks may reject an answer; matching excerpts do not guarantee correct claims.")
         st.caption("Compare both deliberately runs both methods. Changing views or reopening history makes no model request.")
         submitted = st.form_submit_button("Run question", type="primary", width="stretch")
     if submitted:
@@ -215,7 +220,8 @@ def render_app():
             st.warning("Enter a question before running.")
         else:
             with st.spinner("Retrieving source evidence and preparing your answer…"):
-                entry = execute_request(question.strip(), choice)
+                entry = execute_request(question.strip(), choice,
+                    prompt_version=CLAIMS_PROMPT_VERSION if answer_format == "Structured claims (experimental)" else None)
             st.session_state.run_history = (st.session_state.run_history + [entry])[-20:]
             st.session_state.history_choice = entry["id"]
             st.rerun()
