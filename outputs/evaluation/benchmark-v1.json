@@ -1,0 +1,207 @@
+{
+  "benchmark_version": "1.0",
+  "status": "frozen_for_comparison",
+  "reviewed_on": "2026-10-17",
+  "reviewer": "assistant source review; no separate user sign-off recorded",
+  "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+  "question_sha256": "1934653c7aaeeca64831487598d55420450bda05800bd222f6bc5f264c951198",
+  "disclosure": "Authored synthetic learning benchmark, not a blind holdout. Q01/Q04/Q10 overlap prior live development topics; graph authoring and source inspections also exposed other expected facts. Results must not be presented as generalization performance. Runtime retrieval must not import this file. Changes require a new version and rerunning both modes.",
+  "questions": [
+    {
+      "id": "Q01",
+      "title": "Project ownership",
+      "category": "direct factual question.",
+      "question": "Who leads Project Atlas, and who is its executive sponsor?",
+      "expected": "Maya Chen is the project lead; Daniel Ortiz is the executive sponsor.",
+      "expected_status": "answered",
+      "required_sources": [
+        {
+          "document_id": "DOC-002",
+          "section": "Ownership"
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "title": "Named skill",
+      "category": "direct factual question.",
+      "question": "Who is listed with Data Quality Engineering expertise?",
+      "expected": "Alex Morgan.",
+      "expected_status": "answered",
+      "required_sources": [
+        {
+          "document_id": "DOC-009",
+          "section": "Data quality engineering"
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "title": "Explicit decision approval",
+      "category": "direct factual question.",
+      "question": "Who approved DEC-003, and on what date?",
+      "expected": "Noah Singh approved DEC-003 on October 13, 2026.",
+      "expected_status": "answered",
+      "required_sources": [
+        {
+          "document_id": "DOC-007",
+          "section": "Approval and accountability"
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "title": "Project lead and tool-decision approver",
+      "category": "cross-document relationship question.",
+      "question": "Who leads the project that uses Beacon Evidence Hub, and who approved that tool's selection for the project?",
+      "expected": "Project Atlas uses Beacon Evidence Hub; Maya Chen leads Atlas; Elena Brooks approved its selection in DEC-001.",
+      "expected_status": "answered",
+      "required_sources": [
+        {
+          "document_id": "DOC-002",
+          "section": "Team and tools"
+        },
+        {
+          "document_id": "DOC-002",
+          "section": "Ownership"
+        },
+        {
+          "document_id": "DOC-003",
+          "section": "Decision and project"
+        },
+        {
+          "document_id": "DOC-003",
+          "section": "Approval and accountability"
+        }
+      ]
+    },
+    {
+      "id": "Q05",
+      "title": "Project participant with relevant expertise",
+      "category": "cross-document relationship question.",
+      "question": "Which Project Atlas participant has Evidence Workflow Design expertise, and which team are they in?",
+      "expected": "Priya Shah works on Atlas, has Evidence Workflow Design expertise, and belongs to Compliance Operations.",
+      "expected_status": "answered",
+      "required_sources": [
+        {
+          "document_id": "DOC-002",
+          "section": "Team and tools"
+        },
+        {
+          "document_id": "DOC-009",
+          "section": "Evidence workflow design"
+        },
+        {
+          "document_id": "DOC-001",
+          "section": "Priya Shah"
+        }
+      ]
+    },
+    {
+      "id": "Q06",
+      "title": "Dependency owner and expertise",
+      "category": "cross-document relationship question.",
+      "question": "Which project supplies access-review records to Borealis, who leads that upstream project, and what access-related skill is recorded for that lead?",
+      "expected": "Project Harbor supplies the records; Noah Singh leads Harbor and has Access Governance expertise.",
+      "expected_status": "answered",
+      "required_sources": [
+        {
+          "document_id": "DOC-006",
+          "section": "Dependencies"
+        },
+        {
+          "document_id": "DOC-004",
+          "section": "Ownership"
+        },
+        {
+          "document_id": "DOC-009",
+          "section": "Access governance"
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "title": "Review process and rule maintainer",
+      "category": "cross-document relationship question.",
+      "question": "Who maintains the rule catalogue for the completeness checker required by Atlas's review-process decision, and who approved that decision?",
+      "expected": "DEC-004 requires LedgerCheck; Priya Shah maintains LedgerCheck's rule catalogue; Elena Brooks approved DEC-004.",
+      "expected_status": "answered",
+      "required_sources": [
+        {
+          "document_id": "DOC-008",
+          "section": "Decision and project"
+        },
+        {
+          "document_id": "DOC-008",
+          "section": "Approval and accountability"
+        },
+        {
+          "document_id": "DOC-009",
+          "section": "Tool responsibilities"
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "title": "Descriptive problem-to-project match",
+      "category": "semantic/descriptive question.",
+      "question": "Which project helps an analyst trace a reporting input back through upstream systems, and which tool records those links?",
+      "expected": "Project Borealis; Signal Lineage Board.",
+      "expected_status": "answered",
+      "required_sources": [
+        {
+          "document_id": "DOC-006",
+          "section": "Purpose"
+        },
+        {
+          "document_id": "DOC-006",
+          "section": "Team and tools"
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "title": "Ambiguous person",
+      "category": "ambiguous identity.",
+      "question": "What is Alex responsible for?",
+      "expected": "ask whether the user means Alex Morgan or Alex Rivera; do not silently choose one.",
+      "expected_status": "clarification",
+      "required_sources": [
+        {
+          "document_id": "DOC-001",
+          "section": "Alex Morgan"
+        },
+        {
+          "document_id": "DOC-001",
+          "section": "Alex Rivera"
+        },
+        {
+          "document_id": "DOC-001",
+          "section": "Name resolution"
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "title": "Information outside the corpus",
+      "category": "unanswerable question.",
+      "question": "What annual investment return does Project Atlas guarantee?",
+      "expected": "explain that the documents do not provide a guaranteed return and describe Atlas as a compliance evidence project if helpful. Do not invent a percentage.",
+      "expected_status": "insufficient_evidence",
+      "required_sources": [
+        {
+          "document_id": "DOC-002",
+          "section": "Purpose"
+        },
+        {
+          "document_id": "DOC-002",
+          "section": "Scope boundaries"
+        },
+        {
+          "document_id": "DOC-010",
+          "section": "Scope boundaries"
+        }
+      ]
+    }
+  ]
+}
