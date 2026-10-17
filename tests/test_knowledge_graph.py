@@ -30,7 +30,8 @@ class GraphEvidenceTests(unittest.TestCase):
 
     def test_authored_graph_matches_current_source_records(self):
         summary = validate_graph(self.graph, self.manifest)
-        self.assertEqual(summary["supporting_documents"], ["DOC-001", "DOC-002", "DOC-009"])
+        self.assertEqual(summary["supporting_documents"], [f"DOC-{i:03}" for i in range(1, 11)])
+        self.assertGreaterEqual(summary["nodes"], 20)
 
     def test_source_version_change_requires_explicit_graph_review(self):
         graph = deepcopy(self.graph)
@@ -72,9 +73,11 @@ class GraphEvidenceTests(unittest.TestCase):
         network = to_networkx(self.graph, self.manifest)
         rows = outgoing_relationships(network, "person:priya-shah")
         self.assertEqual({row["edge_id"] for row in rows},
-                         {edge["id"] for edge in self.graph["relationships"]})
-        self.assertEqual(outgoing_relationships(network, "project:atlas"), [])
-        self.assertEqual(network.in_degree("project:atlas"), 1)
+                         {edge["id"] for edge in self.graph["relationships"]
+                          if edge["source"] == "person:priya-shah"})
+        edge = self.graph["relationships"][0]
+        self.assertTrue(network.has_edge(edge["source"], edge["target"], edge["id"]))
+        self.assertFalse(network.has_edge(edge["target"], edge["source"], edge["id"]))
         self.assertEqual(rows[0]["evidence"], self.graph["relationships"][0]["evidence"])
         with self.assertRaises(ValueError):
             outgoing_relationships(network, "person:unknown")
@@ -97,3 +100,24 @@ class GraphEvidenceTests(unittest.TestCase):
         self.assertEqual(network.edges[edge["source"], edge["target"], edge["id"]]["evidence"], edge["evidence"])
         network.edges[edge["source"], edge["target"], edge["id"]]["evidence"][0]["excerpt"] = "Graph changed"
         self.assertNotEqual(graph["relationships"][0]["evidence"][0]["excerpt"], "Graph changed")
+
+    def test_approval_and_preparation_are_distinct_and_alex_is_not_merged(self):
+        network = to_networkx(self.graph, self.manifest)
+        approvals = [row for row in outgoing_relationships(network, "decision:dec-001")
+                     if row["relation"] == "APPROVED_BY"]
+        self.assertEqual([row["target"] for row in approvals], ["person:elena-brooks"])
+        preparers = [row for row in outgoing_relationships(network, "decision:dec-001")
+                     if row["relation"] == "PREPARED_BY"]
+        self.assertEqual([row["target"] for row in preparers], ["person:priya-shah"])
+        alex = [node_id for node_id, attrs in network.nodes(data=True)
+                if attrs["type"] == "Person" and "Alex" in attrs["aliases"]]
+        self.assertEqual(set(alex), {"person:alex-morgan", "person:alex-rivera"})
+
+    def test_every_expanded_edge_has_literal_source_support(self):
+        chunks = {record["id"]: record["metadata"] for record in self.manifest["records"]}
+        for edge in self.graph["relationships"]:
+            for citation in edge["evidence"]:
+                self.assertIn(citation["excerpt"], chunks[citation["chunk_id"]]["chunk_text"])
+        network = to_networkx(self.graph, self.manifest)
+        for tool in ("tool:beacon-evidence-hub", "tool:harbor-access-register", "tool:signal-lineage-board"):
+            self.assertTrue(any(row["relation"] == "OWNED_BY" for row in outgoing_relationships(network, tool)))

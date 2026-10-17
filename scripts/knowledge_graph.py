@@ -10,12 +10,28 @@ from project_config import PROJECT_ROOT
 
 
 GRAPH_PATH = PROJECT_ROOT / "outputs" / "graph" / "knowledge-graph.json"
-NODE_TYPES = {"Person", "Project", "Skill", "Team", "Tool", "Decision", "Document"}
-# A deliberately small vocabulary for our first learning checkpoint.
+NODE_TYPES = {"Person", "Project", "Skill", "Team", "Tool", "Decision", "Document", "Policy"}
+# Explicit endpoint types keep distinct organizational responsibilities separate.
 RELATION_ENDPOINTS = {
     "WORKED_ON": ("Person", "Project"),
     "HAS_SKILL": ("Person", "Skill"),
     "MEMBER_OF": ("Person", "Team"),
+    "PART_OF": ("Team", "Team"),
+    "LEADS_PROJECT": ("Person", "Project"),
+    "SPONSORS_PROJECT": ("Person", "Project"),
+    "LEADS_TEAM": ("Person", "Team"),
+    "USES_TOOL": ("Project", "Tool"),
+    "OWNED_BY": ("Tool", "Team"),
+    "MAINTAINS_RULES": ("Person", "Tool"),
+    "ABOUT_PROJECT": ("Decision", "Project"),
+    "APPROVED_BY": ("Decision", "Person"),
+    "PREPARED_BY": ("Decision", "Person"),
+    "SELECTS_TOOL": ("Decision", "Tool"),
+    "REQUIRES_TOOL": ("Decision", "Tool"),
+    "REGISTERS_SOURCE": ("Decision", "Tool"),
+    "DEPENDS_ON": ("Project", "Project"),
+    "USES_SOURCE": ("Project", "Tool"),
+    "POLICY_APPLIES_TO": ("Policy", "Project"),
 }
 EVIDENCE_FIELDS = {"document_id", "section", "source", "version", "source_sha256", "chunk_id", "excerpt"}
 

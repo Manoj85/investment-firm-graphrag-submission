@@ -1,13 +1,15 @@
 {
   "schema_version": 1,
-  "graph_version": "0.1-learning",
+  "graph_version": "0.2-reviewed",
   "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
   "nodes": [
     {
       "id": "person:priya-shah",
       "type": "Person",
       "label": "Priya Shah",
-      "aliases": []
+      "aliases": [
+        "Priya"
+      ]
     },
     {
       "id": "project:atlas",
@@ -27,6 +29,186 @@
       "id": "team:compliance-operations",
       "type": "Team",
       "label": "Compliance Operations",
+      "aliases": []
+    },
+    {
+      "id": "person:maya-chen",
+      "type": "Person",
+      "label": "Maya Chen",
+      "aliases": [
+        "Maya"
+      ]
+    },
+    {
+      "id": "person:daniel-ortiz",
+      "type": "Person",
+      "label": "Daniel Ortiz",
+      "aliases": [
+        "Daniel"
+      ]
+    },
+    {
+      "id": "person:elena-brooks",
+      "type": "Person",
+      "label": "Elena Brooks",
+      "aliases": [
+        "Elena"
+      ]
+    },
+    {
+      "id": "person:noah-singh",
+      "type": "Person",
+      "label": "Noah Singh",
+      "aliases": [
+        "Noah"
+      ]
+    },
+    {
+      "id": "person:alex-morgan",
+      "type": "Person",
+      "label": "Alex Morgan",
+      "aliases": [
+        "Alex"
+      ]
+    },
+    {
+      "id": "person:alex-rivera",
+      "type": "Person",
+      "label": "Alex Rivera",
+      "aliases": [
+        "Alex"
+      ]
+    },
+    {
+      "id": "person:sofia-alvarez",
+      "type": "Person",
+      "label": "Sofia Alvarez",
+      "aliases": [
+        "Sofia"
+      ]
+    },
+    {
+      "id": "project:harbor",
+      "type": "Project",
+      "label": "Project Harbor",
+      "aliases": [
+        "Harbor"
+      ]
+    },
+    {
+      "id": "project:borealis",
+      "type": "Project",
+      "label": "Project Borealis",
+      "aliases": [
+        "Borealis"
+      ]
+    },
+    {
+      "id": "skill:delivery-coordination",
+      "type": "Skill",
+      "label": "Delivery Coordination",
+      "aliases": []
+    },
+    {
+      "id": "skill:data-quality-engineering",
+      "type": "Skill",
+      "label": "Data Quality Engineering",
+      "aliases": []
+    },
+    {
+      "id": "skill:access-governance",
+      "type": "Skill",
+      "label": "Access Governance",
+      "aliases": []
+    },
+    {
+      "id": "skill:risk-lineage-mapping",
+      "type": "Skill",
+      "label": "Risk Lineage Mapping",
+      "aliases": []
+    },
+    {
+      "id": "team:project-management-office",
+      "type": "Team",
+      "label": "Project Management Office",
+      "aliases": []
+    },
+    {
+      "id": "team:executive-office",
+      "type": "Team",
+      "label": "Executive Office",
+      "aliases": []
+    },
+    {
+      "id": "team:compliance-office",
+      "type": "Team",
+      "label": "Compliance Office",
+      "aliases": []
+    },
+    {
+      "id": "team:data-platform",
+      "type": "Team",
+      "label": "Data Platform",
+      "aliases": []
+    },
+    {
+      "id": "team:risk-analytics",
+      "type": "Team",
+      "label": "Risk Analytics",
+      "aliases": []
+    },
+    {
+      "id": "tool:beacon-evidence-hub",
+      "type": "Tool",
+      "label": "Beacon Evidence Hub",
+      "aliases": []
+    },
+    {
+      "id": "tool:ledgercheck",
+      "type": "Tool",
+      "label": "LedgerCheck",
+      "aliases": []
+    },
+    {
+      "id": "tool:harbor-access-register",
+      "type": "Tool",
+      "label": "Harbor Access Register",
+      "aliases": []
+    },
+    {
+      "id": "tool:signal-lineage-board",
+      "type": "Tool",
+      "label": "Signal Lineage Board",
+      "aliases": []
+    },
+    {
+      "id": "decision:dec-001",
+      "type": "Decision",
+      "label": "DEC-001",
+      "aliases": []
+    },
+    {
+      "id": "decision:dec-002",
+      "type": "Decision",
+      "label": "DEC-002",
+      "aliases": []
+    },
+    {
+      "id": "decision:dec-003",
+      "type": "Decision",
+      "label": "DEC-003",
+      "aliases": []
+    },
+    {
+      "id": "decision:dec-004",
+      "type": "Decision",
+      "label": "DEC-004",
+      "aliases": []
+    },
+    {
+      "id": "policy:knowledge-and-review",
+      "type": "Policy",
+      "label": "Organizational knowledge and review policy",
       "aliases": []
     }
   ],
@@ -79,6 +261,907 @@
           "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
           "chunk_id": "1436c9e5daf406b83b26239e3cadf87fe1d3850f63b02b97f4c428816e71a6e6",
           "excerpt": "Priya Shah is a compliance operations analyst in the Compliance Operations team."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:maya-chen:member_of:team:project-management-office",
+      "source": "person:maya-chen",
+      "relation": "MEMBER_OF",
+      "target": "team:project-management-office",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Maya Chen",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "b81a176eb52e728fb9303fbbd1e142f66ec31189fbf6c6d5f962401577a443e0",
+          "excerpt": "## Maya Chen\n\nMaya Chen is a delivery manager in the Project Management Office. She coordinates project schedules and review handoffs. Project charters, rather than this directory, establish her assignments to individual projects."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:daniel-ortiz:member_of:team:executive-office",
+      "source": "person:daniel-ortiz",
+      "relation": "MEMBER_OF",
+      "target": "team:executive-office",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Daniel Ortiz",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "c835b6137bc5c8b32876f2236fa334f7f619c63cc76c50e4c940c117e43f8781",
+          "excerpt": "## Daniel Ortiz\n\nDaniel Ortiz is Chief Operating Officer in the Executive Office. He handles executive escalations for internal operations. An executive role or sponsorship does not establish approval of an individual project decision; consult the relevant decision record."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:alex-morgan:member_of:team:data-platform",
+      "source": "person:alex-morgan",
+      "relation": "MEMBER_OF",
+      "target": "team:data-platform",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Alex Morgan",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "3334914b0d078feed660af4a735abf4b7c8fec479f5995b772f3962be15e9f7f",
+          "excerpt": "## Alex Morgan\n\nAlex Morgan is a data engineer in the Data Platform team. Alex Morgan implements data-quality checks and maintains ingestion validation workflows. Alex Morgan is a different person from Alex Rivera."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:alex-rivera:member_of:team:risk-analytics",
+      "source": "person:alex-rivera",
+      "relation": "MEMBER_OF",
+      "target": "team:risk-analytics",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Alex Rivera",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "726b6eb00c852f0a36217d5ef3c4ed19bfbd8e5f44a88f9dc420e3be61e72f4a",
+          "excerpt": "## Alex Rivera\n\nAlex Rivera is a risk analyst in the Risk Analytics team. Alex Rivera maps the lineage of internal risk reporting inputs and reviews reporting dependencies. Alex Rivera is a different person from Alex Morgan."
+        }
+      ]
+    },
+    {
+      "id": "rel:team:compliance-operations:part_of:team:compliance-office",
+      "source": "team:compliance-operations",
+      "relation": "PART_OF",
+      "target": "team:compliance-office",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Priya Shah",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "1436c9e5daf406b83b26239e3cadf87fe1d3850f63b02b97f4c428816e71a6e6",
+          "excerpt": "## Priya Shah\n\nPriya Shah is a compliance operations analyst in the Compliance Operations team. Her responsibilities include assessing evidence workflows and coordinating evidence completeness reviews. Compliance Operations is a team within the Compliance Office."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:elena-brooks:leads_team:team:compliance-office",
+      "source": "person:elena-brooks",
+      "relation": "LEADS_TEAM",
+      "target": "team:compliance-office",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Elena Brooks",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "d617e724397754291d4304bf59b9f3d95accfddbfc0ec387a8aff62681d04e45",
+          "excerpt": "## Elena Brooks\n\nElena Brooks is Head of Compliance and leads the Compliance Office. She reviews operational control proposals. Approval authority for a particular decision must be established from its decision record, not inferred from her title."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:noah-singh:leads_team:team:data-platform",
+      "source": "person:noah-singh",
+      "relation": "LEADS_TEAM",
+      "target": "team:data-platform",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Noah Singh",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "a94be3e125abdf8861883615e192e3280f3ee39dae5eecf9877e12800a5b7186",
+          "excerpt": "## Noah Singh\n\nNoah Singh is the Data Platform team lead. His responsibilities include platform access reviews and delivery coordination for shared data services. The Data Platform team supports internal operational systems."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:sofia-alvarez:leads_team:team:risk-analytics",
+      "source": "person:sofia-alvarez",
+      "relation": "LEADS_TEAM",
+      "target": "team:risk-analytics",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Sofia Alvarez",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "6cfd4c1a828a974debe5942a6f0641bfd68224ded1cf47800ace40daa569a916",
+          "excerpt": "## Sofia Alvarez\n\nSofia Alvarez is the Risk Analytics team lead. She coordinates risk-reporting review work and maintains the team's operational reporting inventory."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:maya-chen:has_skill:skill:delivery-coordination",
+      "source": "person:maya-chen",
+      "relation": "HAS_SKILL",
+      "target": "skill:delivery-coordination",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Delivery coordination",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "7da7b5e3f06492ca1018ed85a850617051d7bf3b199066189a478876e5ad9f5b",
+          "excerpt": "## Delivery coordination\n\nMaya Chen has the skill Delivery Coordination. It covers coordinating schedules, dependencies, and review handoffs across project participants. It is different from approving a control proposal."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:alex-morgan:has_skill:skill:data-quality-engineering",
+      "source": "person:alex-morgan",
+      "relation": "HAS_SKILL",
+      "target": "skill:data-quality-engineering",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Data quality engineering",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "ca4146863277285f0534f537a2ecb325efbe73eca3ebd28c688a8a5ec1e467e7",
+          "excerpt": "## Data quality engineering\n\nAlex Morgan has the skill Data Quality Engineering. It covers implementing ingestion checks, validating required fields, and investigating incomplete operational data. Alex Rivera is not assigned this skill in this register; do not transfer a skill between people because they share a first name."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:noah-singh:has_skill:skill:access-governance",
+      "source": "person:noah-singh",
+      "relation": "HAS_SKILL",
+      "target": "skill:access-governance",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Access governance",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "b0ada0f4f1b98f1b8940484cc2a9ec0c49124f748d91dcd1c720b20587cfe4b4",
+          "excerpt": "## Access governance\n\nNoah Singh has the skill Access Governance. It covers reviewing access requirements, ownership, and least-privilege rules for internal platforms. It does not establish who approved any particular access decision."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:alex-rivera:has_skill:skill:risk-lineage-mapping",
+      "source": "person:alex-rivera",
+      "relation": "HAS_SKILL",
+      "target": "skill:risk-lineage-mapping",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Risk lineage mapping",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "8ad1744e6aee9fcf0fb0c96c9566e1e060532ca18bccbe87a67db1c33fe27771",
+          "excerpt": "## Risk lineage mapping\n\nAlex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:sofia-alvarez:has_skill:skill:risk-lineage-mapping",
+      "source": "person:sofia-alvarez",
+      "relation": "HAS_SKILL",
+      "target": "skill:risk-lineage-mapping",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Risk lineage mapping",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "8ad1744e6aee9fcf0fb0c96c9566e1e060532ca18bccbe87a67db1c33fe27771",
+          "excerpt": "## Risk lineage mapping\n\nAlex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:maya-chen:leads_project:project:atlas",
+      "source": "person:maya-chen",
+      "relation": "LEADS_PROJECT",
+      "target": "project:atlas",
+      "evidence": [
+        {
+          "document_id": "DOC-002",
+          "section": "Ownership",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "chunk_id": "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+          "excerpt": "## Ownership\n\nMaya Chen is the project lead for Project Atlas. Daniel Ortiz is the executive sponsor. The project lead coordinates delivery; the executive sponsor resolves escalations. Being the sponsor does not by itself establish who approved a particular decision."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:daniel-ortiz:sponsors_project:project:atlas",
+      "source": "person:daniel-ortiz",
+      "relation": "SPONSORS_PROJECT",
+      "target": "project:atlas",
+      "evidence": [
+        {
+          "document_id": "DOC-002",
+          "section": "Ownership",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "chunk_id": "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+          "excerpt": "## Ownership\n\nMaya Chen is the project lead for Project Atlas. Daniel Ortiz is the executive sponsor. The project lead coordinates delivery; the executive sponsor resolves escalations. Being the sponsor does not by itself establish who approved a particular decision."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:maya-chen:worked_on:project:atlas",
+      "source": "person:maya-chen",
+      "relation": "WORKED_ON",
+      "target": "project:atlas",
+      "evidence": [
+        {
+          "document_id": "DOC-002",
+          "section": "Team and tools",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+          "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+        }
+      ]
+    },
+    {
+      "id": "rel:project:atlas:uses_tool:tool:beacon-evidence-hub",
+      "source": "project:atlas",
+      "relation": "USES_TOOL",
+      "target": "tool:beacon-evidence-hub",
+      "evidence": [
+        {
+          "document_id": "DOC-002",
+          "section": "Team and tools",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+          "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+        }
+      ]
+    },
+    {
+      "id": "rel:project:atlas:uses_tool:tool:ledgercheck",
+      "source": "project:atlas",
+      "relation": "USES_TOOL",
+      "target": "tool:ledgercheck",
+      "evidence": [
+        {
+          "document_id": "DOC-002",
+          "section": "Team and tools",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+          "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:noah-singh:leads_project:project:harbor",
+      "source": "person:noah-singh",
+      "relation": "LEADS_PROJECT",
+      "target": "project:harbor",
+      "evidence": [
+        {
+          "document_id": "DOC-004",
+          "section": "Ownership",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "chunk_id": "d58e4f226f63c71851a994a88a0f44a8731846721a4e4bcc5a0037cda6f6467d",
+          "excerpt": "## Ownership\n\nNoah Singh is the project lead for Project Harbor. Daniel Ortiz is its executive sponsor. The project lead coordinates delivery; the sponsor handles executive escalations. Individual approval facts belong to decision records."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:daniel-ortiz:sponsors_project:project:harbor",
+      "source": "person:daniel-ortiz",
+      "relation": "SPONSORS_PROJECT",
+      "target": "project:harbor",
+      "evidence": [
+        {
+          "document_id": "DOC-004",
+          "section": "Ownership",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "chunk_id": "d58e4f226f63c71851a994a88a0f44a8731846721a4e4bcc5a0037cda6f6467d",
+          "excerpt": "## Ownership\n\nNoah Singh is the project lead for Project Harbor. Daniel Ortiz is its executive sponsor. The project lead coordinates delivery; the sponsor handles executive escalations. Individual approval facts belong to decision records."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:noah-singh:worked_on:project:harbor",
+      "source": "person:noah-singh",
+      "relation": "WORKED_ON",
+      "target": "project:harbor",
+      "evidence": [
+        {
+          "document_id": "DOC-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "chunk_id": "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+          "excerpt": "## Team and tools\n\nNoah Singh, Alex Morgan, and Maya Chen work on Project Harbor. Harbor uses Harbor Access Register to record access-request ownership and review outcomes. Alex Morgan implements validation checks for the access-review records."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:alex-morgan:worked_on:project:harbor",
+      "source": "person:alex-morgan",
+      "relation": "WORKED_ON",
+      "target": "project:harbor",
+      "evidence": [
+        {
+          "document_id": "DOC-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "chunk_id": "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+          "excerpt": "## Team and tools\n\nNoah Singh, Alex Morgan, and Maya Chen work on Project Harbor. Harbor uses Harbor Access Register to record access-request ownership and review outcomes. Alex Morgan implements validation checks for the access-review records."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:maya-chen:worked_on:project:harbor",
+      "source": "person:maya-chen",
+      "relation": "WORKED_ON",
+      "target": "project:harbor",
+      "evidence": [
+        {
+          "document_id": "DOC-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "chunk_id": "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+          "excerpt": "## Team and tools\n\nNoah Singh, Alex Morgan, and Maya Chen work on Project Harbor. Harbor uses Harbor Access Register to record access-request ownership and review outcomes. Alex Morgan implements validation checks for the access-review records."
+        }
+      ]
+    },
+    {
+      "id": "rel:project:harbor:uses_tool:tool:harbor-access-register",
+      "source": "project:harbor",
+      "relation": "USES_TOOL",
+      "target": "tool:harbor-access-register",
+      "evidence": [
+        {
+          "document_id": "DOC-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "chunk_id": "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+          "excerpt": "## Team and tools\n\nNoah Singh, Alex Morgan, and Maya Chen work on Project Harbor. Harbor uses Harbor Access Register to record access-request ownership and review outcomes. Alex Morgan implements validation checks for the access-review records."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:sofia-alvarez:leads_project:project:borealis",
+      "source": "person:sofia-alvarez",
+      "relation": "LEADS_PROJECT",
+      "target": "project:borealis",
+      "evidence": [
+        {
+          "document_id": "DOC-006",
+          "section": "Ownership",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "chunk_id": "fd2ade540aacd91c4f31aaaaf85537a0a7019c2b93d3165cc88172fe0d43cebc",
+          "excerpt": "## Ownership\n\nSofia Alvarez is the project lead for Project Borealis. Daniel Ortiz is its executive sponsor. Sofia coordinates the lineage inventory and review work; Daniel handles executive escalations."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:daniel-ortiz:sponsors_project:project:borealis",
+      "source": "person:daniel-ortiz",
+      "relation": "SPONSORS_PROJECT",
+      "target": "project:borealis",
+      "evidence": [
+        {
+          "document_id": "DOC-006",
+          "section": "Ownership",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "chunk_id": "fd2ade540aacd91c4f31aaaaf85537a0a7019c2b93d3165cc88172fe0d43cebc",
+          "excerpt": "## Ownership\n\nSofia Alvarez is the project lead for Project Borealis. Daniel Ortiz is its executive sponsor. Sofia coordinates the lineage inventory and review work; Daniel handles executive escalations."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:sofia-alvarez:worked_on:project:borealis",
+      "source": "person:sofia-alvarez",
+      "relation": "WORKED_ON",
+      "target": "project:borealis",
+      "evidence": [
+        {
+          "document_id": "DOC-006",
+          "section": "Team and tools",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "chunk_id": "18b7fce057bb0b3c7da97193c3ed52014b71c024e7dcbfc9720a5c1f99886055",
+          "excerpt": "## Team and tools\n\nSofia Alvarez and Alex Rivera work on Project Borealis. They use Signal Lineage Board to record reporting dependencies and source lineage. Their project roles do not assign Alex Morgan to Borealis; Alex Morgan and Alex Rivera are distinct people."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:alex-rivera:worked_on:project:borealis",
+      "source": "person:alex-rivera",
+      "relation": "WORKED_ON",
+      "target": "project:borealis",
+      "evidence": [
+        {
+          "document_id": "DOC-006",
+          "section": "Team and tools",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "chunk_id": "18b7fce057bb0b3c7da97193c3ed52014b71c024e7dcbfc9720a5c1f99886055",
+          "excerpt": "## Team and tools\n\nSofia Alvarez and Alex Rivera work on Project Borealis. They use Signal Lineage Board to record reporting dependencies and source lineage. Their project roles do not assign Alex Morgan to Borealis; Alex Morgan and Alex Rivera are distinct people."
+        }
+      ]
+    },
+    {
+      "id": "rel:project:borealis:uses_tool:tool:signal-lineage-board",
+      "source": "project:borealis",
+      "relation": "USES_TOOL",
+      "target": "tool:signal-lineage-board",
+      "evidence": [
+        {
+          "document_id": "DOC-006",
+          "section": "Team and tools",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "chunk_id": "18b7fce057bb0b3c7da97193c3ed52014b71c024e7dcbfc9720a5c1f99886055",
+          "excerpt": "## Team and tools\n\nSofia Alvarez and Alex Rivera work on Project Borealis. They use Signal Lineage Board to record reporting dependencies and source lineage. Their project roles do not assign Alex Morgan to Borealis; Alex Morgan and Alex Rivera are distinct people."
+        }
+      ]
+    },
+    {
+      "id": "rel:tool:beacon-evidence-hub:owned_by:team:compliance-office",
+      "source": "tool:beacon-evidence-hub",
+      "relation": "OWNED_BY",
+      "target": "team:compliance-office",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Tool responsibilities",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+          "excerpt": "Beacon Evidence Hub organizes compliance evidence records and their review ownership. Its operational owner is the Compliance Office."
+        }
+      ]
+    },
+    {
+      "id": "rel:tool:harbor-access-register:owned_by:team:data-platform",
+      "source": "tool:harbor-access-register",
+      "relation": "OWNED_BY",
+      "target": "team:data-platform",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Tool responsibilities",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+          "excerpt": "Harbor Access Register records access-request ownership and review outcomes. Its operational owner is the Data Platform team."
+        }
+      ]
+    },
+    {
+      "id": "rel:tool:signal-lineage-board:owned_by:team:risk-analytics",
+      "source": "tool:signal-lineage-board",
+      "relation": "OWNED_BY",
+      "target": "team:risk-analytics",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Tool responsibilities",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+          "excerpt": "Signal Lineage Board records internal risk-reporting dependencies and source lineage. Its operational owner is the Risk Analytics team."
+        }
+      ]
+    },
+    {
+      "id": "rel:person:priya-shah:maintains_rules:tool:ledgercheck",
+      "source": "person:priya-shah",
+      "relation": "MAINTAINS_RULES",
+      "target": "tool:ledgercheck",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Tool responsibilities",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+          "excerpt": "LedgerCheck checks whether required compliance evidence is complete. Priya Shah maintains its evidence-completeness rule catalogue. LedgerCheck does not organize the evidence repository itself."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-001:about_project:project:atlas",
+      "source": "decision:dec-001",
+      "relation": "ABOUT_PROJECT",
+      "target": "project:atlas",
+      "evidence": [
+        {
+          "document_id": "DOC-003",
+          "section": "Decision and project",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "chunk_id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+          "excerpt": "## Decision and project\n\nDecision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026. It concerns internal compliance operations, not investment selection or expected returns."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-001:approved_by:person:elena-brooks",
+      "source": "decision:dec-001",
+      "relation": "APPROVED_BY",
+      "target": "person:elena-brooks",
+      "evidence": [
+        {
+          "document_id": "DOC-003",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "chunk_id": "045ec5b6581aefaf8553149fc8cf41c365f1146575436f4018f06f62b596fc85",
+          "excerpt": "## Approval and accountability\n\nElena Brooks, Head of Compliance, approved DEC-001. Priya Shah prepared the evidence workflow assessment supporting the recommendation. Preparing an assessment is a different responsibility from approving the decision.\n\nThe Project Atlas charter records the project's lead and executive sponsor. Those project roles do not establish who approved DEC-001; this decision record is the authority for that approval."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-001:prepared_by:person:priya-shah",
+      "source": "decision:dec-001",
+      "relation": "PREPARED_BY",
+      "target": "person:priya-shah",
+      "evidence": [
+        {
+          "document_id": "DOC-003",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "chunk_id": "045ec5b6581aefaf8553149fc8cf41c365f1146575436f4018f06f62b596fc85",
+          "excerpt": "## Approval and accountability\n\nElena Brooks, Head of Compliance, approved DEC-001. Priya Shah prepared the evidence workflow assessment supporting the recommendation. Preparing an assessment is a different responsibility from approving the decision.\n\nThe Project Atlas charter records the project's lead and executive sponsor. Those project roles do not establish who approved DEC-001; this decision record is the authority for that approval."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-002:about_project:project:harbor",
+      "source": "decision:dec-002",
+      "relation": "ABOUT_PROJECT",
+      "target": "project:harbor",
+      "evidence": [
+        {
+          "document_id": "DOC-005",
+          "section": "Decision and project",
+          "source": "outputs/corpus/05-harbor-access-review-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "a4eaff108f6d8abc1a0fe2c5a6e7976f7ac118b67826604b308804eeda0795d6",
+          "chunk_id": "01cce489ceb8dccb197495dff83f63b01f5662bda4b2e23a298faef82690b302",
+          "excerpt": "## Decision and project\n\nDecision DEC-002 approves the access-review workflow for Project Harbor. It requires an identified request owner, a recorded reviewer, and a stored review outcome in Harbor Access Register."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-002:approved_by:person:elena-brooks",
+      "source": "decision:dec-002",
+      "relation": "APPROVED_BY",
+      "target": "person:elena-brooks",
+      "evidence": [
+        {
+          "document_id": "DOC-005",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/05-harbor-access-review-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "a4eaff108f6d8abc1a0fe2c5a6e7976f7ac118b67826604b308804eeda0795d6",
+          "chunk_id": "6f246e43b3e663cb3f87096683739d03ec5e75cc1441b1471ca1e0b8ca328625",
+          "excerpt": "## Approval and accountability\n\nElena Brooks approved DEC-002 on October 11, 2026. Noah Singh prepared the workflow proposal. Daniel Ortiz is Harbor's executive sponsor; sponsorship alone does not establish approval of this workflow."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-002:prepared_by:person:noah-singh",
+      "source": "decision:dec-002",
+      "relation": "PREPARED_BY",
+      "target": "person:noah-singh",
+      "evidence": [
+        {
+          "document_id": "DOC-005",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/05-harbor-access-review-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "a4eaff108f6d8abc1a0fe2c5a6e7976f7ac118b67826604b308804eeda0795d6",
+          "chunk_id": "6f246e43b3e663cb3f87096683739d03ec5e75cc1441b1471ca1e0b8ca328625",
+          "excerpt": "## Approval and accountability\n\nElena Brooks approved DEC-002 on October 11, 2026. Noah Singh prepared the workflow proposal. Daniel Ortiz is Harbor's executive sponsor; sponsorship alone does not establish approval of this workflow."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-003:about_project:project:borealis",
+      "source": "decision:dec-003",
+      "relation": "ABOUT_PROJECT",
+      "target": "project:borealis",
+      "evidence": [
+        {
+          "document_id": "DOC-007",
+          "section": "Decision and project",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "chunk_id": "4f163e19897f4a3ef0c59d8c1b4e8144d046bfac7e85e210ec57d1eb771e6432",
+          "excerpt": "## Decision and project\n\nDecision DEC-003 approves registering Harbor Access Register as an upstream source for Project Borealis. The source supplies ownership and review-outcome records from Project Harbor. Borealis represents the dependency in Signal Lineage Board."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-003:approved_by:person:noah-singh",
+      "source": "decision:dec-003",
+      "relation": "APPROVED_BY",
+      "target": "person:noah-singh",
+      "evidence": [
+        {
+          "document_id": "DOC-007",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "chunk_id": "9101c8574a4753c674814b52f6a1f8a0594dfe486f15c919fe3f3f594cd76eef",
+          "excerpt": "## Approval and accountability\n\nNoah Singh approved DEC-003 on October 13, 2026. Alex Rivera prepared the source-lineage assessment. Sofia Alvarez leads Borealis, and Daniel Ortiz sponsors it; those roles do not replace Noah Singh's explicitly recorded source-registration approval."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-003:prepared_by:person:alex-rivera",
+      "source": "decision:dec-003",
+      "relation": "PREPARED_BY",
+      "target": "person:alex-rivera",
+      "evidence": [
+        {
+          "document_id": "DOC-007",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "chunk_id": "9101c8574a4753c674814b52f6a1f8a0594dfe486f15c919fe3f3f594cd76eef",
+          "excerpt": "## Approval and accountability\n\nNoah Singh approved DEC-003 on October 13, 2026. Alex Rivera prepared the source-lineage assessment. Sofia Alvarez leads Borealis, and Daniel Ortiz sponsors it; those roles do not replace Noah Singh's explicitly recorded source-registration approval."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-004:about_project:project:atlas",
+      "source": "decision:dec-004",
+      "relation": "ABOUT_PROJECT",
+      "target": "project:atlas",
+      "evidence": [
+        {
+          "document_id": "DOC-008",
+          "section": "Decision and project",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "chunk_id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+          "excerpt": "## Decision and project\n\nDecision DEC-004 approves the completeness-review process for Project Atlas. Before evidence is marked ready for review, the team must run LedgerCheck's required-evidence checks and resolve missing items. Evidence records and their review ownership remain organized in Beacon Evidence Hub."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-004:approved_by:person:elena-brooks",
+      "source": "decision:dec-004",
+      "relation": "APPROVED_BY",
+      "target": "person:elena-brooks",
+      "evidence": [
+        {
+          "document_id": "DOC-008",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "chunk_id": "ec2e2c775fe406579f22cae10fa87967b11326906dc86c1e44c7348caf3634e4",
+          "excerpt": "## Approval and accountability\n\nElena Brooks approved DEC-004 on October 14, 2026. Priya Shah prepared the completeness-review assessment. Maya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor. Their project roles do not make them approvers of DEC-004."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-004:prepared_by:person:priya-shah",
+      "source": "decision:dec-004",
+      "relation": "PREPARED_BY",
+      "target": "person:priya-shah",
+      "evidence": [
+        {
+          "document_id": "DOC-008",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "chunk_id": "ec2e2c775fe406579f22cae10fa87967b11326906dc86c1e44c7348caf3634e4",
+          "excerpt": "## Approval and accountability\n\nElena Brooks approved DEC-004 on October 14, 2026. Priya Shah prepared the completeness-review assessment. Maya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor. Their project roles do not make them approvers of DEC-004."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-001:selects_tool:tool:beacon-evidence-hub",
+      "source": "decision:dec-001",
+      "relation": "SELECTS_TOOL",
+      "target": "tool:beacon-evidence-hub",
+      "evidence": [
+        {
+          "document_id": "DOC-003",
+          "section": "Decision and project",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "chunk_id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+          "excerpt": "## Decision and project\n\nDecision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026. It concerns internal compliance operations, not investment selection or expected returns."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-004:requires_tool:tool:ledgercheck",
+      "source": "decision:dec-004",
+      "relation": "REQUIRES_TOOL",
+      "target": "tool:ledgercheck",
+      "evidence": [
+        {
+          "document_id": "DOC-008",
+          "section": "Decision and project",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "chunk_id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+          "excerpt": "## Decision and project\n\nDecision DEC-004 approves the completeness-review process for Project Atlas. Before evidence is marked ready for review, the team must run LedgerCheck's required-evidence checks and resolve missing items. Evidence records and their review ownership remain organized in Beacon Evidence Hub."
+        }
+      ]
+    },
+    {
+      "id": "rel:decision:dec-003:registers_source:tool:harbor-access-register",
+      "source": "decision:dec-003",
+      "relation": "REGISTERS_SOURCE",
+      "target": "tool:harbor-access-register",
+      "evidence": [
+        {
+          "document_id": "DOC-007",
+          "section": "Decision and project",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "version": "0.1-draft",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "chunk_id": "4f163e19897f4a3ef0c59d8c1b4e8144d046bfac7e85e210ec57d1eb771e6432",
+          "excerpt": "## Decision and project\n\nDecision DEC-003 approves registering Harbor Access Register as an upstream source for Project Borealis. The source supplies ownership and review-outcome records from Project Harbor. Borealis represents the dependency in Signal Lineage Board."
+        }
+      ]
+    },
+    {
+      "id": "rel:project:borealis:depends_on:project:harbor",
+      "source": "project:borealis",
+      "relation": "DEPENDS_ON",
+      "target": "project:harbor",
+      "evidence": [
+        {
+          "document_id": "DOC-006",
+          "section": "Dependencies",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "chunk_id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+          "excerpt": "## Dependencies\n\nBorealis depends on Project Harbor's access-review records. Harbor Access Register is registered as an upstream operational source for Borealis. DEC-003 documents who approved that source registration. Borealis uses Signal Lineage Board for lineage; Harbor Access Register remains the upstream access-review source, not the lineage-board replacement."
+        }
+      ]
+    },
+    {
+      "id": "rel:project:borealis:uses_source:tool:harbor-access-register",
+      "source": "project:borealis",
+      "relation": "USES_SOURCE",
+      "target": "tool:harbor-access-register",
+      "evidence": [
+        {
+          "document_id": "DOC-006",
+          "section": "Dependencies",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "chunk_id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+          "excerpt": "## Dependencies\n\nBorealis depends on Project Harbor's access-review records. Harbor Access Register is registered as an upstream operational source for Borealis. DEC-003 documents who approved that source registration. Borealis uses Signal Lineage Board for lineage; Harbor Access Register remains the upstream access-review source, not the lineage-board replacement."
+        }
+      ]
+    },
+    {
+      "id": "rel:policy:knowledge-and-review:policy_applies_to:project:atlas",
+      "source": "policy:knowledge-and-review",
+      "relation": "POLICY_APPLIES_TO",
+      "target": "project:atlas",
+      "evidence": [
+        {
+          "document_id": "DOC-010",
+          "section": "Purpose",
+          "source": "outputs/corpus/10-knowledge-and-review-policy.md",
+          "version": "0.1-draft",
+          "source_sha256": "e38e71792a0f06ebaf6d1110244e3b99e590db3bbf16f2ea69648e90c87f6c29",
+          "chunk_id": "e9142ee814ed78a06a187a18bb7159b22811aaa11dd4efe5fa0b074fc34db668",
+          "excerpt": "## Purpose\n\nThis fictional operating policy describes how Aster Vale Investments records organizational roles, operational decisions, and supporting evidence. It applies to the internal projects Atlas, Harbor, and Borealis."
+        }
+      ]
+    },
+    {
+      "id": "rel:policy:knowledge-and-review:policy_applies_to:project:harbor",
+      "source": "policy:knowledge-and-review",
+      "relation": "POLICY_APPLIES_TO",
+      "target": "project:harbor",
+      "evidence": [
+        {
+          "document_id": "DOC-010",
+          "section": "Purpose",
+          "source": "outputs/corpus/10-knowledge-and-review-policy.md",
+          "version": "0.1-draft",
+          "source_sha256": "e38e71792a0f06ebaf6d1110244e3b99e590db3bbf16f2ea69648e90c87f6c29",
+          "chunk_id": "e9142ee814ed78a06a187a18bb7159b22811aaa11dd4efe5fa0b074fc34db668",
+          "excerpt": "## Purpose\n\nThis fictional operating policy describes how Aster Vale Investments records organizational roles, operational decisions, and supporting evidence. It applies to the internal projects Atlas, Harbor, and Borealis."
+        }
+      ]
+    },
+    {
+      "id": "rel:policy:knowledge-and-review:policy_applies_to:project:borealis",
+      "source": "policy:knowledge-and-review",
+      "relation": "POLICY_APPLIES_TO",
+      "target": "project:borealis",
+      "evidence": [
+        {
+          "document_id": "DOC-010",
+          "section": "Purpose",
+          "source": "outputs/corpus/10-knowledge-and-review-policy.md",
+          "version": "0.1-draft",
+          "source_sha256": "e38e71792a0f06ebaf6d1110244e3b99e590db3bbf16f2ea69648e90c87f6c29",
+          "chunk_id": "e9142ee814ed78a06a187a18bb7159b22811aaa11dd4efe5fa0b074fc34db668",
+          "excerpt": "## Purpose\n\nThis fictional operating policy describes how Aster Vale Investments records organizational roles, operational decisions, and supporting evidence. It applies to the internal projects Atlas, Harbor, and Borealis."
         }
       ]
     }
