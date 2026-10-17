@@ -11,12 +11,13 @@ from scripts.corpus.corpus_pipeline import active_manifest
 from scripts.evaluation.comparison import BENCHMARK_PATH, collect_comparison, runtime_fingerprint, validate_benchmark
 from scripts.graph.knowledge_graph import load_graph, validate_graph
 from scripts.rag.answer_service import run_question
-from scripts.rag.rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, SYSTEM_INSTRUCTIONS
+from scripts.rag.rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, INSTRUCTIONS
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", action="store_true", help="Make the 20 live answering attempts; otherwise local preflight only")
+    parser.add_argument("--prompt-version", choices=tuple(PROMPTS), default=PROMPT_VERSION)
     args = parser.parse_args()
     settings = load_settings()
     benchmark = json.loads(BENCHMARK_PATH.read_text(encoding="utf-8-sig"))
@@ -34,7 +35,7 @@ def main():
         "question_sha256": benchmark["question_sha256"], "corpus_version": manifest["corpus_version"],
         "namespace": manifest["namespace"], "graph_version": graph["graph_version"],
         "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model,
-        "prompt_version": PROMPT_VERSION, "system_instructions_sha256": hashlib.sha256(SYSTEM_INSTRUCTIONS.encode()).hexdigest(),
+        "prompt_version": args.prompt_version, "system_instructions_sha256": hashlib.sha256(INSTRUCTIONS[args.prompt_version].encode()).hexdigest(),
         "temperature": 0, "max_completion_tokens": 512, "evidence_budget": EVIDENCE_BUDGET,
         "vector_top_k": 4, "order": "odd question: vector then graph; even: graph then vector",
         "answer_content_retries": 0, "cache_policy": "existing shared query embedding cache; no cold-cache performance claim",
@@ -52,7 +53,7 @@ def main():
     print("Collecting 20 revised attempts; every outcome is preserved.", flush=True)
     print(f"Results: {output_dir.relative_to(PROJECT_ROOT).as_posix()}", flush=True)
     summary = collect_comparison(benchmark, output_dir, settings, run_question, metadata,
-                                 guard=guard, progress=lambda message: print(message, flush=True))
+                                 guard=guard, progress=lambda message: print(message, flush=True), prompt_version=args.prompt_version)
     print(json.dumps(summary, indent=2))
 
 

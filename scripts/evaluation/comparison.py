@@ -59,7 +59,8 @@ def diagnostics(question, report):
             "note": "Reference sections are diagnostic targets, not the only possible valid evidence. Manual source review required."}
 
 
-def collect_comparison(benchmark, output_dir: Path, settings, invoke, metadata, *, guard=None, progress=print):
+def collect_comparison(benchmark, output_dir: Path, settings, invoke, metadata, *, guard=None, progress=print,
+                       prompt_version=PROMPT_VERSION):
     """One attempt per question/mode; checkpoint successes and errors durably.
 
     Alternating order balances which mode benefits from warmed query caches.
@@ -83,7 +84,7 @@ def collect_comparison(benchmark, output_dir: Path, settings, invoke, metadata, 
             began, wall_start = time(), perf_counter()
             try:
                 # Only the question text/settings reach production answering.
-                report = invoke(question["question"], mode=mode, settings=settings, prompt_version=PROMPT_VERSION)
+                report = invoke(question["question"], mode=mode, settings=settings, prompt_version=prompt_version)
                 attempt.update(outcome="success", report=report, diagnostics=diagnostics(question, report))
                 summary["successful_calls"] += 1
             except Exception as error:

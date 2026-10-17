@@ -81,9 +81,11 @@ facts or add labels to unsupported claims just to satisfy the output format."""
 PROMPTS[CHAIN_PROMPT_VERSION] = ChatPromptTemplate.from_messages([
     ("system", CHAIN_INSTRUCTIONS),
     ("human", "Question:\n{question}\n\nSource passages:\n{context}")])
-# Retain v2/v3 as selectable historical policies; new app actions use v4.
-PROMPT_VERSION = CHAIN_PROMPT_VERSION
-SYSTEM_INSTRUCTIONS = CHAIN_INSTRUCTIONS
+# The v4 experiment regressed descriptive answers and did not fix bridge
+# coverage. Keep it inspectable/opt-in; do not promote it as the app default.
+INSTRUCTIONS = {PROMPT_VERSION: SYSTEM_INSTRUCTIONS,
+                DOCUMENT_SCOPE_PROMPT_VERSION: DOCUMENT_SCOPE_INSTRUCTIONS,
+                CHAIN_PROMPT_VERSION: CHAIN_INSTRUCTIONS}
 
 
 class AnswerState(TypedDict, total=False):
