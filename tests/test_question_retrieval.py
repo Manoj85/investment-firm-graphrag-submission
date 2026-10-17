@@ -64,3 +64,34 @@ class QuestionSelectionTests(unittest.TestCase):
         self.assertLessEqual(result["examined_edges"], 40)
         self.assertTrue(result["truncated"])
         self.assertTrue(all(len(path["steps"]) <= 3 for path in result["paths"]))
+
+    def test_upstream_lead_skill_uses_ordered_roles_despite_distractors(self):
+        for node, kind in [("project:juniper", "Project"), ("project:cedar", "Project"),
+                           ("Actual Lead", "Person"), ("Sponsor", "Person"),
+                           ("Downstream Lead", "Person"), ("Access Review", "Skill")]:
+            self.network.add_node(node, label={"project:juniper": "Juniper", "project:cedar": "Cedar"}.get(node, node), type=kind, aliases=[])
+        edges = [("project:juniper", "project:cedar", "DEPENDS_ON"),
+                 ("Actual Lead", "project:cedar", "LEADS_PROJECT"),
+                 ("Sponsor", "project:cedar", "SPONSORS_PROJECT"),
+                 ("Downstream Lead", "project:juniper", "LEADS_PROJECT"),
+                 ("Actual Lead", "Access Review", "HAS_SKILL")]
+        for source, target, relation in edges:
+            self.network.add_edge(source, target, key=source + relation, relation=relation,
+                                  evidence=[{"chunk_id": source + relation}])
+        for index in range(60):
+            self.network.add_edge("project:juniper", "Sponsor", key=str(index),
+                                  relation="ABOUT_PROJECT", evidence=[])
+        result = select_question_paths(self.network, "Which upstream project does Juniper depend on, who leads it, and what skill does that lead have?")
+        self.assertFalse(result["truncated"])
+        self.assertEqual(result["examined_edges"], 3)
+        self.assertEqual(result["paths"][-1]["nodes"],
+                         ["project:juniper", "project:cedar", "Actual Lead", "Access Review"])
+        self.assertNotIn("Sponsor", result["paths"][-1]["nodes"])
+
+    def test_upstream_pattern_does_not_invent_missing_lead_or_skill(self):
+        self.network.add_node("project:a", label="Juniper", type="Project", aliases=[])
+        self.network.add_node("project:b", label="Cedar", type="Project", aliases=[])
+        self.network.add_edge("project:a", "project:b", key="dependency", relation="DEPENDS_ON", evidence=[])
+        result = select_question_paths(self.network, "Which upstream project does Juniper depend on, who leads it and what skill do they have?")
+        self.assertEqual(len(result["paths"]), 1)
+        self.assertEqual(result["paths"][0]["nodes"], ["project:a", "project:b"])

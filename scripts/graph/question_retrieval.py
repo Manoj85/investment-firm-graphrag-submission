@@ -86,6 +86,18 @@ def select_question_paths(network, question: str) -> dict:
         report.update(status="unsupported", stop_reason=reason)
         return report
 
+    # A dependent project's own lead is not its upstream project's lead.
+    # Bind this supported compound pattern in order, rather than mixing all
+    # requested relation families into one undirected neighborhood search.
+    ordered = (len(seeds) == 1 and network.nodes[seeds[0]]["type"] == "Project"
+               and {"DEPENDS_ON", "LEADS_PROJECT", "HAS_SKILL"} <= set(intents))
+    stages = [("DEPENDS_ON", "forward", "Project"),
+              ("LEADS_PROJECT", "reverse", "Person"),
+              ("HAS_SKILL", "forward", "Skill")]
+    if ordered:
+        report.update(selector_version="schema-lexical-v2", path_pattern=[
+            {"relation": relation, "traversal": direction, "target_type": kind}
+            for relation, direction, kind in stages])
     connectors = set().union(*(CONNECTORS[relation] for relation in intents))
     allowed = connectors | set(intents)
     queue = deque((seed, [seed], []) for seed in seeds)
@@ -94,6 +106,13 @@ def select_question_paths(network, question: str) -> dict:
         current, nodes, steps = queue.popleft()
         adjacent = [(u, v, key, attrs, "forward") for u, v, key, attrs in network.out_edges(current, keys=True, data=True)]
         adjacent += [(u, v, key, attrs, "reverse") for u, v, key, attrs in network.in_edges(current, keys=True, data=True)]
+        if ordered:
+            relation, direction, kind = stages[len(steps)]
+            # Count only typed candidates for this constrained plan. Unrelated
+            # edges cannot consume its budget; the same 40-candidate cap holds.
+            adjacent = [row for row in adjacent if row[3]["relation"] == relation
+                        and row[4] == direction
+                        and network.nodes[row[1] if direction == "forward" else row[0]]["type"] == kind]
         # Inspect desired facts before connectors, with a stable tie breaker.
         adjacent.sort(key=lambda row: (row[3]["relation"] not in intents, row[2], row[4]))
         for source, target, edge_id, attrs, direction in adjacent:
@@ -119,7 +138,7 @@ def select_question_paths(network, question: str) -> dict:
                 if len(paths) == 10:
                     stopped = "path_limit"
                     break
-            if relation in connectors and len(extended) < 3:
+            if (ordered or relation in connectors) and len(extended) < 3:
                 queue.append((neighbor, visited, extended))
     paths.sort(key=lambda path: (-path["matched_seed_count"], len(path["steps"]),
                                 tuple(step["edge_id"] for step in path["steps"])))

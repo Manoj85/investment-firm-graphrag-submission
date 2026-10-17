@@ -27,7 +27,7 @@ def main():
     fingerprint = runtime_fingerprint()
     revision = subprocess.run(["git", "rev-parse", "HEAD"], cwd=PROJECT_ROOT, capture_output=True, text=True, check=True).stdout.strip()
     now = datetime.now(timezone.utc)
-    output_dir = PROJECT_ROOT / "outputs/evaluation/runs" / ("initial-" + now.strftime("%Y%m%dT%H%M%S%fZ"))
+    output_dir = PROJECT_ROOT / "outputs/evaluation/runs" / ("revised-" + now.strftime("%Y%m%dT%H%M%S%fZ"))
     metadata = {"started_utc": now.isoformat(), "git_revision": revision,
         "runtime_fingerprint": fingerprint, "benchmark_version": benchmark["benchmark_version"],
         "benchmark_file_sha256": hashlib.sha256(BENCHMARK_PATH.read_bytes()).hexdigest(),
@@ -49,7 +49,7 @@ def main():
         if runtime_fingerprint() != fingerprint or hashlib.sha256(BENCHMARK_PATH.read_bytes()).hexdigest() != metadata["benchmark_file_sha256"]:
             raise ValueError("Runtime/corpus/graph/benchmark changed during collection; stopping without replay")
 
-    print("Collecting 20 initial attempts; every outcome is preserved.", flush=True)
+    print("Collecting 20 revised attempts; every outcome is preserved.", flush=True)
     print(f"Results: {output_dir.relative_to(PROJECT_ROOT).as_posix()}", flush=True)
     summary = collect_comparison(benchmark, output_dir, settings, run_question, metadata,
                                  guard=guard, progress=lambda message: print(message, flush=True))

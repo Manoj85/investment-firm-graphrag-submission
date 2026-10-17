@@ -57,6 +57,34 @@ PROMPTS = {PROMPT_VERSION: PROMPT, DOCUMENT_SCOPE_PROMPT_VERSION: ChatPromptTemp
     ("system", DOCUMENT_SCOPE_INSTRUCTIONS),
     ("human", "Question:\n{question}\n\nSource passages:\n{context}")])}
 
+# Version the shared generation policy so the original comparison remains
+# reproducible. These rules apply equally to vector and graph evidence.
+CHAIN_PROMPT_VERSION = "grounded-answer-v4-source-chain"
+CHAIN_INSTRUCTIONS = DOCUMENT_SCOPE_INSTRUCTIONS + """
+Write the answer as short, explicit factual sentences, each immediately followed
+by the source labels that establish it. The citations array alone is never enough.
+For a question connecting a project, person, skill, tool, or decision, state and
+cite EVERY connecting relationship needed to identify the answer. For example,
+establish project participation as well as the person's skill and team; establish
+the tool-to-project or decision-to-tool link as well as who led or approved it.
+Use the full source chain even when a name could be guessed from a nearby passage.
+Keep project lead, sponsor, preparer, approver, owner and maintainer distinct.
+For upstream questions, identify the upstream project first, then its lead, then
+that same person's skill. Never substitute the downstream lead or a sponsor.
+If only part is supported, give that part with inline citations and explicitly
+identify the missing part; use insufficient_evidence for an incomplete answer.
+If multiple people share a queried name, ask which full identity is intended
+and use status clarification. Do not answer a different person's responsibilities.
+Before returning JSON, check each sentence against its cited passage and check
+that the set of inline labels exactly equals the citations array. Do not invent
+facts or add labels to unsupported claims just to satisfy the output format."""
+PROMPTS[CHAIN_PROMPT_VERSION] = ChatPromptTemplate.from_messages([
+    ("system", CHAIN_INSTRUCTIONS),
+    ("human", "Question:\n{question}\n\nSource passages:\n{context}")])
+# Retain v2/v3 as selectable historical policies; new app actions use v4.
+PROMPT_VERSION = CHAIN_PROMPT_VERSION
+SYSTEM_INSTRUCTIONS = CHAIN_INSTRUCTIONS
+
 
 class AnswerState(TypedDict, total=False):
     question: str
