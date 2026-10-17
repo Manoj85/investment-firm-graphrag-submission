@@ -47,6 +47,8 @@ def run_question(question, *, mode="vector", settings=None,
             for key in ("graph_selection", "graph_retrieval"):
                 report[key] = result["retrieval"][key]
             report["seed_evidence"] = result["retrieval"].get("seed_evidence", [])
+        if "structured_claims" in result:
+            report["structured_claims"] = result["structured_claims"]
         if expand_source_neighbors:
             report["seed_evidence"] = result["retrieval"]["seed_evidence"]
             report["neighbor_expansion"] = {**result["retrieval"]["neighbor_expansion"],

@@ -93,6 +93,14 @@ def render_answer(report):
 
 
 def render_sources(report):
+    if report.get("structured_claims"):
+        with st.expander("Claims and their exact source excerpts"):
+            st.caption("Excerpts match the cited passages. Check whether they support each claim and cover the question.")
+            for number, claim in enumerate(report["structured_claims"]["claims"], 1):
+                st.write(f"{number}. {claim['text']}")
+                for evidence in claim["evidence"]:
+                    st.caption("[" + evidence["source"] + "]")
+                    st.text(evidence["quote"])
     if not report["sources"]:
         st.info("No passages were sent to the model for this result.")
     for source in report["sources"]:

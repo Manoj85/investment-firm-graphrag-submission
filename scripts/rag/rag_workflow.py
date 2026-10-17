@@ -16,6 +16,7 @@ from scripts.config.project_config import PROJECT_ROOT
 from scripts.corpus.qwen_tokenizer import count_tokens, load_tokenizer
 from scripts.services.service_clients import ServiceError, request_json, tls_context
 from scripts.services.verify_nebius import validate_settings
+from scripts.rag.structured_claims import CLAIMS_PROMPT_VERSION, CLAIMS_INSTRUCTIONS, validate_and_render_claims
 
 
 PROMPT_VERSION = "grounded-answer-v2"
@@ -86,6 +87,13 @@ PROMPTS[CHAIN_PROMPT_VERSION] = ChatPromptTemplate.from_messages([
 INSTRUCTIONS = {PROMPT_VERSION: SYSTEM_INSTRUCTIONS,
                 DOCUMENT_SCOPE_PROMPT_VERSION: DOCUMENT_SCOPE_INSTRUCTIONS,
                 CHAIN_PROMPT_VERSION: CHAIN_INSTRUCTIONS}
+INSTRUCTIONS[CLAIMS_PROMPT_VERSION] = CLAIMS_INSTRUCTIONS
+PROMPTS[CLAIMS_PROMPT_VERSION] = ChatPromptTemplate.from_messages([
+    ("system", CLAIMS_INSTRUCTIONS),
+    ("human", "Question:\n{question}\n\nSource passages:\n{context}")])
+# Quotes and separate connecting claims need output space. This is disclosed
+# per policy and shared across retrieval modes, not a hidden retry.
+COMPLETION_LIMITS = {version: 1024 if version == CLAIMS_PROMPT_VERSION else 512 for version in PROMPTS}
 
 
 class AnswerState(TypedDict, total=False):
@@ -96,6 +104,7 @@ class AnswerState(TypedDict, total=False):
     answer: dict
     usage: dict
     response_model: str
+    structured_claims: dict
 
 
 def select_evidence(evidence, tokenizer, budget=EVIDENCE_BUDGET):
@@ -158,14 +167,19 @@ class GroundedChat:
         result = request_json(self.client, "POST", "chat/completions", json={
             "model": self.model,
             "messages": [{"role": roles[message.type], "content": message.content} for message in messages],
-            "temperature": 0, "max_tokens": 512,
+            "temperature": 0, "max_tokens": COMPLETION_LIMITS[self.prompt_version],
             "chat_template_kwargs": {"enable_thinking": False},
             "response_format": {"type": "json_object"}})
         try:
             choice = result["choices"][0]
             if choice.get("finish_reason") != "stop":
                 raise ServiceError("Answer was not completed normally")
-            answer = validate_answer(choice["message"]["content"], sources)
+            structured = None
+            if self.prompt_version == CLAIMS_PROMPT_VERSION:
+                answer, structured = validate_and_render_claims(choice["message"]["content"], sources)
+                validate_answer(json.dumps(answer), sources)
+            else:
+                answer = validate_answer(choice["message"]["content"], sources)
         except (KeyError, IndexError, TypeError):
             raise ServiceError("Unexpected chat response") from None
         except ServiceError as error:
@@ -177,8 +191,10 @@ class GroundedChat:
                          "usage": result.get("usage"), "response_model": result.get("model"),
                          "prompt_version": self.prompt_version, "finish_reason": choice.get("finish_reason")})
             raise
-        return {"answer": answer, "usage": result.get("usage"),
-                "response_model": result.get("model")}
+        report = {"answer": answer, "usage": result.get("usage"), "response_model": result.get("model")}
+        if structured is not None:
+            report["structured_claims"] = structured
+        return report
 
 
 def build_workflow(retrieve_evidence, chat):

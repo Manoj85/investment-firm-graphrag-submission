@@ -24,7 +24,7 @@ class AnswerServiceTests(unittest.TestCase):
         workflow = Mock()
         workflow.invoke.return_value = {"answer": {"status": "answered", "answer": "Fact [S1]", "citations": ["S1"]},
             "sources": [], "retrieval": {"namespace": "test", "corpus_version": "v1", "packing": {}},
-            "usage": {}, "response_model": "chat"}
+            "usage": {}, "response_model": "chat", "structured_claims": {"claims": [{"text": "Fact", "evidence": []}]}}
         with patch("scripts.rag.answer_service.PineconeStore", return_value=store), \
              patch("scripts.rag.answer_service.NebiusEmbeddings", return_value=embeddings), \
              patch("scripts.rag.answer_service.GroundedChat", return_value=chat), \
@@ -35,6 +35,7 @@ class AnswerServiceTests(unittest.TestCase):
         self.assertEqual(report["mode"], "vector")
         self.assertTrue(report["receipt_path"].startswith("work/answers/"))
         self.assertEqual(save.call_args.args[1], report)
+        self.assertEqual(report["structured_claims"], workflow.invoke.return_value["structured_claims"])
         for client in (store, embeddings, chat, trace):
             client.close.assert_called_once()
 

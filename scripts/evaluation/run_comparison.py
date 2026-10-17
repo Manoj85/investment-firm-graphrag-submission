@@ -11,7 +11,7 @@ from scripts.corpus.corpus_pipeline import active_manifest
 from scripts.evaluation.comparison import BENCHMARK_PATH, collect_comparison, runtime_fingerprint, validate_benchmark
 from scripts.graph.knowledge_graph import load_graph, validate_graph
 from scripts.rag.answer_service import run_question
-from scripts.rag.rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, INSTRUCTIONS
+from scripts.rag.rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, INSTRUCTIONS, COMPLETION_LIMITS
 
 
 def main():
@@ -36,7 +36,7 @@ def main():
         "namespace": manifest["namespace"], "graph_version": graph["graph_version"],
         "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model,
         "prompt_version": args.prompt_version, "system_instructions_sha256": hashlib.sha256(INSTRUCTIONS[args.prompt_version].encode()).hexdigest(),
-        "temperature": 0, "max_completion_tokens": 512, "evidence_budget": EVIDENCE_BUDGET,
+        "temperature": 0, "max_completion_tokens": COMPLETION_LIMITS[args.prompt_version], "evidence_budget": EVIDENCE_BUDGET,
         "vector_top_k": 4, "order": "odd question: vector then graph; even: graph then vector",
         "answer_content_retries": 0, "cache_policy": "existing shared query embedding cache; no cold-cache performance claim",
         "disclosure": benchmark["disclosure"]}
