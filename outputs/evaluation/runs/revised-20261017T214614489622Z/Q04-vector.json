@@ -1,0 +1,274 @@
+{
+  "question_id": "Q04",
+  "question": "Who leads the project that uses Beacon Evidence Hub, and who approved that tool's selection for the project?",
+  "mode": "vector",
+  "started_utc": "2026-10-17T21:47:11.445273+00:00",
+  "outcome": "success",
+  "report": {
+    "mode": "vector",
+    "question": "Who leads the project that uses Beacon Evidence Hub, and who approved that tool's selection for the project?",
+    "answer": {
+      "status": "answered",
+      "answer": "Project Atlas uses Beacon Evidence Hub as its evidence organization tool. [S3]\n\nDecision DEC-001 approved the selection of Beacon Evidence Hub for Project Atlas on October 12, 2026. [S3]\n\nThe Compliance Office is the operational owner of Beacon Evidence Hub. [S4]\n\nProject charters identify which projects use these tools, and a decision approver is a distinct role from a tool owner. [S4]\n\nThe Compliance Office approved the selection of Beacon Evidence Hub for Project Atlas. [S3]",
+      "citations": [
+        "S3",
+        "S4"
+      ]
+    },
+    "sources": [
+      {
+        "id": "6a4f2902c5e968ee9c65f0555ce028a7eca6a097a7923ab139e8cefa42d19f35",
+        "score": 0.717195392,
+        "text": "## Reason for selection\n\nBeacon Evidence Hub was selected to organize evidence records and their review ownership in one place. LedgerCheck remains the team's tool for checking evidence completeness. Selecting Beacon Evidence Hub does not replace LedgerCheck's completeness checks.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1251",
+          "char_start": "968",
+          "chunk_id": "6a4f2902c5e968ee9c65f0555ce028a7eca6a097a7923ab139e8cefa42d19f35",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-003",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-003:0.1-draft:section-004",
+          "section": "Reason for selection",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "target_overlap_tokens": "32",
+          "title": "Beacon Evidence Hub selection decision",
+          "token_count": "49",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S1"
+      },
+      {
+        "id": "40a755824d710c840f03a40ce5f1104939495b5f7652df61ecc203d84006fc15",
+        "score": 0.678876877,
+        "text": "# Beacon Evidence Hub selection decision\n\nDocument ID: DOC-003\nCompany: Aster Vale Investments (fictional)\nVersion: 0.1-draft\nUpdated: 2026-10-16\nSource owner: Compliance Office (fictional)\n\nAll entities and events in this document are fictional training data.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "262",
+          "char_start": "0",
+          "chunk_id": "40a755824d710c840f03a40ce5f1104939495b5f7652df61ecc203d84006fc15",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-003",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-003:0.1-draft:section-001",
+          "section": "Document header",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "target_overlap_tokens": "32",
+          "title": "Beacon Evidence Hub selection decision",
+          "token_count": "69",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S2"
+      },
+      {
+        "id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+        "score": 0.659937918,
+        "text": "## Decision and project\n\nDecision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026. It concerns internal compliance operations, not investment selection or expected returns.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "523",
+          "char_start": "262",
+          "chunk_id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-003",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-003:0.1-draft:section-002",
+          "section": "Decision and project",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "target_overlap_tokens": "32",
+          "title": "Beacon Evidence Hub selection decision",
+          "token_count": "53",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S3"
+      },
+      {
+        "id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+        "score": 0.603142202,
+        "text": "## Tool responsibilities\n\nBeacon Evidence Hub organizes compliance evidence records and their review ownership. Its operational owner is the Compliance Office.\n\nLedgerCheck checks whether required compliance evidence is complete. Priya Shah maintains its evidence-completeness rule catalogue. LedgerCheck does not organize the evidence repository itself.\n\nHarbor Access Register records access-request ownership and review outcomes. Its operational owner is the Data Platform team.\n\nSignal Lineage Board records internal risk-reporting dependencies and source lineage. Its operational owner is the Risk Analytics team.\n\nProject charters identify which projects use these tools. A tool owner, rule maintainer, project sponsor, and decision approver are different roles.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "2368",
+          "char_start": "1598",
+          "chunk_id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-007",
+          "section": "Tool responsibilities",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "132",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S4"
+      }
+    ],
+    "namespace": "development-v1-df1f9b1de3f529d6",
+    "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+    "prompt_version": "grounded-answer-v5-claims",
+    "evidence_budget": 2000,
+    "evidence_budget_method": "pinned Qwen content tokens",
+    "requested_chat_model": "nvidia/Nemotron-3_5-Lightning",
+    "response_model": "nvidia/Nemotron-3_5-Lightning",
+    "usage": {
+      "completion_tokens": 348,
+      "prompt_tokens": 894,
+      "total_tokens": 1242,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 894
+    },
+    "elapsed_seconds": 3.09,
+    "tracing": {
+      "status": "verified",
+      "project": "investment-firm-graphrag",
+      "run_id": "1f69e443-506b-4143-88ef-d36e8e95b1e4",
+      "url": "https://smith.langchain.com/o/59d2fa80-3bc9-4f6d-a07e-4ccc3acc9249/projects/p/5749cb67-a494-421e-b561-38112c5f48b1/r/1f69e443-506b-4143-88ef-d36e8e95b1e4?poll=true"
+    },
+    "packing": {
+      "budget": 2000,
+      "method": "pinned Qwen content tokens",
+      "context_tokens": 353,
+      "selected_ids": [
+        "6a4f2902c5e968ee9c65f0555ce028a7eca6a097a7923ab139e8cefa42d19f35",
+        "40a755824d710c840f03a40ce5f1104939495b5f7652df61ecc203d84006fc15",
+        "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+        "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e"
+      ],
+      "dropped_ids": []
+    },
+    "structured_claims": {
+      "status": "answered",
+      "claims": [
+        {
+          "text": "Project Atlas uses Beacon Evidence Hub as its evidence organization tool.",
+          "evidence": [
+            {
+              "source": "S3",
+              "quote": "Decision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas."
+            }
+          ]
+        },
+        {
+          "text": "Decision DEC-001 approved the selection of Beacon Evidence Hub for Project Atlas on October 12, 2026.",
+          "evidence": [
+            {
+              "source": "S3",
+              "quote": "The decision was approved on October 12, 2026."
+            }
+          ]
+        },
+        {
+          "text": "The Compliance Office is the operational owner of Beacon Evidence Hub.",
+          "evidence": [
+            {
+              "source": "S4",
+              "quote": "Beacon Evidence Hub organizes compliance evidence records and their review ownership. Its operational owner is the Compliance Office."
+            }
+          ]
+        },
+        {
+          "text": "Project charters identify which projects use these tools, and a decision approver is a distinct role from a tool owner.",
+          "evidence": [
+            {
+              "source": "S4",
+              "quote": "Project charters identify which projects use these tools. A tool owner, rule maintainer, project sponsor, and decision approver are different roles."
+            }
+          ]
+        },
+        {
+          "text": "The Compliance Office approved the selection of Beacon Evidence Hub for Project Atlas.",
+          "evidence": [
+            {
+              "source": "S3",
+              "quote": "Decision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026."
+            }
+          ]
+        }
+      ],
+      "message": ""
+    },
+    "timestamp_utc": "2026-10-17T21:47:18.861762+00:00",
+    "receipt_path": "work/answers/answer-20261017T214718861762Z.json"
+  },
+  "diagnostics": {
+    "status_matches_expectation": true,
+    "citation_structure_valid": true,
+    "reference_sections_supplied": [
+      [
+        "DOC-003",
+        "Decision and project"
+      ]
+    ],
+    "reference_sections_not_supplied": [
+      [
+        "DOC-002",
+        "Ownership"
+      ],
+      [
+        "DOC-002",
+        "Team and tools"
+      ],
+      [
+        "DOC-003",
+        "Approval and accountability"
+      ]
+    ],
+    "semantic_grade": null,
+    "note": "Reference sections are diagnostic targets, not the only possible valid evidence. Manual source review required."
+  },
+  "finished_utc": "2026-10-17T21:47:18.888035+00:00",
+  "wall_seconds": 7.436
+}

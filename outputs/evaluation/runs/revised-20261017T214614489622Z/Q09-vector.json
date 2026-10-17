@@ -1,0 +1,220 @@
+{
+  "question_id": "Q09",
+  "question": "What is Alex responsible for?",
+  "mode": "vector",
+  "started_utc": "2026-10-17T21:48:07.856610+00:00",
+  "outcome": "success",
+  "report": {
+    "mode": "vector",
+    "question": "What is Alex responsible for?",
+    "answer": {
+      "status": "insufficient_evidence",
+      "answer": "The request does not specify which Alex is intended. There are two employees named Alex: Alex Morgan (data engineer in the Data Platform team) and Alex Rivera (risk analyst in the Risk Analytics team).",
+      "citations": []
+    },
+    "sources": [
+      {
+        "id": "3334914b0d078feed660af4a735abf4b7c8fec479f5995b772f3962be15e9f7f",
+        "score": 0.598647237,
+        "text": "## Alex Morgan\n\nAlex Morgan is a data engineer in the Data Platform team. Alex Morgan implements data-quality checks and maintains ingestion validation workflows. Alex Morgan is a different person from Alex Rivera.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1713",
+          "char_start": "1497",
+          "chunk_id": "3334914b0d078feed660af4a735abf4b7c8fec479f5995b772f3962be15e9f7f",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-001",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-001:0.1-draft:section-007",
+          "section": "Alex Morgan",
+          "source": "outputs/corpus/01-people-directory.md",
+          "source_owner": "People Operations (fictional)",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "target_overlap_tokens": "32",
+          "title": "People and teams directory",
+          "token_count": "38",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S1"
+      },
+      {
+        "id": "726b6eb00c852f0a36217d5ef3c4ed19bfbd8e5f44a88f9dc420e3be61e72f4a",
+        "score": 0.594715774,
+        "text": "## Alex Rivera\n\nAlex Rivera is a risk analyst in the Risk Analytics team. Alex Rivera maps the lineage of internal risk reporting inputs and reviews reporting dependencies. Alex Rivera is a different person from Alex Morgan.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1939",
+          "char_start": "1713",
+          "chunk_id": "726b6eb00c852f0a36217d5ef3c4ed19bfbd8e5f44a88f9dc420e3be61e72f4a",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-001",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-001:0.1-draft:section-008",
+          "section": "Alex Rivera",
+          "source": "outputs/corpus/01-people-directory.md",
+          "source_owner": "People Operations (fictional)",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "target_overlap_tokens": "32",
+          "title": "People and teams directory",
+          "token_count": "41",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S2"
+      },
+      {
+        "id": "35261a506a31a65bc7c61637798cc07cfc26aaaf5f87eb3f45feb267c7f724d7",
+        "score": 0.577152252,
+        "text": "## Name resolution\n\nThe first name Alex refers to more than one employee in this directory: Alex Morgan and Alex Rivera. If a request only says Alex and gives no distinguishing team, surname, project, or responsibility, ask which person is intended. A shared first name is not evidence that two records describe the same employee.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "2438",
+          "char_start": "2106",
+          "chunk_id": "35261a506a31a65bc7c61637798cc07cfc26aaaf5f87eb3f45feb267c7f724d7",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-001",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-001:0.1-draft:section-010",
+          "section": "Name resolution",
+          "source": "outputs/corpus/01-people-directory.md",
+          "source_owner": "People Operations (fictional)",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "target_overlap_tokens": "32",
+          "title": "People and teams directory",
+          "token_count": "64",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S3"
+      },
+      {
+        "id": "fd2ade540aacd91c4f31aaaaf85537a0a7019c2b93d3165cc88172fe0d43cebc",
+        "score": 0.520228803,
+        "text": "## Ownership\n\nSofia Alvarez is the project lead for Project Borealis. Daniel Ortiz is its executive sponsor. Sofia coordinates the lineage inventory and review work; Daniel handles executive escalations.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "773",
+          "char_start": "568",
+          "chunk_id": "fd2ade540aacd91c4f31aaaaf85537a0a7019c2b93d3165cc88172fe0d43cebc",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-006",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-006:0.1-draft:section-003",
+          "section": "Ownership",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "source_owner": "Risk Analytics (fictional)",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "target_overlap_tokens": "32",
+          "title": "Project Borealis charter",
+          "token_count": "39",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S4"
+      }
+    ],
+    "namespace": "development-v1-df1f9b1de3f529d6",
+    "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+    "prompt_version": "grounded-answer-v5-claims",
+    "evidence_budget": 2000,
+    "evidence_budget_method": "pinned Qwen content tokens",
+    "requested_chat_model": "nvidia/Nemotron-3_5-Lightning",
+    "response_model": "nvidia/Nemotron-3_5-Lightning",
+    "usage": {
+      "completion_tokens": 61,
+      "prompt_tokens": 745,
+      "total_tokens": 806,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 745
+    },
+    "elapsed_seconds": 2.3,
+    "tracing": {
+      "status": "verified",
+      "project": "investment-firm-graphrag",
+      "run_id": "75d05fa2-e6ec-4717-8921-da4e747b88e0",
+      "url": "https://smith.langchain.com/o/59d2fa80-3bc9-4f6d-a07e-4ccc3acc9249/projects/p/5749cb67-a494-421e-b561-38112c5f48b1/r/75d05fa2-e6ec-4717-8921-da4e747b88e0?poll=true"
+    },
+    "packing": {
+      "budget": 2000,
+      "method": "pinned Qwen content tokens",
+      "context_tokens": 229,
+      "selected_ids": [
+        "3334914b0d078feed660af4a735abf4b7c8fec479f5995b772f3962be15e9f7f",
+        "726b6eb00c852f0a36217d5ef3c4ed19bfbd8e5f44a88f9dc420e3be61e72f4a",
+        "35261a506a31a65bc7c61637798cc07cfc26aaaf5f87eb3f45feb267c7f724d7",
+        "fd2ade540aacd91c4f31aaaaf85537a0a7019c2b93d3165cc88172fe0d43cebc"
+      ],
+      "dropped_ids": []
+    },
+    "structured_claims": {
+      "status": "insufficient_evidence",
+      "claims": [],
+      "message": "The request does not specify which Alex is intended. There are two employees named Alex: Alex Morgan (data engineer in the Data Platform team) and Alex Rivera (risk analyst in the Risk Analytics team)."
+    },
+    "timestamp_utc": "2026-10-17T21:48:14.201608+00:00",
+    "receipt_path": "work/answers/answer-20261017T214814201608Z.json"
+  },
+  "diagnostics": {
+    "status_matches_expectation": false,
+    "citation_structure_valid": true,
+    "reference_sections_supplied": [
+      [
+        "DOC-001",
+        "Alex Morgan"
+      ],
+      [
+        "DOC-001",
+        "Alex Rivera"
+      ],
+      [
+        "DOC-001",
+        "Name resolution"
+      ]
+    ],
+    "reference_sections_not_supplied": [],
+    "semantic_grade": null,
+    "note": "Reference sections are diagnostic targets, not the only possible valid evidence. Manual source review required."
+  },
+  "finished_utc": "2026-10-17T21:48:14.226685+00:00",
+  "wall_seconds": 6.367
+}

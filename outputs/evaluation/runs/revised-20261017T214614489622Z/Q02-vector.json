@@ -1,0 +1,224 @@
+{
+  "question_id": "Q02",
+  "question": "Who is listed with Data Quality Engineering expertise?",
+  "mode": "vector",
+  "started_utc": "2026-10-17T21:46:40.839681+00:00",
+  "outcome": "success",
+  "report": {
+    "mode": "vector",
+    "question": "Who is listed with Data Quality Engineering expertise?",
+    "answer": {
+      "status": "answered",
+      "answer": "Alex Morgan has the skill Data Quality Engineering [S1]",
+      "citations": [
+        "S1"
+      ]
+    },
+    "sources": [
+      {
+        "id": "ca4146863277285f0534f537a2ecb325efbe73eca3ebd28c688a8a5ec1e467e7",
+        "score": 0.684458256,
+        "text": "## Data quality engineering\n\nAlex Morgan has the skill Data Quality Engineering. It covers implementing ingestion checks, validating required fields, and investigating incomplete operational data. Alex Rivera is not assigned this skill in this register; do not transfer a skill between people because they share a first name.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1094",
+          "char_start": "767",
+          "chunk_id": "ca4146863277285f0534f537a2ecb325efbe73eca3ebd28c688a8a5ec1e467e7",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-004",
+          "section": "Data quality engineering",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "55",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S1"
+      },
+      {
+        "id": "3334914b0d078feed660af4a735abf4b7c8fec479f5995b772f3962be15e9f7f",
+        "score": 0.591223955,
+        "text": "## Alex Morgan\n\nAlex Morgan is a data engineer in the Data Platform team. Alex Morgan implements data-quality checks and maintains ingestion validation workflows. Alex Morgan is a different person from Alex Rivera.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1713",
+          "char_start": "1497",
+          "chunk_id": "3334914b0d078feed660af4a735abf4b7c8fec479f5995b772f3962be15e9f7f",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-001",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-001:0.1-draft:section-007",
+          "section": "Alex Morgan",
+          "source": "outputs/corpus/01-people-directory.md",
+          "source_owner": "People Operations (fictional)",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "target_overlap_tokens": "32",
+          "title": "People and teams directory",
+          "token_count": "38",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S2"
+      },
+      {
+        "id": "a94be3e125abdf8861883615e192e3280f3ee39dae5eecf9877e12800a5b7186",
+        "score": 0.527105927,
+        "text": "## Noah Singh\n\nNoah Singh is the Data Platform team lead. His responsibilities include platform access reviews and delivery coordination for shared data services. The Data Platform team supports internal operational systems.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1497",
+          "char_start": "1271",
+          "chunk_id": "a94be3e125abdf8861883615e192e3280f3ee39dae5eecf9877e12800a5b7186",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-001",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-001:0.1-draft:section-006",
+          "section": "Noah Singh",
+          "source": "outputs/corpus/01-people-directory.md",
+          "source_owner": "People Operations (fictional)",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "target_overlap_tokens": "32",
+          "title": "People and teams directory",
+          "token_count": "37",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S3"
+      },
+      {
+        "id": "6acd381512bbf26458695e2001410c7c34445cb1379dfd0bbd1d0dc81e901218",
+        "score": 0.485220224,
+        "text": "## Source responsibilities\n\nThe Data Platform team owns Harbor Access Register's operational source records. The Risk Analytics team owns the lineage inventory in Signal Lineage Board. A request to correct an upstream access-review record goes to its Data Platform owner; a request to correct a lineage link goes to Risk Analytics.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1143",
+          "char_start": "810",
+          "chunk_id": "6acd381512bbf26458695e2001410c7c34445cb1379dfd0bbd1d0dc81e901218",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-007",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-007:0.1-draft:section-004",
+          "section": "Source responsibilities",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "source_owner": "Data Platform (fictional)",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "target_overlap_tokens": "32",
+          "title": "Borealis source-registration decision",
+          "token_count": "59",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "citation": "S4"
+      }
+    ],
+    "namespace": "development-v1-df1f9b1de3f529d6",
+    "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+    "prompt_version": "grounded-answer-v5-claims",
+    "evidence_budget": 2000,
+    "evidence_budget_method": "pinned Qwen content tokens",
+    "requested_chat_model": "nvidia/Nemotron-3_5-Lightning",
+    "response_model": "nvidia/Nemotron-3_5-Lightning",
+    "usage": {
+      "completion_tokens": 58,
+      "prompt_tokens": 755,
+      "total_tokens": 813,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 755
+    },
+    "elapsed_seconds": 2.161,
+    "tracing": {
+      "status": "verified",
+      "project": "investment-firm-graphrag",
+      "run_id": "398073ff-8cc7-4425-bec5-f1be348c80e6",
+      "url": "https://smith.langchain.com/o/59d2fa80-3bc9-4f6d-a07e-4ccc3acc9249/projects/p/5749cb67-a494-421e-b561-38112c5f48b1/r/398073ff-8cc7-4425-bec5-f1be348c80e6?poll=true"
+    },
+    "packing": {
+      "budget": 2000,
+      "method": "pinned Qwen content tokens",
+      "context_tokens": 238,
+      "selected_ids": [
+        "ca4146863277285f0534f537a2ecb325efbe73eca3ebd28c688a8a5ec1e467e7",
+        "3334914b0d078feed660af4a735abf4b7c8fec479f5995b772f3962be15e9f7f",
+        "a94be3e125abdf8861883615e192e3280f3ee39dae5eecf9877e12800a5b7186",
+        "6acd381512bbf26458695e2001410c7c34445cb1379dfd0bbd1d0dc81e901218"
+      ],
+      "dropped_ids": []
+    },
+    "structured_claims": {
+      "status": "answered",
+      "claims": [
+        {
+          "text": "Alex Morgan has the skill Data Quality Engineering",
+          "evidence": [
+            {
+              "source": "S1",
+              "quote": "Alex Morgan has the skill Data Quality Engineering."
+            }
+          ]
+        }
+      ],
+      "message": ""
+    },
+    "timestamp_utc": "2026-10-17T21:46:47.090502+00:00",
+    "receipt_path": "work/answers/answer-20261017T214647090502Z.json"
+  },
+  "diagnostics": {
+    "status_matches_expectation": true,
+    "citation_structure_valid": true,
+    "reference_sections_supplied": [
+      [
+        "DOC-009",
+        "Data quality engineering"
+      ]
+    ],
+    "reference_sections_not_supplied": [],
+    "semantic_grade": null,
+    "note": "Reference sections are diagnostic targets, not the only possible valid evidence. Manual source review required."
+  },
+  "finished_utc": "2026-10-17T21:46:47.126154+00:00",
+  "wall_seconds": 6.28
+}

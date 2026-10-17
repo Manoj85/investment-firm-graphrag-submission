@@ -1,0 +1,748 @@
+{
+  "question_id": "Q06",
+  "question": "Which project supplies access-review records to Borealis, who leads that upstream project, and what access-related skill is recorded for that lead?",
+  "mode": "graph",
+  "started_utc": "2026-10-17T21:47:34.862160+00:00",
+  "outcome": "success",
+  "report": {
+    "mode": "graph",
+    "question": "Which project supplies access-review records to Borealis, who leads that upstream project, and what access-related skill is recorded for that lead?",
+    "answer": {
+      "status": "answered",
+      "answer": "Project Harbor supplies access-review records to Borealis [S1]\n\nNoah Singh leads Project Harbor [S2]\n\nNoah Singh has the skill Access Governance [S3]\n\nDEC-003 approves registering Harbor Access Register as an upstream source for Project Borealis [S5]\n\nHarbor Access Register supplies ownership and review-outcome records from Project Harbor to Borealis [S5]\n\nDEC-002 approves the access-review workflow for Project Harbor [S6]",
+      "citations": [
+        "S1",
+        "S2",
+        "S3",
+        "S5",
+        "S6"
+      ]
+    },
+    "sources": [
+      {
+        "id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+        "score": null,
+        "text": "## Dependencies\n\nBorealis depends on Project Harbor's access-review records. Harbor Access Register is registered as an upstream operational source for Borealis. DEC-003 documents who approved that source registration. Borealis uses Signal Lineage Board for lineage; Harbor Access Register remains the upstream access-review source, not the lineage-board replacement.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1409",
+          "char_start": "1040",
+          "chunk_id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-006",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-006:0.1-draft:section-005",
+          "section": "Dependencies",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "source_owner": "Risk Analytics (fictional)",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "target_overlap_tokens": "32",
+          "title": "Project Borealis charter",
+          "token_count": "69",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:project:borealis:depends_on:project:harbor"
+        ],
+        "retrieval_origins": [
+          "graph_path",
+          "vector"
+        ],
+        "vector_score": 0.734229743,
+        "citation": "S1"
+      },
+      {
+        "id": "d58e4f226f63c71851a994a88a0f44a8731846721a4e4bcc5a0037cda6f6467d",
+        "score": null,
+        "text": "## Ownership\n\nNoah Singh is the project lead for Project Harbor. Daniel Ortiz is its executive sponsor. The project lead coordinates delivery; the sponsor handles executive escalations. Individual approval facts belong to decision records.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "709",
+          "char_start": "468",
+          "chunk_id": "d58e4f226f63c71851a994a88a0f44a8731846721a4e4bcc5a0037cda6f6467d",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-004",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-004:0.1-draft:section-003",
+          "section": "Ownership",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "target_overlap_tokens": "32",
+          "title": "Project Harbor charter",
+          "token_count": "42",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:person:noah-singh:leads_project:project:harbor"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S2"
+      },
+      {
+        "id": "b0ada0f4f1b98f1b8940484cc2a9ec0c49124f748d91dcd1c720b20587cfe4b4",
+        "score": null,
+        "text": "## Access governance\n\nNoah Singh has the skill Access Governance. It covers reviewing access requirements, ownership, and least-privilege rules for internal platforms. It does not establish who approved any particular access decision.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1330",
+          "char_start": "1094",
+          "chunk_id": "b0ada0f4f1b98f1b8940484cc2a9ec0c49124f748d91dcd1c720b20587cfe4b4",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-005",
+          "section": "Access governance",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "42",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:person:noah-singh:has_skill:skill:access-governance"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S3"
+      },
+      {
+        "id": "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+        "score": 0.714307904,
+        "text": "## Dependencies\n\nHarbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1264",
+          "char_start": "955",
+          "chunk_id": "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-004",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-004:0.1-draft:section-005",
+          "section": "Dependencies",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "target_overlap_tokens": "32",
+          "title": "Project Harbor charter",
+          "token_count": "66",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S4"
+      },
+      {
+        "id": "4f163e19897f4a3ef0c59d8c1b4e8144d046bfac7e85e210ec57d1eb771e6432",
+        "score": 0.69996506,
+        "text": "## Decision and project\n\nDecision DEC-003 approves registering Harbor Access Register as an upstream source for Project Borealis. The source supplies ownership and review-outcome records from Project Harbor. Borealis represents the dependency in Signal Lineage Board.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "526",
+          "char_start": "257",
+          "chunk_id": "4f163e19897f4a3ef0c59d8c1b4e8144d046bfac7e85e210ec57d1eb771e6432",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-007",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-007:0.1-draft:section-002",
+          "section": "Decision and project",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "source_owner": "Data Platform (fictional)",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "target_overlap_tokens": "32",
+          "title": "Borealis source-registration decision",
+          "token_count": "51",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S5"
+      },
+      {
+        "id": "01cce489ceb8dccb197495dff83f63b01f5662bda4b2e23a298faef82690b302",
+        "score": 0.658553481,
+        "text": "## Decision and project\n\nDecision DEC-002 approves the access-review workflow for Project Harbor. It requires an identified request owner, a recorded reviewer, and a stored review outcome in Harbor Access Register.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "478",
+          "char_start": "262",
+          "chunk_id": "01cce489ceb8dccb197495dff83f63b01f5662bda4b2e23a298faef82690b302",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-005",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-005:0.1-draft:section-002",
+          "section": "Decision and project",
+          "source": "outputs/corpus/05-harbor-access-review-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "a4eaff108f6d8abc1a0fe2c5a6e7976f7ac118b67826604b308804eeda0795d6",
+          "target_overlap_tokens": "32",
+          "title": "Harbor access-review workflow decision",
+          "token_count": "41",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S6"
+      }
+    ],
+    "namespace": "development-v1-df1f9b1de3f529d6",
+    "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+    "prompt_version": "grounded-answer-v5-claims",
+    "evidence_budget": 2000,
+    "evidence_budget_method": "pinned Qwen content tokens",
+    "requested_chat_model": "nvidia/Nemotron-3_5-Lightning",
+    "response_model": "nvidia/Nemotron-3_5-Lightning",
+    "usage": {
+      "completion_tokens": 319,
+      "prompt_tokens": 929,
+      "total_tokens": 1248,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 929
+    },
+    "elapsed_seconds": 3.493,
+    "tracing": {
+      "status": "verified",
+      "project": "investment-firm-graphrag",
+      "run_id": "39afc3c2-6475-49c5-be67-c860c0d1061c",
+      "url": "https://smith.langchain.com/o/59d2fa80-3bc9-4f6d-a07e-4ccc3acc9249/projects/p/5749cb67-a494-421e-b561-38112c5f48b1/r/39afc3c2-6475-49c5-be67-c860c0d1061c?poll=true"
+    },
+    "packing": {
+      "budget": 2000,
+      "method": "pinned Qwen content tokens",
+      "context_tokens": 382,
+      "selected_ids": [
+        "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+        "d58e4f226f63c71851a994a88a0f44a8731846721a4e4bcc5a0037cda6f6467d",
+        "b0ada0f4f1b98f1b8940484cc2a9ec0c49124f748d91dcd1c720b20587cfe4b4",
+        "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+        "4f163e19897f4a3ef0c59d8c1b4e8144d046bfac7e85e210ec57d1eb771e6432",
+        "01cce489ceb8dccb197495dff83f63b01f5662bda4b2e23a298faef82690b302"
+      ],
+      "dropped_ids": []
+    },
+    "graph_selection": {
+      "question": "Which project supplies access-review records to Borealis, who leads that upstream project, and what access-related skill is recorded for that lead?",
+      "selector_version": "schema-lexical-v2",
+      "graph_version": "0.2-reviewed",
+      "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+      "mentions": [
+        {
+          "text": "Borealis",
+          "start": 48,
+          "end": 56,
+          "status": "resolved",
+          "candidates": [
+            {
+              "id": "project:borealis",
+              "label": "Project Borealis",
+              "type": "Project"
+            }
+          ]
+        }
+      ],
+      "requested_relations": [
+        "LEADS_PROJECT",
+        "LEADS_TEAM",
+        "HAS_SKILL",
+        "DEPENDS_ON"
+      ],
+      "seed_entities": [
+        "project:borealis"
+      ],
+      "max_hops": 3,
+      "max_examined_edges": 40,
+      "max_paths": 10,
+      "examined_edges": 3,
+      "truncated": false,
+      "paths": [
+        {
+          "nodes": [
+            "project:borealis",
+            "project:harbor"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:project:borealis:depends_on:project:harbor",
+              "source": "project:borealis",
+              "target": "project:harbor",
+              "source_label": "Project Borealis",
+              "target_label": "Project Harbor",
+              "relation": "DEPENDS_ON",
+              "traversal": "forward",
+              "from_entity": "project:borealis",
+              "to_entity": "project:harbor",
+              "evidence": [
+                {
+                  "document_id": "DOC-006",
+                  "section": "Dependencies",
+                  "source": "outputs/corpus/06-project-borealis-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+                  "chunk_id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+                  "excerpt": "## Dependencies\n\nBorealis depends on Project Harbor's access-review records. Harbor Access Register is registered as an upstream operational source for Borealis. DEC-003 documents who approved that source registration. Borealis uses Signal Lineage Board for lineage; Harbor Access Register remains the upstream access-review source, not the lineage-board replacement."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "DEPENDS_ON"
+        },
+        {
+          "nodes": [
+            "project:borealis",
+            "project:harbor",
+            "person:noah-singh"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:project:borealis:depends_on:project:harbor",
+              "source": "project:borealis",
+              "target": "project:harbor",
+              "source_label": "Project Borealis",
+              "target_label": "Project Harbor",
+              "relation": "DEPENDS_ON",
+              "traversal": "forward",
+              "from_entity": "project:borealis",
+              "to_entity": "project:harbor",
+              "evidence": [
+                {
+                  "document_id": "DOC-006",
+                  "section": "Dependencies",
+                  "source": "outputs/corpus/06-project-borealis-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+                  "chunk_id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+                  "excerpt": "## Dependencies\n\nBorealis depends on Project Harbor's access-review records. Harbor Access Register is registered as an upstream operational source for Borealis. DEC-003 documents who approved that source registration. Borealis uses Signal Lineage Board for lineage; Harbor Access Register remains the upstream access-review source, not the lineage-board replacement."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:noah-singh:leads_project:project:harbor",
+              "source": "person:noah-singh",
+              "target": "project:harbor",
+              "source_label": "Noah Singh",
+              "target_label": "Project Harbor",
+              "relation": "LEADS_PROJECT",
+              "traversal": "reverse",
+              "from_entity": "project:harbor",
+              "to_entity": "person:noah-singh",
+              "evidence": [
+                {
+                  "document_id": "DOC-004",
+                  "section": "Ownership",
+                  "source": "outputs/corpus/04-project-harbor-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+                  "chunk_id": "d58e4f226f63c71851a994a88a0f44a8731846721a4e4bcc5a0037cda6f6467d",
+                  "excerpt": "## Ownership\n\nNoah Singh is the project lead for Project Harbor. Daniel Ortiz is its executive sponsor. The project lead coordinates delivery; the sponsor handles executive escalations. Individual approval facts belong to decision records."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "LEADS_PROJECT"
+        },
+        {
+          "nodes": [
+            "project:borealis",
+            "project:harbor",
+            "person:noah-singh",
+            "skill:access-governance"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:project:borealis:depends_on:project:harbor",
+              "source": "project:borealis",
+              "target": "project:harbor",
+              "source_label": "Project Borealis",
+              "target_label": "Project Harbor",
+              "relation": "DEPENDS_ON",
+              "traversal": "forward",
+              "from_entity": "project:borealis",
+              "to_entity": "project:harbor",
+              "evidence": [
+                {
+                  "document_id": "DOC-006",
+                  "section": "Dependencies",
+                  "source": "outputs/corpus/06-project-borealis-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+                  "chunk_id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+                  "excerpt": "## Dependencies\n\nBorealis depends on Project Harbor's access-review records. Harbor Access Register is registered as an upstream operational source for Borealis. DEC-003 documents who approved that source registration. Borealis uses Signal Lineage Board for lineage; Harbor Access Register remains the upstream access-review source, not the lineage-board replacement."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:noah-singh:leads_project:project:harbor",
+              "source": "person:noah-singh",
+              "target": "project:harbor",
+              "source_label": "Noah Singh",
+              "target_label": "Project Harbor",
+              "relation": "LEADS_PROJECT",
+              "traversal": "reverse",
+              "from_entity": "project:harbor",
+              "to_entity": "person:noah-singh",
+              "evidence": [
+                {
+                  "document_id": "DOC-004",
+                  "section": "Ownership",
+                  "source": "outputs/corpus/04-project-harbor-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+                  "chunk_id": "d58e4f226f63c71851a994a88a0f44a8731846721a4e4bcc5a0037cda6f6467d",
+                  "excerpt": "## Ownership\n\nNoah Singh is the project lead for Project Harbor. Daniel Ortiz is its executive sponsor. The project lead coordinates delivery; the sponsor handles executive escalations. Individual approval facts belong to decision records."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:noah-singh:has_skill:skill:access-governance",
+              "source": "person:noah-singh",
+              "target": "skill:access-governance",
+              "source_label": "Noah Singh",
+              "target_label": "Access Governance",
+              "relation": "HAS_SKILL",
+              "traversal": "forward",
+              "from_entity": "person:noah-singh",
+              "to_entity": "skill:access-governance",
+              "evidence": [
+                {
+                  "document_id": "DOC-009",
+                  "section": "Access governance",
+                  "source": "outputs/corpus/09-skills-and-tools-register.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+                  "chunk_id": "b0ada0f4f1b98f1b8940484cc2a9ec0c49124f748d91dcd1c720b20587cfe4b4",
+                  "excerpt": "## Access governance\n\nNoah Singh has the skill Access Governance. It covers reviewing access requirements, ownership, and least-privilege rules for internal platforms. It does not establish who approved any particular access decision."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "HAS_SKILL"
+        }
+      ],
+      "evidence_chunk_ids": [
+        "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+        "d58e4f226f63c71851a994a88a0f44a8731846721a4e4bcc5a0037cda6f6467d",
+        "b0ada0f4f1b98f1b8940484cc2a9ec0c49124f748d91dcd1c720b20587cfe4b4"
+      ],
+      "path_pattern": [
+        {
+          "relation": "DEPENDS_ON",
+          "traversal": "forward",
+          "target_type": "Project"
+        },
+        {
+          "relation": "LEADS_PROJECT",
+          "traversal": "reverse",
+          "target_type": "Person"
+        },
+        {
+          "relation": "HAS_SKILL",
+          "traversal": "forward",
+          "target_type": "Skill"
+        }
+      ],
+      "status": "candidates_found",
+      "stop_reason": "search_complete_within_hop_limit"
+    },
+    "graph_retrieval": {
+      "status": "verified",
+      "ordering": "graph then vector; deduplicated",
+      "graph_passages": 3,
+      "vector_passages": 4,
+      "merged_passages": 6,
+      "fallback_reason": null
+    },
+    "seed_evidence": [
+      {
+        "id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+        "score": 0.734229743,
+        "text": "## Dependencies\n\nBorealis depends on Project Harbor's access-review records. Harbor Access Register is registered as an upstream operational source for Borealis. DEC-003 documents who approved that source registration. Borealis uses Signal Lineage Board for lineage; Harbor Access Register remains the upstream access-review source, not the lineage-board replacement.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1409",
+          "char_start": "1040",
+          "chunk_id": "7ee0e55ae20f45a3f3035f7549cdf645fcbc060e8f49f9773ef08072d28c30e1",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-006",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-006:0.1-draft:section-005",
+          "section": "Dependencies",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "source_owner": "Risk Analytics (fictional)",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "target_overlap_tokens": "32",
+          "title": "Project Borealis charter",
+          "token_count": "69",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+        "score": 0.714307904,
+        "text": "## Dependencies\n\nHarbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1264",
+          "char_start": "955",
+          "chunk_id": "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-004",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-004:0.1-draft:section-005",
+          "section": "Dependencies",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "target_overlap_tokens": "32",
+          "title": "Project Harbor charter",
+          "token_count": "66",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "4f163e19897f4a3ef0c59d8c1b4e8144d046bfac7e85e210ec57d1eb771e6432",
+        "score": 0.69996506,
+        "text": "## Decision and project\n\nDecision DEC-003 approves registering Harbor Access Register as an upstream source for Project Borealis. The source supplies ownership and review-outcome records from Project Harbor. Borealis represents the dependency in Signal Lineage Board.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "526",
+          "char_start": "257",
+          "chunk_id": "4f163e19897f4a3ef0c59d8c1b4e8144d046bfac7e85e210ec57d1eb771e6432",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-007",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-007:0.1-draft:section-002",
+          "section": "Decision and project",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "source_owner": "Data Platform (fictional)",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "target_overlap_tokens": "32",
+          "title": "Borealis source-registration decision",
+          "token_count": "51",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "01cce489ceb8dccb197495dff83f63b01f5662bda4b2e23a298faef82690b302",
+        "score": 0.658553481,
+        "text": "## Decision and project\n\nDecision DEC-002 approves the access-review workflow for Project Harbor. It requires an identified request owner, a recorded reviewer, and a stored review outcome in Harbor Access Register.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "478",
+          "char_start": "262",
+          "chunk_id": "01cce489ceb8dccb197495dff83f63b01f5662bda4b2e23a298faef82690b302",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-005",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-005:0.1-draft:section-002",
+          "section": "Decision and project",
+          "source": "outputs/corpus/05-harbor-access-review-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "a4eaff108f6d8abc1a0fe2c5a6e7976f7ac118b67826604b308804eeda0795d6",
+          "target_overlap_tokens": "32",
+          "title": "Harbor access-review workflow decision",
+          "token_count": "41",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      }
+    ],
+    "structured_claims": {
+      "status": "answered",
+      "claims": [
+        {
+          "text": "Project Harbor supplies access-review records to Borealis",
+          "evidence": [
+            {
+              "source": "S1",
+              "quote": "Borealis depends on Project Harbor's access-review records."
+            }
+          ]
+        },
+        {
+          "text": "Noah Singh leads Project Harbor",
+          "evidence": [
+            {
+              "source": "S2",
+              "quote": "Noah Singh is the project lead for Project Harbor."
+            }
+          ]
+        },
+        {
+          "text": "Noah Singh has the skill Access Governance",
+          "evidence": [
+            {
+              "source": "S3",
+              "quote": "Noah Singh has the skill Access Governance."
+            }
+          ]
+        },
+        {
+          "text": "DEC-003 approves registering Harbor Access Register as an upstream source for Project Borealis",
+          "evidence": [
+            {
+              "source": "S5",
+              "quote": "Decision DEC-003 approves registering Harbor Access Register as an upstream source for Project Borealis."
+            }
+          ]
+        },
+        {
+          "text": "Harbor Access Register supplies ownership and review-outcome records from Project Harbor to Borealis",
+          "evidence": [
+            {
+              "source": "S5",
+              "quote": "The source supplies ownership and review-outcome records from Project Harbor."
+            }
+          ]
+        },
+        {
+          "text": "DEC-002 approves the access-review workflow for Project Harbor",
+          "evidence": [
+            {
+              "source": "S6",
+              "quote": "Decision DEC-002 approves the access-review workflow for Project Harbor."
+            }
+          ]
+        }
+      ],
+      "message": ""
+    },
+    "timestamp_utc": "2026-10-17T21:47:42.424885+00:00",
+    "receipt_path": "work/answers/answer-20261017T214742424885Z.json"
+  },
+  "diagnostics": {
+    "status_matches_expectation": true,
+    "citation_structure_valid": true,
+    "reference_sections_supplied": [
+      [
+        "DOC-004",
+        "Ownership"
+      ],
+      [
+        "DOC-006",
+        "Dependencies"
+      ],
+      [
+        "DOC-009",
+        "Access governance"
+      ]
+    ],
+    "reference_sections_not_supplied": [],
+    "semantic_grade": null,
+    "note": "Reference sections are diagnostic targets, not the only possible valid evidence. Manual source review required."
+  },
+  "finished_utc": "2026-10-17T21:47:42.455266+00:00",
+  "wall_seconds": 7.591
+}
