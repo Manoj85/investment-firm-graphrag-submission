@@ -6,7 +6,7 @@ import ssl
 import httpx
 from tokenizers import Tokenizer
 
-from project_config import PROJECT_ROOT
+from scripts.config.project_config import PROJECT_ROOT
 
 
 MODEL_ID = "Qwen/Qwen3-Embedding-8B"
@@ -20,7 +20,7 @@ TOKENIZER_URL = f"https://huggingface.co/{MODEL_ID}/resolve/{REVISION}/tokenizer
 def load_tokenizer() -> Tokenizer:
     """Read the verified local file; never download implicitly during chunking."""
     if not TOKENIZER_PATH.is_file():
-        raise ValueError("Tokenizer missing. Run scripts/qwen_tokenizer.py once to download it.")
+        raise ValueError("Tokenizer missing. Run python -m scripts.corpus.qwen_tokenizer once to download it.")
     if hashlib.sha256(TOKENIZER_PATH.read_bytes()).hexdigest() != TOKENIZER_SHA256:
         raise ValueError("Tokenizer checksum mismatch; prepare the pinned file again.")
     tokenizer = Tokenizer.from_file(str(TOKENIZER_PATH))

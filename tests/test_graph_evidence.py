@@ -8,9 +8,9 @@ from unittest.mock import Mock
 
 import networkx as nx
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from graph_evidence import fetch_path_evidence, resolve_entity
-from service_clients import ServiceError
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.graph.graph_evidence import fetch_path_evidence, resolve_entity
+from scripts.services.service_clients import ServiceError
 
 
 class GraphEvidenceTests(unittest.TestCase):

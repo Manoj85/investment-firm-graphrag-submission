@@ -9,12 +9,12 @@ from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import END, START, StateGraph
 
-from corpus_pipeline import atomic_json, retrieve
-from neighbor_retrieval import retrieve_with_neighbors
-from project_config import PROJECT_ROOT
-from qwen_tokenizer import count_tokens, load_tokenizer
-from service_clients import ServiceError, request_json, tls_context
-from verify_nebius import validate_settings
+from scripts.corpus.corpus_pipeline import atomic_json, retrieve
+from scripts.retrieval.neighbor_retrieval import retrieve_with_neighbors
+from scripts.config.project_config import PROJECT_ROOT
+from scripts.corpus.qwen_tokenizer import count_tokens, load_tokenizer
+from scripts.services.service_clients import ServiceError, request_json, tls_context
+from scripts.services.verify_nebius import validate_settings
 
 
 PROMPT_VERSION = "grounded-answer-v2"

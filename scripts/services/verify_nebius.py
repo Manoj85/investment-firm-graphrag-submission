@@ -10,9 +10,9 @@ from urllib.parse import urlsplit
 
 import httpx
 
-from inspect_atlas import ATLAS_PATH, load_markdown
-from inspect_atlas_chunks import split_by_section
-from project_config import PROJECT_ROOT, Settings, load_settings
+from scripts.corpus.inspect_atlas import ATLAS_PATH, load_markdown
+from scripts.corpus.inspect_atlas_chunks import split_by_section
+from scripts.config.project_config import PROJECT_ROOT, Settings, load_settings
 
 
 def validate_settings(settings: Settings, operation: str) -> str:

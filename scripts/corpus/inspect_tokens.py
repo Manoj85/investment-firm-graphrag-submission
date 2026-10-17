@@ -3,9 +3,9 @@
 import argparse
 import json
 
-from inspect_atlas import ATLAS_PATH, load_markdown
-from inspect_atlas_chunks import split_by_section
-from qwen_tokenizer import MODEL_ID, REVISION, load_tokenizer
+from scripts.corpus.inspect_atlas import ATLAS_PATH, load_markdown
+from scripts.corpus.inspect_atlas_chunks import split_by_section
+from scripts.corpus.qwen_tokenizer import MODEL_ID, REVISION, load_tokenizer
 
 
 def main() -> None:

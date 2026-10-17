@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 # Resolve paths from this script, so running it from another folder still works.
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 ATLAS_PATH = PROJECT_ROOT / "outputs" / "corpus" / "02-project-atlas-charter.md"
 
 # These labels belong to our simple source-document format, not all Markdown.

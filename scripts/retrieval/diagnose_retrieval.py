@@ -6,9 +6,9 @@ import hashlib
 import json
 import math
 
-from corpus_pipeline import active_manifest, atomic_json
-from project_config import PROJECT_ROOT, load_settings
-from service_clients import (DIMENSION, QUERY_INSTRUCTION,
+from scripts.corpus.corpus_pipeline import active_manifest, atomic_json
+from scripts.config.project_config import PROJECT_ROOT, load_settings
+from scripts.services.service_clients import (DIMENSION, QUERY_INSTRUCTION,
                              PineconeStore, ServiceError, validate_vector,
                              document_embedding_input, embedding_identity)
 

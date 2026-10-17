@@ -8,8 +8,8 @@ import json
 
 # Reuse lesson 2's loader and data structure rather than reading the file again
 # with a second, potentially different implementation.
-# Running `python scripts/inspect_atlas_chunks.py` makes scripts/ importable.
-from inspect_atlas import ATLAS_PATH, SourceDocument, load_markdown
+# Running `python -m scripts.corpus.inspect_atlas_chunks` uses the repository package imports.
+from scripts.corpus.inspect_atlas import ATLAS_PATH, SourceDocument, load_markdown
 
 
 def split_by_section(document: SourceDocument) -> list[SourceDocument]:

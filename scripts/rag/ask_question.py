@@ -5,11 +5,11 @@ from datetime import datetime, timezone
 import json
 from time import perf_counter
 
-from corpus_pipeline import atomic_json
-from project_config import PROJECT_ROOT, load_settings
-from rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, GroundedChat, application
-from service_clients import NebiusEmbeddings, PineconeStore, ServiceError
-from tracing_setup import TracingSession
+from scripts.corpus.corpus_pipeline import atomic_json
+from scripts.config.project_config import PROJECT_ROOT, load_settings
+from scripts.rag.rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, GroundedChat, application
+from scripts.services.service_clients import NebiusEmbeddings, PineconeStore, ServiceError
+from scripts.services.tracing_setup import TracingSession
 
 
 def main():

@@ -1,7 +1,7 @@
 """Opt-in, bounded source-neighbor expansion after ordinary vector retrieval."""
 
-from corpus_pipeline import active_manifest, retrieve
-from service_clients import ServiceError
+from scripts.corpus.corpus_pipeline import active_manifest, retrieve
+from scripts.services.service_clients import ServiceError
 
 
 def expand_neighbors(report, manifest, store, *, max_neighbors=4):

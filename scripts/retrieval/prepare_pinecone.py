@@ -3,9 +3,9 @@
 import argparse
 import json
 
-from project_config import PROJECT_ROOT, load_settings
-from corpus_pipeline import atomic_json
-from service_clients import DIMENSION, PineconeStore, ServiceError
+from scripts.config.project_config import PROJECT_ROOT, load_settings
+from scripts.corpus.corpus_pipeline import atomic_json
+from scripts.services.service_clients import DIMENSION, PineconeStore, ServiceError
 
 
 def main():

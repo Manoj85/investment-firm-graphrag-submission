@@ -2,9 +2,9 @@
 
 import json
 
-from corpus_pipeline import active_manifest, atomic_json
-from knowledge_graph import load_graph, validate_graph
-from project_config import PROJECT_ROOT, load_settings
+from scripts.corpus.corpus_pipeline import active_manifest, atomic_json
+from scripts.graph.knowledge_graph import load_graph, validate_graph
+from scripts.config.project_config import PROJECT_ROOT, load_settings
 
 
 def main():

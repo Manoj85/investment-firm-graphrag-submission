@@ -5,9 +5,9 @@ from pathlib import Path
 import sys
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from diagnose_retrieval import analyze
-from service_clients import DIMENSION, ServiceError
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.retrieval.diagnose_retrieval import analyze
+from scripts.services.service_clients import DIMENSION, ServiceError
 
 
 class DiagnosticTests(unittest.TestCase):

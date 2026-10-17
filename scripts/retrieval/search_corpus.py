@@ -4,9 +4,9 @@ import argparse
 from datetime import datetime, timezone
 import json
 
-from corpus_pipeline import atomic_json, retrieve
-from project_config import PROJECT_ROOT, load_settings
-from service_clients import NebiusEmbeddings, PineconeStore, ServiceError
+from scripts.corpus.corpus_pipeline import atomic_json, retrieve
+from scripts.config.project_config import PROJECT_ROOT, load_settings
+from scripts.services.service_clients import NebiusEmbeddings, PineconeStore, ServiceError
 
 
 def main():

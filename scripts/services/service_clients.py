@@ -11,9 +11,9 @@ from typing import Any
 
 import httpx
 
-from project_config import PROJECT_ROOT, Settings
-from qwen_tokenizer import MODEL_ID
-from verify_nebius import validate_settings
+from scripts.config.project_config import PROJECT_ROOT, Settings
+from scripts.corpus.qwen_tokenizer import MODEL_ID
+from scripts.services.verify_nebius import validate_settings
 
 
 DIMENSION = 4096  # Measured in the successful Qwen diagnostic, not guessed.

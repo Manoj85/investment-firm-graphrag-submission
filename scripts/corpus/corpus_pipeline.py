@@ -5,12 +5,12 @@ import json
 import os
 import time
 
-from inspect_atlas import load_markdown
-from project_config import CORPUS_DIR, PROJECT_ROOT
-from qwen_tokenizer import MODEL_ID, load_tokenizer
-from service_clients import (DIMENSION, DOCUMENT_INPUT_TEMPLATE,
+from scripts.corpus.inspect_atlas import load_markdown
+from scripts.config.project_config import CORPUS_DIR, PROJECT_ROOT
+from scripts.corpus.qwen_tokenizer import MODEL_ID, load_tokenizer
+from scripts.services.service_clients import (DIMENSION, DOCUMENT_INPUT_TEMPLATE,
                              QUERY_INSTRUCTION, ServiceError, document_embedding_input, embedding_protocol)
-from token_chunks import split_token_chunks, validate_chunks
+from scripts.corpus.token_chunks import split_token_chunks, validate_chunks
 
 
 MANIFEST_PATH = PROJECT_ROOT / "data" / "indexes" / "active-manifest.json"

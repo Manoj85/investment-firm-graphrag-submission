@@ -4,9 +4,9 @@ import argparse
 from dataclasses import asdict
 import json
 
-from inspect_atlas import ATLAS_PATH, PROJECT_ROOT, load_markdown
-from qwen_tokenizer import load_tokenizer
-from token_chunks import split_token_chunks, validate_chunks
+from scripts.corpus.inspect_atlas import ATLAS_PATH, PROJECT_ROOT, load_markdown
+from scripts.corpus.qwen_tokenizer import load_tokenizer
+from scripts.corpus.token_chunks import split_token_chunks, validate_chunks
 
 
 def main() -> None:

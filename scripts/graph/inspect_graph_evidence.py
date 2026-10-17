@@ -3,12 +3,12 @@
 import argparse
 import json
 
-from corpus_pipeline import active_manifest, atomic_json
-from graph_evidence import fetch_path_evidence, resolve_entity
-from graph_paths import bounded_paths
-from knowledge_graph import load_graph, to_networkx
-from project_config import PROJECT_ROOT, load_settings
-from service_clients import PineconeStore, ServiceError
+from scripts.corpus.corpus_pipeline import active_manifest, atomic_json
+from scripts.graph.graph_evidence import fetch_path_evidence, resolve_entity
+from scripts.graph.graph_paths import bounded_paths
+from scripts.graph.knowledge_graph import load_graph, to_networkx
+from scripts.config.project_config import PROJECT_ROOT, load_settings
+from scripts.services.service_clients import PineconeStore, ServiceError
 
 
 def main():

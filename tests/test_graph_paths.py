@@ -6,8 +6,8 @@ import sys
 
 import networkx as nx
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from graph_paths import bounded_paths
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.graph.graph_paths import bounded_paths
 
 
 class BoundedPathTests(unittest.TestCase):

@@ -5,10 +5,10 @@ from pathlib import Path
 import sys
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from qwen_tokenizer import TOKENIZER_PATH, count_tokens, load_tokenizer
-from rag_workflow import build_workflow, select_evidence, validate_answer
-from service_clients import ServiceError
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.corpus.qwen_tokenizer import TOKENIZER_PATH, count_tokens, load_tokenizer
+from scripts.rag.rag_workflow import build_workflow, select_evidence, validate_answer
+from scripts.services.service_clients import ServiceError
 
 
 SOURCE = {"id": "source-id", "text": "Maya leads Atlas.",

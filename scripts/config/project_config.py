@@ -9,7 +9,7 @@ from dotenv import dotenv_values
 
 
 # Resolve from this file, so commands do not depend on the terminal's directory.
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CORPUS_DIR = PROJECT_ROOT / "outputs" / "corpus"
 
 

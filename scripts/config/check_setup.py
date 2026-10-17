@@ -2,7 +2,7 @@
 
 import sys
 
-from project_config import CORPUS_DIR, PROJECT_ROOT, load_settings
+from scripts.config.project_config import CORPUS_DIR, PROJECT_ROOT, load_settings
 
 
 def main() -> int:

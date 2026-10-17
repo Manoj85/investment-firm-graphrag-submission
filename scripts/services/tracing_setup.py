@@ -11,7 +11,7 @@ from requests.adapters import BaseAdapter
 import httpx
 from urllib3.util.retry import Retry
 
-from service_clients import ServiceError, tls_context
+from scripts.services.service_clients import ServiceError, tls_context
 
 
 class SystemTrustAdapter(BaseAdapter):

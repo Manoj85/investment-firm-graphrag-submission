@@ -3,9 +3,9 @@
 import argparse
 import json
 
-from corpus_pipeline import atomic_json, ingest, prepare_corpus
-from project_config import PROJECT_ROOT, load_settings
-from service_clients import NebiusEmbeddings, PineconeStore, ServiceError
+from scripts.corpus.corpus_pipeline import atomic_json, ingest, prepare_corpus
+from scripts.config.project_config import PROJECT_ROOT, load_settings
+from scripts.services.service_clients import NebiusEmbeddings, PineconeStore, ServiceError
 
 
 def main():

@@ -4,8 +4,8 @@ from copy import deepcopy
 
 import networkx as nx
 
-from knowledge_graph import EVIDENCE_FIELDS
-from service_clients import ServiceError
+from scripts.graph.knowledge_graph import EVIDENCE_FIELDS
+from scripts.services.service_clients import ServiceError
 
 
 def resolve_entity(network: nx.MultiDiGraph, text: str) -> dict:

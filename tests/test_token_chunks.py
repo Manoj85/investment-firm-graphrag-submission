@@ -4,13 +4,13 @@ from pathlib import Path
 import sys
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from inspect_atlas import ATLAS_PATH, SourceDocument, load_markdown
-from qwen_tokenizer import TOKENIZER_PATH, count_tokens, load_tokenizer
-from token_chunks import split_token_chunks, validate_chunks
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.corpus.inspect_atlas import ATLAS_PATH, SourceDocument, load_markdown
+from scripts.corpus.qwen_tokenizer import TOKENIZER_PATH, count_tokens, load_tokenizer
+from scripts.corpus.token_chunks import split_token_chunks, validate_chunks
 
 
-@unittest.skipUnless(TOKENIZER_PATH.is_file(), "Run scripts/qwen_tokenizer.py to enable tokenizer checks")
+@unittest.skipUnless(TOKENIZER_PATH.is_file(), "Run python -m scripts.corpus.qwen_tokenizer to enable tokenizer checks")
 class TokenChunkTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

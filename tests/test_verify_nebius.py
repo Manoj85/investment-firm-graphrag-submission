@@ -6,9 +6,9 @@ import unittest
 
 import httpx
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from project_config import load_settings
-from verify_nebius import run_probe, summarize_chat, summarize_embedding, validate_settings
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.config.project_config import load_settings
+from scripts.services.verify_nebius import run_probe, summarize_chat, summarize_embedding, validate_settings
 
 
 class DiagnosticTests(unittest.TestCase):

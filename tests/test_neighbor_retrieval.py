@@ -6,9 +6,9 @@ import sys
 import unittest
 from unittest.mock import Mock
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from neighbor_retrieval import expand_neighbors
-from service_clients import ServiceError
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.retrieval.neighbor_retrieval import expand_neighbors
+from scripts.services.service_clients import ServiceError
 
 
 class NeighborTests(unittest.TestCase):

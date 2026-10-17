@@ -5,11 +5,11 @@ from pathlib import Path
 import sys
 import unittest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from knowledge_graph import load_graph, validate_graph, to_networkx, outgoing_relationships
-from project_config import PROJECT_ROOT, load_settings
-from corpus_pipeline import prepare_corpus
-from qwen_tokenizer import TOKENIZER_PATH
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.graph.knowledge_graph import load_graph, validate_graph, to_networkx, outgoing_relationships
+from scripts.config.project_config import PROJECT_ROOT, load_settings
+from scripts.corpus.corpus_pipeline import prepare_corpus
+from scripts.corpus.qwen_tokenizer import TOKENIZER_PATH
 
 
 @unittest.skipUnless(TOKENIZER_PATH.is_file(), "Prepare the pinned tokenizer first")

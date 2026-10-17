@@ -5,9 +5,9 @@ import json
 
 from tokenizers import Tokenizer
 
-from inspect_atlas import SourceDocument
-from inspect_atlas_chunks import split_by_section
-from qwen_tokenizer import MODEL_ID, REVISION, TOKENIZER_SHA256, count_tokens
+from scripts.corpus.inspect_atlas import SourceDocument
+from scripts.corpus.inspect_atlas_chunks import split_by_section
+from scripts.corpus.qwen_tokenizer import MODEL_ID, REVISION, TOKENIZER_SHA256, count_tokens
 
 
 CHUNKING_VERSION = "section-token-window-v1"

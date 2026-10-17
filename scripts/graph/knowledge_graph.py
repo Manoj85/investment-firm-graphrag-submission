@@ -6,7 +6,7 @@ from pathlib import Path
 
 import networkx as nx
 
-from project_config import PROJECT_ROOT
+from scripts.config.project_config import PROJECT_ROOT
 
 
 GRAPH_PATH = PROJECT_ROOT / "outputs" / "graph" / "knowledge-graph.json"

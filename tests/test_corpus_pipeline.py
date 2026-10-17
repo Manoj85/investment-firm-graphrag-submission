@@ -10,11 +10,11 @@ from unittest.mock import patch
 
 import httpx
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from corpus_pipeline import active_manifest, ingest, prepare_corpus, retrieve, verify_persisted
-from project_config import PROJECT_ROOT, load_settings
-from qwen_tokenizer import TOKENIZER_PATH
-from service_clients import (DIMENSION, NebiusEmbeddings, PineconeStore,
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.corpus.corpus_pipeline import active_manifest, ingest, prepare_corpus, retrieve, verify_persisted
+from scripts.config.project_config import PROJECT_ROOT, load_settings
+from scripts.corpus.qwen_tokenizer import TOKENIZER_PATH
+from scripts.services.service_clients import (DIMENSION, NebiusEmbeddings, PineconeStore,
                              QUERY_INSTRUCTION, ServiceError, document_embedding_input,
                              embedding_identity, CONTEXTUAL_EMBEDDING_PROTOCOL)
 
