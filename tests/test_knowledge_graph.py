@@ -6,7 +6,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from knowledge_graph import load_graph, validate_graph
+from knowledge_graph import load_graph, validate_graph, to_networkx, outgoing_relationships
 from project_config import PROJECT_ROOT, load_settings
 from corpus_pipeline import prepare_corpus
 from qwen_tokenizer import TOKENIZER_PATH
@@ -67,3 +67,33 @@ class GraphEvidenceTests(unittest.TestCase):
         graph["relationships"][0]["evidence"] = []
         with self.assertRaisesRegex(ValueError, "requires source evidence"):
             validate_graph(graph, self.manifest)
+
+    def test_networkx_preserves_edge_direction_ids_and_evidence(self):
+        network = to_networkx(self.graph, self.manifest)
+        rows = outgoing_relationships(network, "person:priya-shah")
+        self.assertEqual({row["edge_id"] for row in rows},
+                         {edge["id"] for edge in self.graph["relationships"]})
+        self.assertEqual(outgoing_relationships(network, "project:atlas"), [])
+        self.assertEqual(network.in_degree("project:atlas"), 1)
+        self.assertEqual(rows[0]["evidence"], self.graph["relationships"][0]["evidence"])
+        with self.assertRaises(ValueError):
+            outgoing_relationships(network, "person:unknown")
+
+    def test_parallel_edges_do_not_overwrite_each_other(self):
+        graph = deepcopy(self.graph)
+        parallel = deepcopy(graph["relationships"][0])
+        parallel["id"] = "rel:second-reviewed-reference"
+        graph["relationships"].append(parallel)
+        network = to_networkx(graph, self.manifest)
+        pair = network.get_edge_data(parallel["source"], parallel["target"])
+        self.assertEqual(set(pair), {graph["relationships"][0]["id"], parallel["id"]})
+
+    def test_in_memory_mutation_does_not_change_json_or_query_results(self):
+        graph = deepcopy(self.graph)
+        network = to_networkx(graph, self.manifest)
+        edge = graph["relationships"][0]
+        rows = outgoing_relationships(network, edge["source"])
+        rows[0]["evidence"][0]["excerpt"] = "Query output changed"
+        self.assertEqual(network.edges[edge["source"], edge["target"], edge["id"]]["evidence"], edge["evidence"])
+        network.edges[edge["source"], edge["target"], edge["id"]]["evidence"][0]["excerpt"] = "Graph changed"
+        self.assertNotEqual(graph["relationships"][0]["evidence"][0]["excerpt"], "Graph changed")

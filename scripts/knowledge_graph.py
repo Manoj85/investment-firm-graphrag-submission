@@ -1,7 +1,10 @@
 """Validate reviewed graph facts against the active source corpus, offline."""
 
 import json
+from copy import deepcopy
 from pathlib import Path
+
+import networkx as nx
 
 from project_config import PROJECT_ROOT
 
@@ -97,3 +100,34 @@ def validate_graph(graph, manifest):
 
 def load_graph(path: Path = GRAPH_PATH):
     return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def to_networkx(graph, manifest) -> nx.MultiDiGraph:
+    """Validate before construction; preserve direction, edge IDs and evidence."""
+    validate_graph(graph, manifest)
+    network = nx.MultiDiGraph(
+        schema_version=graph["schema_version"], graph_version=graph["graph_version"],
+        corpus_version=graph["corpus_version"])
+    for node in graph["nodes"]:
+        # The stable ID is the NetworkX key. Copy nested aliases/evidence so
+        # modifying an in-memory graph cannot mutate our loaded JSON object.
+        attributes = deepcopy(node)
+        node_id = attributes.pop("id")
+        network.add_node(node_id, **attributes)
+    for edge in graph["relationships"]:
+        network.add_edge(edge["source"], edge["target"], key=edge["id"],
+                         relation=edge["relation"], evidence=deepcopy(edge["evidence"]))
+    return network
+
+
+def outgoing_relationships(network: nx.MultiDiGraph, node_id: str) -> list[dict]:
+    """Return direct outgoing edges with their evidence; no inferred paths."""
+    if node_id not in network:
+        raise ValueError("Unknown graph entity ID; use a stored stable ID")
+    rows = []
+    for source, target, edge_id, attributes in network.out_edges(node_id, keys=True, data=True):
+        rows.append({"edge_id": edge_id, "source": source,
+            "source_label": network.nodes[source]["label"], "relation": attributes["relation"],
+            "target": target, "target_label": network.nodes[target]["label"],
+            "evidence": deepcopy(attributes["evidence"])})
+    return rows

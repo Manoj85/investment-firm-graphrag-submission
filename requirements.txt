@@ -10,3 +10,5 @@ langgraph==1.2.15
 # Explicit tracing client and its HTTP session, introduced with the answer flow.
 langsmith==0.14.11
 requests==2.34.2
+# In-memory traversal of reviewed, source-backed organizational relationships.
+networkx==3.7
