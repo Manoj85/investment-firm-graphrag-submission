@@ -9,7 +9,7 @@ import json
 from scripts.config.project_config import PROJECT_ROOT, load_settings
 from scripts.corpus.corpus_pipeline import atomic_json
 from scripts.evaluation.comparison import runtime_fingerprint
-from scripts.rag.claim_verifier import ClaimVerifier, VERIFIER_VERSION, VERIFIER_INSTRUCTIONS, prepare_review
+from scripts.rag.claim_verifier import ClaimVerifier, VERIFIER_VERSION, SCHEMA_VERIFIER_VERSION, VERIFIER_INSTRUCTIONS, prepare_review
 from scripts.services.service_clients import ServiceError
 
 
@@ -40,11 +40,12 @@ def load_cases():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", action="store_true")
+    parser.add_argument("--schema", action="store_true", help="Use versioned API JSON-schema experiment instead of v1 JSON-object mode")
     args = parser.parse_args()
     suite, prepared = load_cases()
     if not args.run:
         print(json.dumps({"status": "local review preflight passed; no API calls", "cases": len(prepared),
-                          "verifier_version": VERIFIER_VERSION, "extra_calls_per_case": 1}, indent=2))
+                          "verifier_version": SCHEMA_VERIFIER_VERSION if args.schema else VERIFIER_VERSION, "extra_calls_per_case": 1}, indent=2))
         return
     settings = load_settings()
     fingerprint = runtime_fingerprint()
@@ -52,14 +53,14 @@ def main():
     now = datetime.now(timezone.utc)
     output = PROJECT_ROOT / "outputs/evaluation/runs" / ("verifier-" + now.strftime("%Y%m%dT%H%M%S%fZ"))
     output.mkdir(exist_ok=False)
-    atomic_json(output / "run.json", {"started_utc": now.isoformat(), "verifier_version": VERIFIER_VERSION,
+    atomic_json(output / "run.json", {"started_utc": now.isoformat(), "verifier_version": SCHEMA_VERIFIER_VERSION if args.schema else VERIFIER_VERSION,
         "runtime_fingerprint": fingerprint, "suite_sha256": suite_hash, "model": settings.nebius_chat_model,
         "instructions_sha256": hashlib.sha256(VERIFIER_INSTRUCTIONS.encode()).hexdigest(),
         "temperature": 0, "max_completion_tokens": 1024, "content_retries": 0,
         "scope": "Six saved inputs; no Pinecone, embedding, regeneration or workflow integration. Local receipts; no LangSmith trace for this standalone probe.",
         "disclosure": suite["disclosure"]})
     summary = {"status": "running", "cases": []}
-    verifier = ClaimVerifier(settings)
+    verifier = ClaimVerifier(settings, schema=args.schema)
     print(f"Results: {output.relative_to(PROJECT_ROOT).as_posix()}", flush=True)
     try:
         for case, inputs in prepared:
@@ -82,9 +83,14 @@ def main():
                 "matches_expected_decision": snapshot["matches_expected_decision"]})
             atomic_json(output / "summary.json", summary)
             print(f"{case['id']}: {decision or record['outcome']}", flush=True)
+            if record.get("error", "").startswith("HTTP "):
+                # Unsupported schema/model/access is not improved by sending
+                # the same rejected request shape five more times.
+                summary["stop_reason"] = record["error"]
+                break
     finally:
         verifier.close()
-    summary["status"] = "complete"
+    summary["status"] = "complete" if len(summary["cases"]) == len(prepared) else "stopped"
     atomic_json(output / "summary.json", summary)
     print(json.dumps(summary, indent=2))
 

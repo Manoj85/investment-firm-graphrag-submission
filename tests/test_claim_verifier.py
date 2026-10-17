@@ -7,7 +7,7 @@ import unittest
 
 import httpx
 
-from scripts.rag.claim_verifier import ClaimVerifier, prepare_review, validate_review
+from scripts.rag.claim_verifier import ClaimVerifier, prepare_review, validate_review, review_schema
 from scripts.services.service_clients import ServiceError
 
 
@@ -19,6 +19,23 @@ REVIEW = {"claims": [{"claim_id": 1, "verdict": "supported", "reason": "Source e
 
 
 class ClaimVerifierTests(unittest.TestCase):
+    def test_schema_mode_sends_closed_shape_and_count_including_zero_claims(self):
+        calls = []
+        def respond(request):
+            calls.append(json.loads(request.content))
+            return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": json.dumps(REVIEW)}}]})
+        verifier = ClaimVerifier(self.settings(), schema=True, transport=httpx.MockTransport(respond))
+        try:
+            record = verifier.review("Who leads Juniper?", PAYLOAD, [SOURCE])
+            schema = calls[0]["response_format"]["json_schema"]["schema"]
+            self.assertFalse(schema["additionalProperties"])
+            self.assertFalse(schema["properties"]["claims"]["items"]["additionalProperties"])
+            self.assertEqual(schema["properties"]["claims"]["maxItems"], 1)
+            self.assertEqual(review_schema(0)["properties"]["claims"]["maxItems"], 0)
+            self.assertEqual(record["verifier_version"], "claim-review-v2-schema")
+        finally:
+            verifier.close()
+
     def settings(self):
         return SimpleNamespace(nebius_base_url="https://api.tokenfactory.nebius.com/v1/",
                                nebius_api_key="fake", nebius_chat_model="test-model")
