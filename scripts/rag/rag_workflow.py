@@ -1,4 +1,4 @@
-"""Track 2 vector baseline: retrieve persisted passages, then generate citations."""
+"""Track 2 shared answer workflow for vector and graph-plus-vector evidence."""
 
 import json
 import re
@@ -11,6 +11,7 @@ from langgraph.graph import END, START, StateGraph
 
 from scripts.corpus.corpus_pipeline import atomic_json, retrieve
 from scripts.retrieval.neighbor_retrieval import retrieve_with_neighbors
+from scripts.graph.graph_retrieval import retrieve_with_graph
 from scripts.config.project_config import PROJECT_ROOT
 from scripts.corpus.qwen_tokenizer import count_tokens, load_tokenizer
 from scripts.services.service_clients import ServiceError, request_json, tls_context
@@ -155,9 +156,16 @@ def build_workflow(retrieve_evidence, chat):
     def retrieve_node(state):
         report = retrieve_evidence(state["question"])
         sources, context = select_evidence(report["evidence"], tokenizer)
+        report = {**report, "packing": {"budget": EVIDENCE_BUDGET,
+            "method": "pinned Qwen content tokens", "context_tokens": count_tokens(tokenizer, context),
+            "selected_ids": [source["id"] for source in sources],
+            "dropped_ids": [item["id"] for item in report["evidence"]
+                            if item["id"] not in {source["id"] for source in sources}]}}
         return {"retrieval": report, "sources": sources, "context": context}
 
     def answer_node(state):
+        if state["retrieval"].get("clarification"):
+            return {"answer": state["retrieval"]["clarification"], "usage": None, "response_model": None}
         if not state["sources"]:
             return {"answer": {"status": "insufficient_evidence",
                 "answer": "No source passages were retrieved for this question.", "citations": []},
@@ -173,6 +181,10 @@ def build_workflow(retrieve_evidence, chat):
     return graph.compile()
 
 
-def application(settings, store, embeddings, chat, *, expand_source_neighbors=False):
-    retrieval = retrieve_with_neighbors if expand_source_neighbors else retrieve
+def application(settings, store, embeddings, chat, *, mode="vector", expand_source_neighbors=False):
+    if mode not in {"vector", "graph"}:
+        raise ValueError("Unknown retrieval mode")
+    if mode == "graph" and expand_source_neighbors:
+        raise ValueError("Keep neighbor expansion separate from graph mode")
+    retrieval = retrieve_with_graph if mode == "graph" else retrieve_with_neighbors if expand_source_neighbors else retrieve
     return build_workflow(lambda question: retrieval(settings, store, embeddings, question), chat)

@@ -15,24 +15,31 @@ from scripts.services.tracing_setup import TracingSession
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("question")
+    parser.add_argument("--mode", choices=("vector", "graph"), default="vector",
+                        help="Graph mode adds question-selected source passages to vector evidence")
     parser.add_argument("--expand-neighbors", action="store_true",
                         help="Experiment: fetch at most four adjacent source passages after vector search")
     parser.add_argument("--prompt-version", choices=tuple(PROMPTS), default=PROMPT_VERSION,
                         help="Versioned answer instructions; v2 remains the default")
     args = parser.parse_args()
+    if args.mode == "graph" and args.expand_neighbors:
+        parser.error("Use graph mode or the neighbor experiment separately")
     store = embeddings = chat = tracing = None
     try:
         settings = load_settings()
         store = PineconeStore(settings)
         embeddings = NebiusEmbeddings(settings)
         chat = GroundedChat(settings, prompt_version=args.prompt_version)
-        mode = "vector_neighbors" if args.expand_neighbors else "vector"
+        mode = "vector_neighbors" if args.expand_neighbors else args.mode
         graph = application(settings, store, embeddings, chat,
+                            mode=args.mode,
                             expand_source_neighbors=args.expand_neighbors)
         tracing = TracingSession(settings)
         started = perf_counter()
         print("Retrieving persisted evidence, then generating a cited answer...", flush=True)
         config = tracing.invoke_config()
+        config["run_name"] = "organizational-graph-rag" if args.mode == "graph" else "organizational-vector-rag"
+        config["tags"] = [mode, "graph-integration" if args.mode == "graph" else "friday-baseline"]
         config["metadata"] = {"prompt_version": chat.prompt_version,
             "retrieval_mode": mode,
             "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model}
@@ -47,6 +54,11 @@ def main():
             "requested_chat_model": settings.nebius_chat_model,
             "response_model": result["response_model"], "usage": result["usage"],
             "elapsed_seconds": elapsed, "tracing": tracing.finish()}
+        report["packing"] = result["retrieval"]["packing"]
+        if args.mode == "graph":
+            report["graph_selection"] = result["retrieval"]["graph_selection"]
+            report["graph_retrieval"] = result["retrieval"]["graph_retrieval"]
+            report["seed_evidence"] = result["retrieval"].get("seed_evidence", [])
         if args.expand_neighbors:
             report["seed_evidence"] = result["retrieval"]["seed_evidence"]
             report["neighbor_expansion"] = result["retrieval"]["neighbor_expansion"]

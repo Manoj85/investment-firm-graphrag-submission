@@ -66,6 +66,17 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(result["answer"]["status"], "insufficient_evidence")
         self.assertIsNone(result["response_model"])
 
+    def test_ambiguity_skips_generation_and_records_shared_packing(self):
+        class MustNotCall:
+            def generate(self, *args):
+                raise AssertionError("Clarification must skip generation")
+        clarification = {"status": "clarification", "answer": "Which Sam?", "citations": []}
+        graph = build_workflow(lambda question: {"evidence": [], "clarification": clarification}, MustNotCall())
+        result = graph.invoke({"question": "What does Sam do?"})
+        self.assertEqual(result["answer"], clarification)
+        self.assertEqual(result["retrieval"]["packing"]["context_tokens"], 0)
+        self.assertEqual(result["retrieval"]["packing"]["budget"], 2000)
+
 
 if __name__ == "__main__":
     unittest.main()
