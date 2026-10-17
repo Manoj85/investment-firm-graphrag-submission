@@ -4,10 +4,14 @@ import json
 from pathlib import Path
 import sys
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
+
+import httpx
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.corpus.qwen_tokenizer import TOKENIZER_PATH, count_tokens, load_tokenizer
-from scripts.rag.rag_workflow import build_workflow, select_evidence, validate_answer
+from scripts.rag.rag_workflow import GroundedChat, build_workflow, select_evidence, validate_answer
 from scripts.services.service_clients import ServiceError
 
 
@@ -16,6 +20,24 @@ SOURCE = {"id": "source-id", "text": "Maya leads Atlas.",
 
 
 class CitationTests(unittest.TestCase):
+    def test_rejection_keeps_visible_content_supplied_sources_and_paid_usage(self):
+        settings = SimpleNamespace(nebius_base_url="https://api.tokenfactory.nebius.com/v1/",
+                                   nebius_api_key="invented-test-key", nebius_chat_model="test-model")
+        payload = {"model": "test-model", "usage": {"total_tokens": 40},
+                   "choices": [{"finish_reason": "stop", "message": {"content": "not answer JSON"}}]}
+        chat = GroundedChat(settings, transport=httpx.MockTransport(lambda request: httpx.Response(200, json=payload)))
+        try:
+            with patch("scripts.rag.rag_workflow.atomic_json") as save:
+                with self.assertRaises(ServiceError):
+                    chat.generate("A question?", "Source context", [{**SOURCE, "citation": "S1"}])
+            receipt = save.call_args.args[1]
+            self.assertEqual(receipt["content"], "not answer JSON")
+            self.assertEqual(receipt["context"], "Source context")
+            self.assertEqual(receipt["sources"][0]["id"], SOURCE["id"])
+            self.assertEqual(receipt["usage"]["total_tokens"], 40)
+        finally:
+            chat.close()
+
     def test_unknown_and_missing_citations_rejected(self):
         sources = [{**SOURCE, "citation": "S1"}]
         for answer in [

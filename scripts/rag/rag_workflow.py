@@ -135,16 +135,18 @@ class GroundedChat:
             choice = result["choices"][0]
             if choice.get("finish_reason") != "stop":
                 raise ServiceError("Answer was not completed normally")
-            try:
-                answer = validate_answer(choice["message"]["content"], sources)
-            except ServiceError as error:
-                # Keep rejected model text inspectable locally, without headers/keys.
-                atomic_json(PROJECT_ROOT / "work" / "answers" / "rejected-answer.json",
-                            {"question": question, "content": choice["message"]["content"],
-                             "error": str(error)})
-                raise
+            answer = validate_answer(choice["message"]["content"], sources)
         except (KeyError, IndexError, TypeError):
             raise ServiceError("Unexpected chat response") from None
+        except ServiceError as error:
+            # Failure observability only: unchanged prompt/model/validation. Do
+            # not lose the actual evidence or paid usage when an answer rejects.
+            atomic_json(PROJECT_ROOT / "work" / "answers" / "rejected-answer.json",
+                        {"question": question, "content": choice.get("message", {}).get("content"),
+                         "error": str(error), "sources": sources, "context": context,
+                         "usage": result.get("usage"), "response_model": result.get("model"),
+                         "prompt_version": self.prompt_version, "finish_reason": choice.get("finish_reason")})
+            raise
         return {"answer": answer, "usage": result.get("usage"),
                 "response_model": result.get("model")}
 
