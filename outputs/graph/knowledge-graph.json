@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "graph_version": "0.1-learning",
+  "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+  "nodes": [
+    {
+      "id": "person:priya-shah",
+      "type": "Person",
+      "label": "Priya Shah",
+      "aliases": []
+    },
+    {
+      "id": "project:atlas",
+      "type": "Project",
+      "label": "Project Atlas",
+      "aliases": [
+        "Atlas"
+      ]
+    },
+    {
+      "id": "skill:evidence-workflow-design",
+      "type": "Skill",
+      "label": "Evidence Workflow Design",
+      "aliases": []
+    },
+    {
+      "id": "team:compliance-operations",
+      "type": "Team",
+      "label": "Compliance Operations",
+      "aliases": []
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel:priya-worked-on-atlas",
+      "source": "person:priya-shah",
+      "relation": "WORKED_ON",
+      "target": "project:atlas",
+      "evidence": [
+        {
+          "document_id": "DOC-002",
+          "section": "Team and tools",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "version": "0.1-draft",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+          "excerpt": "Maya Chen and Priya Shah work on Project Atlas."
+        }
+      ]
+    },
+    {
+      "id": "rel:priya-has-evidence-workflow-design",
+      "source": "person:priya-shah",
+      "relation": "HAS_SKILL",
+      "target": "skill:evidence-workflow-design",
+      "evidence": [
+        {
+          "document_id": "DOC-009",
+          "section": "Evidence workflow design",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "version": "0.1-draft",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "chunk_id": "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+          "excerpt": "Priya Shah has the skill Evidence Workflow Design."
+        }
+      ]
+    },
+    {
+      "id": "rel:priya-member-of-compliance-operations",
+      "source": "person:priya-shah",
+      "relation": "MEMBER_OF",
+      "target": "team:compliance-operations",
+      "evidence": [
+        {
+          "document_id": "DOC-001",
+          "section": "Priya Shah",
+          "source": "outputs/corpus/01-people-directory.md",
+          "version": "0.1-draft",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "chunk_id": "1436c9e5daf406b83b26239e3cadf87fe1d3850f63b02b97f4c428816e71a6e6",
+          "excerpt": "Priya Shah is a compliance operations analyst in the Compliance Operations team."
+        }
+      ]
+    }
+  ]
+}
