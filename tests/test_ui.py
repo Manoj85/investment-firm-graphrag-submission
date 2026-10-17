@@ -68,6 +68,8 @@ class WorkspaceTests(unittest.TestCase):
         app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
         app.selectbox(key="answer_format").set_value("Structured claims (experimental)").run()
         backend.assert_not_called()
+        # Form edits are submitted together; a bare rerun does not commit them.
+        app.selectbox(key="answer_format").set_value("Structured claims (experimental)")
         app.radio(key="retrieval_choice").set_value("Compare both")
         next(button for button in app.button if button.label == "Run question").click().run()
         self.assertFalse(app.exception)
