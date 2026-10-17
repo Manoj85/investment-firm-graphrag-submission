@@ -1,0 +1,54 @@
+{
+  "suite_version": "1.0",
+  "disclosure": "Six assistant-selected development probes from an exposed synthetic corpus, including one explicitly mutated adversarial example. Expected decisions manually assigned; same model generates and reviews, so errors can be correlated. Not an independent holdout or accuracy estimate. Expected labels/reasons never enter the verifier request.",
+  "cases": [
+    {
+      "id": "correct-skill",
+      "receipt": "outputs/evaluation/runs/revised-20261017T214614489622Z/Q02-vector.json",
+      "receipt_sha256": "dc48cd3df5544821f6a85dee89f875c9c9139a1d349f4e4330c9572da4814110",
+      "expected_decision": "judged_pass",
+      "manual_reason": "Direct named skill, valid own evidence; positive control."
+    },
+    {
+      "id": "correct-upstream",
+      "receipt": "outputs/evaluation/runs/revised-20261017T214614489622Z/Q06-graph.json",
+      "receipt_sha256": "7c138c3411603214bb006a588f70a9c341dc464b4b96c605e3abecbcfce2af79",
+      "expected_decision": "judged_pass",
+      "manual_reason": "Complete source-supported dependency/lead/skill chain; positive control."
+    },
+    {
+      "id": "invented-approver",
+      "receipt": "outputs/evaluation/runs/revised-20261017T214614489622Z/Q04-vector.json",
+      "receipt_sha256": "1f9289661dbcd92c22ec3cdf7eb20e25d901fee4368501a7251df29648bd93d7",
+      "expected_decision": "needs_review",
+      "manual_reason": "Compliance Office approver claim is not supported by quoted selection/date record."
+    },
+    {
+      "id": "missing-participation",
+      "receipt": "outputs/evaluation/runs/revised-20261017T214614489622Z/Q05-graph.json",
+      "receipt_sha256": "95f664b56666662b43dc9968e4f61d8559a3949ad1c2fc52088426c80e983280",
+      "expected_decision": "needs_review",
+      "manual_reason": "Priya skill and team given, but participation claim concerns Maya; source quote incidentally mentions Priya."
+    },
+    {
+      "id": "ambiguous-refusal",
+      "receipt": "outputs/evaluation/runs/revised-20261017T214614489622Z/Q09-vector.json",
+      "receipt_sha256": "aa6f44ac361e85d55317a6297350bfcdd831ad7c5d080b2bd96503423e718468",
+      "expected_decision": "needs_review",
+      "manual_reason": "Abstains instead of asking which Alex; positive identity facts occur in message without claim evidence."
+    },
+    {
+      "id": "mutated-lead",
+      "receipt": "outputs/evaluation/runs/revised-20261017T214614489622Z/Q06-graph.json",
+      "receipt_sha256": "7c138c3411603214bb006a588f70a9c341dc464b4b96c605e3abecbcfce2af79",
+      "expected_decision": "needs_review",
+      "manual_reason": "Adversarial mutation: replace Noah lead with sponsor Daniel while retaining original Noah quote.",
+      "claim_changes": [
+        {
+          "claim_id": 2,
+          "text": "Daniel Ortiz leads Project Harbor"
+        }
+      ]
+    }
+  ]
+}
