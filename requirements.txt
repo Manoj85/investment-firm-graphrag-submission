@@ -12,3 +12,5 @@ langsmith==0.14.11
 requests==2.34.2
 # In-memory traversal of reviewed, source-backed organizational relationships.
 networkx==3.7
+# Local testing/demo workspace, using the same backend as the CLI.
+streamlit==1.66.0
