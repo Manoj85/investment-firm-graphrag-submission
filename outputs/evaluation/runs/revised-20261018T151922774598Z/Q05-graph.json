@@ -1,0 +1,1186 @@
+{
+  "question_id": "Q05",
+  "question": "Which Project Atlas participant has Evidence Workflow Design expertise, and which team are they in?",
+  "mode": "graph",
+  "started_utc": "2026-10-18T15:21:06.972961+00:00",
+  "outcome": "success",
+  "report": {
+    "mode": "graph",
+    "question": "Which Project Atlas participant has Evidence Workflow Design expertise, and which team are they in?",
+    "answer": {
+      "status": "answered",
+      "answer": "Source excerpt: Priya Shah has the skill Evidence Workflow Design. This means she can map evidence collection, review handoffs, and completeness checks for compliance operations. This register establishes expertise, not authority to approve a tool purchase or project decision. [S2]\n\nSource excerpt: Priya Shah is a compliance operations analyst in the Compliance Operations team. Her responsibilities include assessing evidence workflows and coordinating evidence completeness reviews. Compliance Operations is a team within the Compliance Office. [S7]",
+      "citations": [
+        "S2",
+        "S7"
+      ]
+    },
+    "sources": [
+      {
+        "id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+        "score": null,
+        "text": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1075",
+          "char_start": "860",
+          "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "40",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:priya-worked-on-atlas",
+          "rel:person:maya-chen:worked_on:project:atlas"
+        ],
+        "retrieval_origins": [
+          "graph_path",
+          "vector"
+        ],
+        "vector_score": 0.680124283,
+        "citation": "S1"
+      },
+      {
+        "id": "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+        "score": null,
+        "text": "## Evidence workflow design\n\nPriya Shah has the skill Evidence Workflow Design. This means she can map evidence collection, review handoffs, and completeness checks for compliance operations. This register establishes expertise, not authority to approve a tool purchase or project decision.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "545",
+          "char_start": "253",
+          "chunk_id": "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-002",
+          "section": "Evidence workflow design",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "50",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:priya-has-evidence-workflow-design"
+        ],
+        "retrieval_origins": [
+          "graph_path",
+          "vector"
+        ],
+        "vector_score": 0.608748138,
+        "citation": "S2"
+      },
+      {
+        "id": "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+        "score": null,
+        "text": "## Ownership\n\nMaya Chen is the project lead for Project Atlas. Daniel Ortiz is the executive sponsor. The project lead coordinates delivery; the executive sponsor resolves escalations. Being the sponsor does not by itself establish who approved a particular decision.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "860",
+          "char_start": "591",
+          "chunk_id": "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-003",
+          "section": "Ownership",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "48",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:person:maya-chen:leads_project:project:atlas"
+        ],
+        "retrieval_origins": [
+          "graph_path",
+          "vector"
+        ],
+        "vector_score": 0.578320682,
+        "citation": "S3"
+      },
+      {
+        "id": "7da7b5e3f06492ca1018ed85a850617051d7bf3b199066189a478876e5ad9f5b",
+        "score": null,
+        "text": "## Delivery coordination\n\nMaya Chen has the skill Delivery Coordination. It covers coordinating schedules, dependencies, and review handoffs across project participants. It is different from approving a control proposal.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "767",
+          "char_start": "545",
+          "chunk_id": "7da7b5e3f06492ca1018ed85a850617051d7bf3b199066189a478876e5ad9f5b",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-003",
+          "section": "Delivery coordination",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "38",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:person:maya-chen:has_skill:skill:delivery-coordination"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S4"
+      },
+      {
+        "id": "b81a176eb52e728fb9303fbbd1e142f66ec31189fbf6c6d5f962401577a443e0",
+        "score": null,
+        "text": "## Maya Chen\n\nMaya Chen is a delivery manager in the Project Management Office. She coordinates project schedules and review handoffs. Project charters, rather than this directory, establish her assignments to individual projects.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "482",
+          "char_start": "250",
+          "chunk_id": "b81a176eb52e728fb9303fbbd1e142f66ec31189fbf6c6d5f962401577a443e0",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-001",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-001:0.1-draft:section-002",
+          "section": "Maya Chen",
+          "source": "outputs/corpus/01-people-directory.md",
+          "source_owner": "People Operations (fictional)",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "target_overlap_tokens": "32",
+          "title": "People and teams directory",
+          "token_count": "42",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:person:maya-chen:member_of:team:project-management-office"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S5"
+      },
+      {
+        "id": "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+        "score": null,
+        "text": "## Team and tools\n\nNoah Singh, Alex Morgan, and Maya Chen work on Project Harbor. Harbor uses Harbor Access Register to record access-request ownership and review outcomes. Alex Morgan implements validation checks for the access-review records.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "955",
+          "char_start": "709",
+          "chunk_id": "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-004",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-004:0.1-draft:section-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "target_overlap_tokens": "32",
+          "title": "Project Harbor charter",
+          "token_count": "45",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:person:maya-chen:worked_on:project:harbor"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S6"
+      },
+      {
+        "id": "1436c9e5daf406b83b26239e3cadf87fe1d3850f63b02b97f4c428816e71a6e6",
+        "score": null,
+        "text": "## Priya Shah\n\nPriya Shah is a compliance operations analyst in the Compliance Operations team. Her responsibilities include assessing evidence workflows and coordinating evidence completeness reviews. Compliance Operations is a team within the Compliance Office.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1022",
+          "char_start": "757",
+          "chunk_id": "1436c9e5daf406b83b26239e3cadf87fe1d3850f63b02b97f4c428816e71a6e6",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-001",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-001:0.1-draft:section-004",
+          "section": "Priya Shah",
+          "source": "outputs/corpus/01-people-directory.md",
+          "source_owner": "People Operations (fictional)",
+          "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+          "target_overlap_tokens": "32",
+          "title": "People and teams directory",
+          "token_count": "41",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:priya-member-of-compliance-operations"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S7"
+      },
+      {
+        "id": "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747",
+        "score": 0.585904,
+        "text": "## Purpose\n\nProject Atlas is Aster Vale Investments' compliance evidence modernization project. Its goal is to organize records showing that internal investment operations follow documented processes. Atlas covers evidence collection, review ownership, and audit preparation. It does not select investments or forecast fund performance.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "591",
+          "char_start": "253",
+          "chunk_id": "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-002",
+          "section": "Purpose",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "53",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S8"
+      }
+    ],
+    "namespace": "development-v1-df1f9b1de3f529d6",
+    "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+    "prompt_version": "grounded-answer-v8-source-excerpts",
+    "evidence_budget": 2000,
+    "evidence_budget_method": "pinned Qwen content tokens",
+    "requested_chat_model": "nvidia/Nemotron-3_5-Lightning",
+    "response_model": "nvidia/Nemotron-3_5-Lightning",
+    "usage": {
+      "completion_tokens": 21,
+      "prompt_tokens": 758,
+      "total_tokens": 779,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 758
+    },
+    "elapsed_seconds": 3.229,
+    "tracing": {
+      "status": "verified",
+      "project": "investment-firm-graphrag",
+      "run_id": "946c2023-a02b-4920-9cb4-780e3c26407d",
+      "url": "https://smith.langchain.com/o/59d2fa80-3bc9-4f6d-a07e-4ccc3acc9249/projects/p/5749cb67-a494-421e-b561-38112c5f48b1/r/946c2023-a02b-4920-9cb4-780e3c26407d?poll=true"
+    },
+    "packing": {
+      "budget": 2000,
+      "method": "pinned Qwen content tokens",
+      "context_tokens": 455,
+      "selected_ids": [
+        "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+        "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+        "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+        "7da7b5e3f06492ca1018ed85a850617051d7bf3b199066189a478876e5ad9f5b",
+        "b81a176eb52e728fb9303fbbd1e142f66ec31189fbf6c6d5f962401577a443e0",
+        "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+        "1436c9e5daf406b83b26239e3cadf87fe1d3850f63b02b97f4c428816e71a6e6",
+        "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747"
+      ],
+      "dropped_ids": []
+    },
+    "graph_selection": {
+      "question": "Which Project Atlas participant has Evidence Workflow Design expertise, and which team are they in?",
+      "selector_version": "schema-lexical-v1",
+      "graph_version": "0.2-reviewed",
+      "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+      "mentions": [
+        {
+          "text": "Project Atlas",
+          "start": 6,
+          "end": 19,
+          "status": "resolved",
+          "candidates": [
+            {
+              "id": "project:atlas",
+              "label": "Project Atlas",
+              "type": "Project"
+            }
+          ]
+        },
+        {
+          "text": "Evidence Workflow Design",
+          "start": 36,
+          "end": 60,
+          "status": "resolved",
+          "candidates": [
+            {
+              "id": "skill:evidence-workflow-design",
+              "label": "Evidence Workflow Design",
+              "type": "Skill"
+            }
+          ]
+        }
+      ],
+      "requested_relations": [
+        "WORKED_ON",
+        "HAS_SKILL",
+        "MEMBER_OF"
+      ],
+      "seed_entities": [
+        "project:atlas",
+        "skill:evidence-workflow-design"
+      ],
+      "max_hops": 3,
+      "max_examined_edges": 40,
+      "max_paths": 10,
+      "examined_edges": 23,
+      "truncated": true,
+      "paths": [
+        {
+          "nodes": [
+            "project:atlas",
+            "person:priya-shah",
+            "skill:evidence-workflow-design"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:priya-worked-on-atlas",
+              "source": "person:priya-shah",
+              "target": "project:atlas",
+              "source_label": "Priya Shah",
+              "target_label": "Project Atlas",
+              "relation": "WORKED_ON",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:priya-shah",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "Maya Chen and Priya Shah work on Project Atlas."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:priya-has-evidence-workflow-design",
+              "source": "person:priya-shah",
+              "target": "skill:evidence-workflow-design",
+              "source_label": "Priya Shah",
+              "target_label": "Evidence Workflow Design",
+              "relation": "HAS_SKILL",
+              "traversal": "forward",
+              "from_entity": "person:priya-shah",
+              "to_entity": "skill:evidence-workflow-design",
+              "evidence": [
+                {
+                  "document_id": "DOC-009",
+                  "section": "Evidence workflow design",
+                  "source": "outputs/corpus/09-skills-and-tools-register.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+                  "chunk_id": "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+                  "excerpt": "Priya Shah has the skill Evidence Workflow Design."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 2,
+          "terminal_relation": "HAS_SKILL"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "person:maya-chen"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:person:maya-chen:worked_on:project:atlas",
+              "source": "person:maya-chen",
+              "target": "project:atlas",
+              "source_label": "Maya Chen",
+              "target_label": "Project Atlas",
+              "relation": "WORKED_ON",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:maya-chen",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "WORKED_ON"
+        },
+        {
+          "nodes": [
+            "skill:evidence-workflow-design",
+            "person:priya-shah"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:priya-has-evidence-workflow-design",
+              "source": "person:priya-shah",
+              "target": "skill:evidence-workflow-design",
+              "source_label": "Priya Shah",
+              "target_label": "Evidence Workflow Design",
+              "relation": "HAS_SKILL",
+              "traversal": "reverse",
+              "from_entity": "skill:evidence-workflow-design",
+              "to_entity": "person:priya-shah",
+              "evidence": [
+                {
+                  "document_id": "DOC-009",
+                  "section": "Evidence workflow design",
+                  "source": "outputs/corpus/09-skills-and-tools-register.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+                  "chunk_id": "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+                  "excerpt": "Priya Shah has the skill Evidence Workflow Design."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "HAS_SKILL"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "person:priya-shah"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:priya-worked-on-atlas",
+              "source": "person:priya-shah",
+              "target": "project:atlas",
+              "source_label": "Priya Shah",
+              "target_label": "Project Atlas",
+              "relation": "WORKED_ON",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:priya-shah",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "Maya Chen and Priya Shah work on Project Atlas."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "WORKED_ON"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "person:maya-chen",
+            "skill:delivery-coordination"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:person:maya-chen:leads_project:project:atlas",
+              "source": "person:maya-chen",
+              "target": "project:atlas",
+              "source_label": "Maya Chen",
+              "target_label": "Project Atlas",
+              "relation": "LEADS_PROJECT",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:maya-chen",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Ownership",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+                  "excerpt": "## Ownership\n\nMaya Chen is the project lead for Project Atlas. Daniel Ortiz is the executive sponsor. The project lead coordinates delivery; the executive sponsor resolves escalations. Being the sponsor does not by itself establish who approved a particular decision."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:maya-chen:has_skill:skill:delivery-coordination",
+              "source": "person:maya-chen",
+              "target": "skill:delivery-coordination",
+              "source_label": "Maya Chen",
+              "target_label": "Delivery Coordination",
+              "relation": "HAS_SKILL",
+              "traversal": "forward",
+              "from_entity": "person:maya-chen",
+              "to_entity": "skill:delivery-coordination",
+              "evidence": [
+                {
+                  "document_id": "DOC-009",
+                  "section": "Delivery coordination",
+                  "source": "outputs/corpus/09-skills-and-tools-register.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+                  "chunk_id": "7da7b5e3f06492ca1018ed85a850617051d7bf3b199066189a478876e5ad9f5b",
+                  "excerpt": "## Delivery coordination\n\nMaya Chen has the skill Delivery Coordination. It covers coordinating schedules, dependencies, and review handoffs across project participants. It is different from approving a control proposal."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "HAS_SKILL"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "person:maya-chen",
+            "team:project-management-office"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:person:maya-chen:leads_project:project:atlas",
+              "source": "person:maya-chen",
+              "target": "project:atlas",
+              "source_label": "Maya Chen",
+              "target_label": "Project Atlas",
+              "relation": "LEADS_PROJECT",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:maya-chen",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Ownership",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+                  "excerpt": "## Ownership\n\nMaya Chen is the project lead for Project Atlas. Daniel Ortiz is the executive sponsor. The project lead coordinates delivery; the executive sponsor resolves escalations. Being the sponsor does not by itself establish who approved a particular decision."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:maya-chen:member_of:team:project-management-office",
+              "source": "person:maya-chen",
+              "target": "team:project-management-office",
+              "source_label": "Maya Chen",
+              "target_label": "Project Management Office",
+              "relation": "MEMBER_OF",
+              "traversal": "forward",
+              "from_entity": "person:maya-chen",
+              "to_entity": "team:project-management-office",
+              "evidence": [
+                {
+                  "document_id": "DOC-001",
+                  "section": "Maya Chen",
+                  "source": "outputs/corpus/01-people-directory.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+                  "chunk_id": "b81a176eb52e728fb9303fbbd1e142f66ec31189fbf6c6d5f962401577a443e0",
+                  "excerpt": "## Maya Chen\n\nMaya Chen is a delivery manager in the Project Management Office. She coordinates project schedules and review handoffs. Project charters, rather than this directory, establish her assignments to individual projects."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "MEMBER_OF"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "person:maya-chen",
+            "skill:delivery-coordination"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:person:maya-chen:worked_on:project:atlas",
+              "source": "person:maya-chen",
+              "target": "project:atlas",
+              "source_label": "Maya Chen",
+              "target_label": "Project Atlas",
+              "relation": "WORKED_ON",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:maya-chen",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:maya-chen:has_skill:skill:delivery-coordination",
+              "source": "person:maya-chen",
+              "target": "skill:delivery-coordination",
+              "source_label": "Maya Chen",
+              "target_label": "Delivery Coordination",
+              "relation": "HAS_SKILL",
+              "traversal": "forward",
+              "from_entity": "person:maya-chen",
+              "to_entity": "skill:delivery-coordination",
+              "evidence": [
+                {
+                  "document_id": "DOC-009",
+                  "section": "Delivery coordination",
+                  "source": "outputs/corpus/09-skills-and-tools-register.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+                  "chunk_id": "7da7b5e3f06492ca1018ed85a850617051d7bf3b199066189a478876e5ad9f5b",
+                  "excerpt": "## Delivery coordination\n\nMaya Chen has the skill Delivery Coordination. It covers coordinating schedules, dependencies, and review handoffs across project participants. It is different from approving a control proposal."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "HAS_SKILL"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "person:maya-chen",
+            "team:project-management-office"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:person:maya-chen:worked_on:project:atlas",
+              "source": "person:maya-chen",
+              "target": "project:atlas",
+              "source_label": "Maya Chen",
+              "target_label": "Project Atlas",
+              "relation": "WORKED_ON",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:maya-chen",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:maya-chen:member_of:team:project-management-office",
+              "source": "person:maya-chen",
+              "target": "team:project-management-office",
+              "source_label": "Maya Chen",
+              "target_label": "Project Management Office",
+              "relation": "MEMBER_OF",
+              "traversal": "forward",
+              "from_entity": "person:maya-chen",
+              "to_entity": "team:project-management-office",
+              "evidence": [
+                {
+                  "document_id": "DOC-001",
+                  "section": "Maya Chen",
+                  "source": "outputs/corpus/01-people-directory.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+                  "chunk_id": "b81a176eb52e728fb9303fbbd1e142f66ec31189fbf6c6d5f962401577a443e0",
+                  "excerpt": "## Maya Chen\n\nMaya Chen is a delivery manager in the Project Management Office. She coordinates project schedules and review handoffs. Project charters, rather than this directory, establish her assignments to individual projects."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "MEMBER_OF"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "person:maya-chen",
+            "project:harbor"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:person:maya-chen:worked_on:project:atlas",
+              "source": "person:maya-chen",
+              "target": "project:atlas",
+              "source_label": "Maya Chen",
+              "target_label": "Project Atlas",
+              "relation": "WORKED_ON",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:maya-chen",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:maya-chen:worked_on:project:harbor",
+              "source": "person:maya-chen",
+              "target": "project:harbor",
+              "source_label": "Maya Chen",
+              "target_label": "Project Harbor",
+              "relation": "WORKED_ON",
+              "traversal": "forward",
+              "from_entity": "person:maya-chen",
+              "to_entity": "project:harbor",
+              "evidence": [
+                {
+                  "document_id": "DOC-004",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/04-project-harbor-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+                  "chunk_id": "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+                  "excerpt": "## Team and tools\n\nNoah Singh, Alex Morgan, and Maya Chen work on Project Harbor. Harbor uses Harbor Access Register to record access-request ownership and review outcomes. Alex Morgan implements validation checks for the access-review records."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "WORKED_ON"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "person:priya-shah",
+            "team:compliance-operations"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:priya-worked-on-atlas",
+              "source": "person:priya-shah",
+              "target": "project:atlas",
+              "source_label": "Priya Shah",
+              "target_label": "Project Atlas",
+              "relation": "WORKED_ON",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "person:priya-shah",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "Maya Chen and Priya Shah work on Project Atlas."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:priya-member-of-compliance-operations",
+              "source": "person:priya-shah",
+              "target": "team:compliance-operations",
+              "source_label": "Priya Shah",
+              "target_label": "Compliance Operations",
+              "relation": "MEMBER_OF",
+              "traversal": "forward",
+              "from_entity": "person:priya-shah",
+              "to_entity": "team:compliance-operations",
+              "evidence": [
+                {
+                  "document_id": "DOC-001",
+                  "section": "Priya Shah",
+                  "source": "outputs/corpus/01-people-directory.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "c6522bf92608bdcdcf8adae343d87e6b16cd9843022bd10990f244477979c5c3",
+                  "chunk_id": "1436c9e5daf406b83b26239e3cadf87fe1d3850f63b02b97f4c428816e71a6e6",
+                  "excerpt": "Priya Shah is a compliance operations analyst in the Compliance Operations team."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "MEMBER_OF"
+        }
+      ],
+      "evidence_chunk_ids": [
+        "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+        "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+        "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+        "7da7b5e3f06492ca1018ed85a850617051d7bf3b199066189a478876e5ad9f5b",
+        "b81a176eb52e728fb9303fbbd1e142f66ec31189fbf6c6d5f962401577a443e0",
+        "4f432cb604c283891addf1a2e31f30d368cd332cade413e1347fa943500e9875",
+        "1436c9e5daf406b83b26239e3cadf87fe1d3850f63b02b97f4c428816e71a6e6"
+      ],
+      "status": "candidates_found",
+      "stop_reason": "path_limit"
+    },
+    "graph_retrieval": {
+      "status": "verified",
+      "ordering": "graph then vector; deduplicated",
+      "graph_passages": 7,
+      "vector_passages": 4,
+      "merged_passages": 8,
+      "fallback_reason": null
+    },
+    "seed_evidence": [
+      {
+        "id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+        "score": 0.680124283,
+        "text": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1075",
+          "char_start": "860",
+          "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "40",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+        "score": 0.608748138,
+        "text": "## Evidence workflow design\n\nPriya Shah has the skill Evidence Workflow Design. This means she can map evidence collection, review handoffs, and completeness checks for compliance operations. This register establishes expertise, not authority to approve a tool purchase or project decision.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "545",
+          "char_start": "253",
+          "chunk_id": "a9b01a0d22e9539a69086af46b739159c892ceaef523543ba05279b9017a7999",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-002",
+          "section": "Evidence workflow design",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "50",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747",
+        "score": 0.585904,
+        "text": "## Purpose\n\nProject Atlas is Aster Vale Investments' compliance evidence modernization project. Its goal is to organize records showing that internal investment operations follow documented processes. Atlas covers evidence collection, review ownership, and audit preparation. It does not select investments or forecast fund performance.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "591",
+          "char_start": "253",
+          "chunk_id": "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-002",
+          "section": "Purpose",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "53",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+        "score": 0.578320682,
+        "text": "## Ownership\n\nMaya Chen is the project lead for Project Atlas. Daniel Ortiz is the executive sponsor. The project lead coordinates delivery; the executive sponsor resolves escalations. Being the sponsor does not by itself establish who approved a particular decision.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "860",
+          "char_start": "591",
+          "chunk_id": "072df21f4213490dc90c58857b1c6aac144b7d1f677ca0bda8b1fc8001e780e0",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-003",
+          "section": "Ownership",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "48",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        }
+      }
+    ],
+    "structured_claims": {
+      "status": "answered",
+      "claims": [
+        {
+          "text": "Priya Shah has the skill Evidence Workflow Design. This means she can map evidence collection, review handoffs, and completeness checks for compliance operations. This register establishes expertise, not authority to approve a tool purchase or project decision.",
+          "evidence": [
+            {
+              "source": "S2",
+              "quote": "Priya Shah has the skill Evidence Workflow Design. This means she can map evidence collection, review handoffs, and completeness checks for compliance operations. This register establishes expertise, not authority to approve a tool purchase or project decision."
+            }
+          ]
+        },
+        {
+          "text": "Priya Shah is a compliance operations analyst in the Compliance Operations team. Her responsibilities include assessing evidence workflows and coordinating evidence completeness reviews. Compliance Operations is a team within the Compliance Office.",
+          "evidence": [
+            {
+              "source": "S7",
+              "quote": "Priya Shah is a compliance operations analyst in the Compliance Operations team. Her responsibilities include assessing evidence workflows and coordinating evidence completeness reviews. Compliance Operations is a team within the Compliance Office."
+            }
+          ]
+        }
+      ],
+      "message": ""
+    },
+    "generation_payload": {
+      "status": "answered",
+      "excerpt_ids": [
+        "E2",
+        "E7"
+      ]
+    },
+    "answer_checks": {
+      "policy": "coverage-source-bridges-and-quote-spans-v2",
+      "events": [],
+      "missing_explicit_roles": [],
+      "source_backed_bridges": [],
+      "limitation": "Lexical omission warnings and reviewed graph provenance, not semantic entailment or complete question understanding."
+    },
+    "excerpt_selection": {
+      "catalog": [
+        {
+          "id": "E1",
+          "source": "S1",
+          "quote": "Maya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+        },
+        {
+          "id": "E2",
+          "source": "S2",
+          "quote": "Priya Shah has the skill Evidence Workflow Design. This means she can map evidence collection, review handoffs, and completeness checks for compliance operations. This register establishes expertise, not authority to approve a tool purchase or project decision."
+        },
+        {
+          "id": "E3",
+          "source": "S3",
+          "quote": "Maya Chen is the project lead for Project Atlas. Daniel Ortiz is the executive sponsor. The project lead coordinates delivery; the executive sponsor resolves escalations. Being the sponsor does not by itself establish who approved a particular decision."
+        },
+        {
+          "id": "E4",
+          "source": "S4",
+          "quote": "Maya Chen has the skill Delivery Coordination. It covers coordinating schedules, dependencies, and review handoffs across project participants. It is different from approving a control proposal."
+        },
+        {
+          "id": "E5",
+          "source": "S5",
+          "quote": "Maya Chen is a delivery manager in the Project Management Office. She coordinates project schedules and review handoffs. Project charters, rather than this directory, establish her assignments to individual projects."
+        },
+        {
+          "id": "E6",
+          "source": "S6",
+          "quote": "Noah Singh, Alex Morgan, and Maya Chen work on Project Harbor. Harbor uses Harbor Access Register to record access-request ownership and review outcomes. Alex Morgan implements validation checks for the access-review records."
+        },
+        {
+          "id": "E7",
+          "source": "S7",
+          "quote": "Priya Shah is a compliance operations analyst in the Compliance Operations team. Her responsibilities include assessing evidence workflows and coordinating evidence completeness reviews. Compliance Operations is a team within the Compliance Office."
+        },
+        {
+          "id": "E8",
+          "source": "S8",
+          "quote": "Project Atlas is Aster Vale Investments' compliance evidence modernization project. Its goal is to organize records showing that internal investment operations follow documented processes. Atlas covers evidence collection, review ownership, and audit preparation. It does not select investments or forecast fund performance."
+        }
+      ],
+      "rendering": "source-owned exact excerpts",
+      "limitation": "Excerpt selection does not prove relevance, completeness or source truth."
+    },
+    "selected_excerpt_answer": {
+      "status": "answered",
+      "answer": "Source excerpt: Priya Shah has the skill Evidence Workflow Design. This means she can map evidence collection, review handoffs, and completeness checks for compliance operations. This register establishes expertise, not authority to approve a tool purchase or project decision. [S2]\n\nSource excerpt: Priya Shah is a compliance operations analyst in the Compliance Operations team. Her responsibilities include assessing evidence workflows and coordinating evidence completeness reviews. Compliance Operations is a team within the Compliance Office. [S7]",
+      "citations": [
+        "S2",
+        "S7"
+      ]
+    },
+    "timestamp_utc": "2026-10-18T15:21:19.629846+00:00",
+    "receipt_path": "work/answers/answer-20261018T152119629846Z.json"
+  },
+  "diagnostics": {
+    "status_matches_expectation": true,
+    "citation_structure_valid": true,
+    "reference_sections_supplied": [
+      [
+        "DOC-001",
+        "Priya Shah"
+      ],
+      [
+        "DOC-002",
+        "Team and tools"
+      ],
+      [
+        "DOC-009",
+        "Evidence workflow design"
+      ]
+    ],
+    "reference_sections_not_supplied": [],
+    "semantic_grade": null,
+    "note": "Reference sections are diagnostic targets, not the only possible valid evidence. Manual source review required."
+  },
+  "finished_utc": "2026-10-18T15:21:19.666979+00:00",
+  "wall_seconds": 12.69
+}

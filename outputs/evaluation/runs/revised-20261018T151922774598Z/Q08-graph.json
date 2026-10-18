@@ -1,0 +1,474 @@
+{
+  "question_id": "Q08",
+  "question": "Which project helps an analyst trace a reporting input back through upstream systems, and which tool records those links?",
+  "mode": "graph",
+  "started_utc": "2026-10-18T15:22:06.796298+00:00",
+  "outcome": "success",
+  "report": {
+    "mode": "graph",
+    "question": "Which project helps an analyst trace a reporting input back through upstream systems, and which tool records those links?",
+    "answer": {
+      "status": "answered",
+      "answer": "Source excerpt: Project Borealis makes internal risk-reporting dependencies understandable. It helps analysts trace a reporting input back through upstream operational systems, identify the owner of that input, and locate supporting review records. This is operational lineage work, not a fund-performance forecasting system. [S1]\n\nSource excerpt: Harbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source. [S3]\n\nSource excerpt: Alex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns. [S4]",
+      "citations": [
+        "S1",
+        "S3",
+        "S4"
+      ]
+    },
+    "sources": [
+      {
+        "id": "87dc9e569e17c03c42b579d503857d472928d6279e9c682f9ce99ed0a122c301",
+        "score": 0.72192347,
+        "text": "## Purpose\n\nProject Borealis makes internal risk-reporting dependencies understandable. It helps analysts trace a reporting input back through upstream operational systems, identify the owner of that input, and locate supporting review records. This is operational lineage work, not a fund-performance forecasting system.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "568",
+          "char_start": "245",
+          "chunk_id": "87dc9e569e17c03c42b579d503857d472928d6279e9c682f9ce99ed0a122c301",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-006",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-006:0.1-draft:section-002",
+          "section": "Purpose",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "source_owner": "Risk Analytics (fictional)",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "target_overlap_tokens": "32",
+          "title": "Project Borealis charter",
+          "token_count": "54",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S1"
+      },
+      {
+        "id": "6acd381512bbf26458695e2001410c7c34445cb1379dfd0bbd1d0dc81e901218",
+        "score": 0.568124175,
+        "text": "## Source responsibilities\n\nThe Data Platform team owns Harbor Access Register's operational source records. The Risk Analytics team owns the lineage inventory in Signal Lineage Board. A request to correct an upstream access-review record goes to its Data Platform owner; a request to correct a lineage link goes to Risk Analytics.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1143",
+          "char_start": "810",
+          "chunk_id": "6acd381512bbf26458695e2001410c7c34445cb1379dfd0bbd1d0dc81e901218",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-007",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-007:0.1-draft:section-004",
+          "section": "Source responsibilities",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "source_owner": "Data Platform (fictional)",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "target_overlap_tokens": "32",
+          "title": "Borealis source-registration decision",
+          "token_count": "59",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S2"
+      },
+      {
+        "id": "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+        "score": 0.559330761,
+        "text": "## Dependencies\n\nHarbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1264",
+          "char_start": "955",
+          "chunk_id": "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-004",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-004:0.1-draft:section-005",
+          "section": "Dependencies",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "target_overlap_tokens": "32",
+          "title": "Project Harbor charter",
+          "token_count": "66",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S3"
+      },
+      {
+        "id": "8ad1744e6aee9fcf0fb0c96c9566e1e060532ca18bccbe87a67db1c33fe27771",
+        "score": 0.55013752,
+        "text": "## Risk lineage mapping\n\nAlex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1598",
+          "char_start": "1330",
+          "chunk_id": "8ad1744e6aee9fcf0fb0c96c9566e1e060532ca18bccbe87a67db1c33fe27771",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-006",
+          "section": "Risk lineage mapping",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "45",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S4"
+      }
+    ],
+    "namespace": "development-v1-df1f9b1de3f529d6",
+    "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+    "prompt_version": "grounded-answer-v8-source-excerpts",
+    "evidence_budget": 2000,
+    "evidence_budget_method": "pinned Qwen content tokens",
+    "requested_chat_model": "nvidia/Nemotron-3_5-Lightning",
+    "response_model": "nvidia/Nemotron-3_5-Lightning",
+    "usage": {
+      "completion_tokens": 25,
+      "prompt_tokens": 572,
+      "total_tokens": 597,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 572
+    },
+    "elapsed_seconds": 2.763,
+    "tracing": {
+      "status": "verified",
+      "project": "investment-firm-graphrag",
+      "run_id": "82455cab-b25e-48e7-b61f-0667d424ea28",
+      "url": "https://smith.langchain.com/o/59d2fa80-3bc9-4f6d-a07e-4ccc3acc9249/projects/p/5749cb67-a494-421e-b561-38112c5f48b1/r/82455cab-b25e-48e7-b61f-0667d424ea28?poll=true"
+    },
+    "packing": {
+      "budget": 2000,
+      "method": "pinned Qwen content tokens",
+      "context_tokens": 271,
+      "selected_ids": [
+        "87dc9e569e17c03c42b579d503857d472928d6279e9c682f9ce99ed0a122c301",
+        "6acd381512bbf26458695e2001410c7c34445cb1379dfd0bbd1d0dc81e901218",
+        "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+        "8ad1744e6aee9fcf0fb0c96c9566e1e060532ca18bccbe87a67db1c33fe27771"
+      ],
+      "dropped_ids": []
+    },
+    "graph_selection": {
+      "question": "Which project helps an analyst trace a reporting input back through upstream systems, and which tool records those links?",
+      "selector_version": "schema-lexical-v1",
+      "graph_version": "0.2-reviewed",
+      "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+      "mentions": [],
+      "requested_relations": [
+        "USES_TOOL",
+        "DEPENDS_ON"
+      ],
+      "seed_entities": [],
+      "max_hops": 3,
+      "max_examined_edges": 40,
+      "max_paths": 10,
+      "examined_edges": 0,
+      "truncated": false,
+      "paths": [],
+      "evidence_chunk_ids": [],
+      "status": "unsupported",
+      "stop_reason": "no_named_entities"
+    },
+    "graph_retrieval": {
+      "status": "no_path_evidence",
+      "ordering": "graph then vector; deduplicated",
+      "graph_passages": 0,
+      "vector_passages": 4,
+      "merged_passages": 4,
+      "fallback_reason": "no_named_entities"
+    },
+    "seed_evidence": [
+      {
+        "id": "87dc9e569e17c03c42b579d503857d472928d6279e9c682f9ce99ed0a122c301",
+        "score": 0.72192347,
+        "text": "## Purpose\n\nProject Borealis makes internal risk-reporting dependencies understandable. It helps analysts trace a reporting input back through upstream operational systems, identify the owner of that input, and locate supporting review records. This is operational lineage work, not a fund-performance forecasting system.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "568",
+          "char_start": "245",
+          "chunk_id": "87dc9e569e17c03c42b579d503857d472928d6279e9c682f9ce99ed0a122c301",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-006",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-006:0.1-draft:section-002",
+          "section": "Purpose",
+          "source": "outputs/corpus/06-project-borealis-charter.md",
+          "source_owner": "Risk Analytics (fictional)",
+          "source_sha256": "eb2e83bbade01e6ff7031af50bba4e5f36c5eff37bcc5ab47dc5810ebd91bbc0",
+          "target_overlap_tokens": "32",
+          "title": "Project Borealis charter",
+          "token_count": "54",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "6acd381512bbf26458695e2001410c7c34445cb1379dfd0bbd1d0dc81e901218",
+        "score": 0.568124175,
+        "text": "## Source responsibilities\n\nThe Data Platform team owns Harbor Access Register's operational source records. The Risk Analytics team owns the lineage inventory in Signal Lineage Board. A request to correct an upstream access-review record goes to its Data Platform owner; a request to correct a lineage link goes to Risk Analytics.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1143",
+          "char_start": "810",
+          "chunk_id": "6acd381512bbf26458695e2001410c7c34445cb1379dfd0bbd1d0dc81e901218",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-007",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-007:0.1-draft:section-004",
+          "section": "Source responsibilities",
+          "source": "outputs/corpus/07-borealis-source-registration-decision.md",
+          "source_owner": "Data Platform (fictional)",
+          "source_sha256": "6725c68b82ec1efab841adc5f1d6591b0fca5b9422505125aa189847024c1732",
+          "target_overlap_tokens": "32",
+          "title": "Borealis source-registration decision",
+          "token_count": "59",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+        "score": 0.559330761,
+        "text": "## Dependencies\n\nHarbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1264",
+          "char_start": "955",
+          "chunk_id": "85f6cbfd7633734a32e579f8507478b624dfee98d6ff402e6a08fdc1fb92fd22",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-004",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-004:0.1-draft:section-005",
+          "section": "Dependencies",
+          "source": "outputs/corpus/04-project-harbor-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "1dbbfc86fc3db0e264622ee8130867b8045eed040687fba99243f5786b5e58aa",
+          "target_overlap_tokens": "32",
+          "title": "Project Harbor charter",
+          "token_count": "66",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "8ad1744e6aee9fcf0fb0c96c9566e1e060532ca18bccbe87a67db1c33fe27771",
+        "score": 0.55013752,
+        "text": "## Risk lineage mapping\n\nAlex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1598",
+          "char_start": "1330",
+          "chunk_id": "8ad1744e6aee9fcf0fb0c96c9566e1e060532ca18bccbe87a67db1c33fe27771",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-006",
+          "section": "Risk lineage mapping",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "45",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      }
+    ],
+    "structured_claims": {
+      "status": "answered",
+      "claims": [
+        {
+          "text": "Project Borealis makes internal risk-reporting dependencies understandable. It helps analysts trace a reporting input back through upstream operational systems, identify the owner of that input, and locate supporting review records. This is operational lineage work, not a fund-performance forecasting system.",
+          "evidence": [
+            {
+              "source": "S1",
+              "quote": "Project Borealis makes internal risk-reporting dependencies understandable. It helps analysts trace a reporting input back through upstream operational systems, identify the owner of that input, and locate supporting review records. This is operational lineage work, not a fund-performance forecasting system."
+            }
+          ]
+        },
+        {
+          "text": "Harbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source.",
+          "evidence": [
+            {
+              "source": "S3",
+              "quote": "Harbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source."
+            }
+          ]
+        },
+        {
+          "text": "Alex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns.",
+          "evidence": [
+            {
+              "source": "S4",
+              "quote": "Alex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns."
+            }
+          ]
+        }
+      ],
+      "message": ""
+    },
+    "generation_payload": {
+      "status": "answered",
+      "excerpt_ids": [
+        "E1",
+        "E3",
+        "E4"
+      ]
+    },
+    "answer_checks": {
+      "policy": "coverage-source-bridges-and-quote-spans-v2",
+      "events": [],
+      "missing_explicit_roles": [],
+      "source_backed_bridges": [],
+      "limitation": "Lexical omission warnings and reviewed graph provenance, not semantic entailment or complete question understanding."
+    },
+    "excerpt_selection": {
+      "catalog": [
+        {
+          "id": "E1",
+          "source": "S1",
+          "quote": "Project Borealis makes internal risk-reporting dependencies understandable. It helps analysts trace a reporting input back through upstream operational systems, identify the owner of that input, and locate supporting review records. This is operational lineage work, not a fund-performance forecasting system."
+        },
+        {
+          "id": "E2",
+          "source": "S2",
+          "quote": "The Data Platform team owns Harbor Access Register's operational source records. The Risk Analytics team owns the lineage inventory in Signal Lineage Board. A request to correct an upstream access-review record goes to its Data Platform owner; a request to correct a lineage link goes to Risk Analytics."
+        },
+        {
+          "id": "E3",
+          "source": "S3",
+          "quote": "Harbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source."
+        },
+        {
+          "id": "E4",
+          "source": "S4",
+          "quote": "Alex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns."
+        }
+      ],
+      "rendering": "source-owned exact excerpts",
+      "limitation": "Excerpt selection does not prove relevance, completeness or source truth."
+    },
+    "selected_excerpt_answer": {
+      "status": "answered",
+      "answer": "Source excerpt: Project Borealis makes internal risk-reporting dependencies understandable. It helps analysts trace a reporting input back through upstream operational systems, identify the owner of that input, and locate supporting review records. This is operational lineage work, not a fund-performance forecasting system. [S1]\n\nSource excerpt: Harbor provides its access-review records as an upstream input to Project Borealis. Harbor does not own Borealis's risk-reporting lineage inventory. DEC-002 documents approval of Harbor's access-review workflow; DEC-003 documents registration of Harbor Access Register as a Borealis source. [S3]\n\nSource excerpt: Alex Rivera and Sofia Alvarez have the skill Risk Lineage Mapping. It covers tracing internal risk-reporting inputs through dependencies to their source systems. It does not include forecasting investment performance or guaranteeing returns. [S4]",
+      "citations": [
+        "S1",
+        "S3",
+        "S4"
+      ]
+    },
+    "timestamp_utc": "2026-10-18T15:22:13.817730+00:00",
+    "receipt_path": "work/answers/answer-20261018T152213817730Z.json"
+  },
+  "diagnostics": {
+    "status_matches_expectation": true,
+    "citation_structure_valid": true,
+    "reference_sections_supplied": [
+      [
+        "DOC-006",
+        "Purpose"
+      ]
+    ],
+    "reference_sections_not_supplied": [
+      [
+        "DOC-006",
+        "Team and tools"
+      ]
+    ],
+    "semantic_grade": null,
+    "note": "Reference sections are diagnostic targets, not the only possible valid evidence. Manual source review required."
+  },
+  "finished_utc": "2026-10-18T15:22:13.847049+00:00",
+  "wall_seconds": 7.048
+}
