@@ -10,6 +10,7 @@ from scripts.config.project_config import PROJECT_ROOT, load_settings
 from scripts.rag.answer_service import run_question
 from scripts.rag.structured_claims import CLAIMS_PROMPT_VERSION
 from scripts.rag.excerpt_selection import EXCERPT_VERSION
+from scripts.rag.coverage_excerpts import COVERAGE_VERSION
 from scripts.rag.rag_workflow import BASELINE_PROMPT_VERSION
 from scripts.services.service_clients import ServiceError
 from scripts.ui.presentation import citation_usage, path_diagram
@@ -26,6 +27,7 @@ MODES = {"Vector": ["vector"], "Graph-assisted": ["graph"], "Compare both": ["ve
 MODE_NAMES = {"vector": "Vector", "graph": "Graph-assisted"}
 ANSWER_FORMATS = {"Current default": None,
                   "Source excerpts (candidate)": EXCERPT_VERSION,
+                  "Coverage excerpts (candidate)": COVERAGE_VERSION,
                   "Structured claims (experimental)": CLAIMS_PROMPT_VERSION,
                   "Original cited answer": BASELINE_PROMPT_VERSION}
 CSS = """
@@ -225,7 +227,9 @@ def render_app():
         question = st.text_area("Your question", key="question_input", height=90, max_chars=2000)
         choice = st.radio("Retrieval method", list(MODES), index=1, horizontal=True, key="retrieval_choice")
         answer_format = st.selectbox("Answer format", list(ANSWER_FORMATS), key="answer_format")
-        if answer_format == "Source excerpts (candidate)":
+        if answer_format == "Coverage excerpts (candidate)":
+            st.caption("Maps source excerpts to requested question parts. Candidate: mappings still need source review.")
+        elif answer_format == "Source excerpts (candidate)":
             st.caption("Quotes source wording instead of generating factual prose. Candidate: coverage regressions remain; not the default.")
         elif answer_format != "Original cited answer":
             st.caption("Shows individual claims and exact source excerpts. Stricter checks may reject an answer; matching excerpts do not guarantee correct claims.")

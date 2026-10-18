@@ -21,6 +21,8 @@ from scripts.rag.structured_claims import (CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_
 from scripts.rag.requirement_claims import (REQUIREMENTS_VERSION, REQUIREMENTS_INSTRUCTIONS,
     requirements_schema, validate_requirement_claims)
 from scripts.rag.answer_checks import apply_answer_checks
+from scripts.rag.coverage_excerpts import (COVERAGE_VERSION, COVERAGE_INSTRUCTIONS,
+    question_parts, coverage_schema, render_coverage, bare_name_clarification)
 from scripts.rag.excerpt_selection import (EXCERPT_VERSION, EXCERPT_INSTRUCTIONS,
     excerpt_catalog, excerpt_schema, selection_context, render_excerpt_selection)
 
@@ -112,7 +114,12 @@ INSTRUCTIONS[EXCERPT_VERSION] = EXCERPT_INSTRUCTIONS
 PROMPTS[EXCERPT_VERSION] = ChatPromptTemplate.from_messages([
     ("system", EXCERPT_INSTRUCTIONS),
     ("human", "Question:\n{question}\n\nAvailable source excerpts:\n{context}")])
-CLAIMS_VERSIONS.add(EXCERPT_VERSION)
+INSTRUCTIONS[COVERAGE_VERSION] = COVERAGE_INSTRUCTIONS
+PROMPTS[COVERAGE_VERSION] = ChatPromptTemplate.from_messages([
+    ("system", COVERAGE_INSTRUCTIONS),
+    ("human", "Question:\n{question}\n\nQuestion parts: {parts}\n\nAvailable source excerpts:\n{context}")])
+EXCERPT_VERSIONS = {EXCERPT_VERSION, COVERAGE_VERSION}
+CLAIMS_VERSIONS.update(EXCERPT_VERSIONS)
 COMPLETION_LIMITS = {version: 1024 if version in CLAIMS_VERSIONS else 512 for version in PROMPTS}
 # Promote only after the full v6 paired run: all twenty outcomes were accepted,
 # with improved source-reviewed graph coverage. Historical policies stay mapped.
@@ -120,7 +127,10 @@ BASELINE_PROMPT_VERSION = PROMPT_VERSION
 PROMPT_VERSION = SCHEMA_CLAIMS_PROMPT_VERSION
 
 
-def generation_response_format(version, sources):
+def generation_response_format(version, sources, question=""):
+    if version == COVERAGE_VERSION:
+        return {"type": "json_schema", "json_schema": {"name": "coverage_excerpt_selection",
+            "strict": True, "schema": coverage_schema(excerpt_catalog(sources), question_parts(question))}}
     if version == EXCERPT_VERSION:
         return {"type": "json_schema", "json_schema": {"name": "source_excerpt_selection",
             "strict": True, "schema": excerpt_schema(excerpt_catalog(sources))}}
@@ -148,6 +158,7 @@ class AnswerState(TypedDict, total=False):
     selected_excerpt_answer: dict
     quote_normalizations: list
     excerpt_selection: dict
+    coverage_selection: dict
 
 
 def select_evidence(evidence, tokenizer, budget=EVIDENCE_BUDGET):
@@ -205,18 +216,23 @@ class GroundedChat:
         self.client.close()
 
     def generate(self, question, context, sources):
+        if self.prompt_version == COVERAGE_VERSION:
+            clarification = bare_name_clarification(question, sources)
+            if clarification:
+                return clarification
         catalog = None
-        if self.prompt_version == EXCERPT_VERSION:
+        coverage = None
+        if self.prompt_version in EXCERPT_VERSIONS:
             catalog = excerpt_catalog(sources)
             context = selection_context(sources, catalog)
-        messages = self.prompt.format_messages(question=question, context=context)
+        messages = self.prompt.format_messages(question=question, context=context, parts=", ".join(question_parts(question)))
         roles = {"system": "system", "human": "user", "ai": "assistant"}
         result = request_json(self.client, "POST", "chat/completions", json={
             "model": self.model,
             "messages": [{"role": roles[message.type], "content": message.content} for message in messages],
             "temperature": 0, "max_tokens": COMPLETION_LIMITS[self.prompt_version],
             "chat_template_kwargs": {"enable_thinking": False},
-            "response_format": generation_response_format(self.prompt_version, sources)})
+            "response_format": generation_response_format(self.prompt_version, sources, question)})
         try:
             choice = result["choices"][0]
             if choice.get("finish_reason") != "stop":
@@ -224,7 +240,10 @@ class GroundedChat:
             structured = None
             original = None
             normalizations = []
-            if self.prompt_version == EXCERPT_VERSION:
+            if self.prompt_version == COVERAGE_VERSION:
+                answer, structured, original, coverage = render_coverage(choice["message"]["content"], sources, catalog, question_parts(question))
+                validate_answer(json.dumps(answer), sources)
+            elif self.prompt_version == EXCERPT_VERSION:
                 answer, structured, original = render_excerpt_selection(choice["message"]["content"], sources, catalog)
                 validate_answer(json.dumps(answer), sources)
             elif self.prompt_version == REQUIREMENTS_VERSION:
@@ -256,6 +275,8 @@ class GroundedChat:
             report["generation_payload"] = original
         if normalizations:
             report["quote_normalizations"] = normalizations
+        if coverage is not None:
+            report["coverage_selection"] = coverage
         if catalog is not None:
             report["excerpt_selection"] = {"catalog": catalog, "rendering": "source-owned exact excerpts",
                 "limitation": "Excerpt selection does not prove relevance, completeness or source truth."}
@@ -284,9 +305,9 @@ def build_workflow(retrieve_evidence, chat):
                 "answer": "No source passages were retrieved for this question.", "citations": []},
                 "usage": None, "response_model": None}
         result = chat.generate(state["question"], state["context"], state["sources"])
-        if getattr(chat, "prompt_version", None) in {SCHEMA_CLAIMS_PROMPT_VERSION, EXCERPT_VERSION}:
+        if getattr(chat, "prompt_version", None) in {SCHEMA_CLAIMS_PROMPT_VERSION, *EXCERPT_VERSIONS}:
             result = apply_answer_checks(result, state["retrieval"], state["sources"], state["question"])
-            if chat.prompt_version == EXCERPT_VERSION:
+            if chat.prompt_version in EXCERPT_VERSIONS:
                 # These words came from source excerpts; the model selected IDs only.
                 result["selected_excerpt_answer"] = result.pop("model_answer")
             validate_answer(json.dumps(result["answer"]), state["sources"])

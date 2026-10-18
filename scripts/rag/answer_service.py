@@ -10,6 +10,7 @@ from scripts.services.service_clients import NebiusEmbeddings, PineconeStore
 from scripts.services.tracing_setup import TracingSession
 from scripts.rag.answer_checks import ANSWER_POLICY
 from scripts.rag.excerpt_selection import EXCERPT_VERSION
+from scripts.rag.coverage_excerpts import COVERAGE_VERSION, COVERAGE_POLICY
 
 
 def run_question(question, *, mode="vector", settings=None,
@@ -33,7 +34,7 @@ def run_question(question, *, mode="vector", settings=None,
         config["run_name"] = "organizational-graph-rag" if mode == "graph" else "organizational-vector-rag"
         config["tags"] = [selected_mode, "graph-integration" if mode == "graph" else "friday-baseline"]
         config["metadata"] = {"prompt_version": chat.prompt_version, "retrieval_mode": selected_mode,
-            "answer_policy": (ANSWER_POLICY if chat.prompt_version == SCHEMA_CLAIMS_PROMPT_VERSION
+            "answer_policy": (COVERAGE_POLICY if chat.prompt_version == COVERAGE_VERSION else ANSWER_POLICY if chat.prompt_version == SCHEMA_CLAIMS_PROMPT_VERSION
                               else "source-owned-excerpts-with-bridges-v1" if chat.prompt_version == EXCERPT_VERSION else "none"),
             "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model}
         started = perf_counter()
@@ -55,7 +56,7 @@ def run_question(question, *, mode="vector", settings=None,
             report["structured_claims"] = result["structured_claims"]
         if "generation_payload" in result:
             report["generation_payload"] = result["generation_payload"]
-        for key in ("answer_checks", "model_answer", "quote_normalizations", "excerpt_selection", "selected_excerpt_answer"):
+        for key in ("answer_checks", "model_answer", "quote_normalizations", "excerpt_selection", "selected_excerpt_answer", "coverage_selection"):
             if key in result:
                 report[key] = result[key]
         if expand_source_neighbors:
