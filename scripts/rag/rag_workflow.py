@@ -24,7 +24,7 @@ from scripts.rag.answer_checks import apply_answer_checks
 from scripts.rag.coverage_excerpts import (COVERAGE_VERSION, COVERAGE_INSTRUCTIONS,
     COVERAGE_REVISED_VERSION, COVERAGE_REVISED_INSTRUCTIONS, COVERAGE_VERSIONS,
     question_parts, coverage_schema, render_coverage, bare_name_clarification)
-from scripts.rag.excerpt_selection import (EXCERPT_VERSION, EXCERPT_INSTRUCTIONS,
+from scripts.rag.excerpt_selection import (EXCERPT_VERSION, EXCERPT_INSTRUCTIONS, REVIEWED_BRIDGE_VERSION,
     excerpt_catalog, excerpt_schema, selection_context, render_excerpt_selection)
 
 
@@ -123,7 +123,9 @@ INSTRUCTIONS[COVERAGE_REVISED_VERSION] = COVERAGE_REVISED_INSTRUCTIONS
 PROMPTS[COVERAGE_REVISED_VERSION] = ChatPromptTemplate.from_messages([
     ("system", COVERAGE_REVISED_INSTRUCTIONS),
     ("human", "Question:\n{question}\n\nQuestion parts: {parts}\n\nAvailable source excerpts:\n{context}")])
-EXCERPT_VERSIONS = {EXCERPT_VERSION, *COVERAGE_VERSIONS}
+INSTRUCTIONS[REVIEWED_BRIDGE_VERSION] = EXCERPT_INSTRUCTIONS
+PROMPTS[REVIEWED_BRIDGE_VERSION] = PROMPTS[EXCERPT_VERSION]
+EXCERPT_VERSIONS = {EXCERPT_VERSION, REVIEWED_BRIDGE_VERSION, *COVERAGE_VERSIONS}
 CLAIMS_VERSIONS.update(EXCERPT_VERSIONS)
 COMPLETION_LIMITS = {version: 1024 if version in CLAIMS_VERSIONS else 512 for version in PROMPTS}
 # Promote only after the full v6 paired run: all twenty outcomes were accepted,
@@ -136,7 +138,7 @@ def generation_response_format(version, sources, question=""):
     if version in COVERAGE_VERSIONS:
         return {"type": "json_schema", "json_schema": {"name": "coverage_excerpt_selection",
             "strict": True, "schema": coverage_schema(excerpt_catalog(sources), question_parts(question))}}
-    if version == EXCERPT_VERSION:
+    if version in {EXCERPT_VERSION, REVIEWED_BRIDGE_VERSION}:
         return {"type": "json_schema", "json_schema": {"name": "source_excerpt_selection",
             "strict": True, "schema": excerpt_schema(excerpt_catalog(sources))}}
     if version == REQUIREMENTS_VERSION:
@@ -221,7 +223,7 @@ class GroundedChat:
         self.client.close()
 
     def generate(self, question, context, sources):
-        if self.prompt_version in COVERAGE_VERSIONS:
+        if self.prompt_version in {*COVERAGE_VERSIONS, REVIEWED_BRIDGE_VERSION}:
             clarification = bare_name_clarification(question, sources)
             if clarification:
                 return clarification
@@ -248,7 +250,7 @@ class GroundedChat:
             if self.prompt_version in COVERAGE_VERSIONS:
                 answer, structured, original, coverage = render_coverage(choice["message"]["content"], sources, catalog, question_parts(question))
                 validate_answer(json.dumps(answer), sources)
-            elif self.prompt_version == EXCERPT_VERSION:
+            elif self.prompt_version in {EXCERPT_VERSION, REVIEWED_BRIDGE_VERSION}:
                 answer, structured, original = render_excerpt_selection(choice["message"]["content"], sources, catalog)
                 validate_answer(json.dumps(answer), sources)
             elif self.prompt_version == REQUIREMENTS_VERSION:
@@ -311,7 +313,8 @@ def build_workflow(retrieve_evidence, chat):
                 "usage": None, "response_model": None}
         result = chat.generate(state["question"], state["context"], state["sources"])
         if getattr(chat, "prompt_version", None) in {SCHEMA_CLAIMS_PROMPT_VERSION, *EXCERPT_VERSIONS}:
-            result = apply_answer_checks(result, state["retrieval"], state["sources"], state["question"])
+            result = apply_answer_checks(result, state["retrieval"], state["sources"], state["question"],
+                extend_reviewed_bridges=chat.prompt_version == REVIEWED_BRIDGE_VERSION)
             if chat.prompt_version in EXCERPT_VERSIONS:
                 # These words came from source excerpts; the model selected IDs only.
                 result["selected_excerpt_answer"] = result.pop("model_answer")
@@ -333,4 +336,6 @@ def application(settings, store, embeddings, chat, *, mode="vector", expand_sour
     if mode == "graph" and expand_source_neighbors:
         raise ValueError("Keep neighbor expansion separate from graph mode")
     retrieval = retrieve_with_graph if mode == "graph" else retrieve_with_neighbors if expand_source_neighbors else retrieve
-    return build_workflow(lambda question: retrieval(settings, store, embeddings, question), chat)
+    options = ({"seed_descriptive_project": True} if mode == "graph"
+               and chat.prompt_version == REVIEWED_BRIDGE_VERSION else {})
+    return build_workflow(lambda question: retrieval(settings, store, embeddings, question, **options), chat)

@@ -13,7 +13,7 @@ ROLE_PATTERNS = {
 }
 
 
-def apply_answer_checks(result, retrieval, sources, question):
+def apply_answer_checks(result, retrieval, sources, question, *, extend_reviewed_bridges=False):
     output = deepcopy(result)
     original = deepcopy(result["answer"])
     answer = output["answer"]
@@ -34,22 +34,36 @@ def apply_answer_checks(result, retrieval, sources, question):
     # not append a label to model prose or infer a new factual relationship.
     for path in retrieval.get("graph_selection", {}).get("paths", []):
         for step in path["steps"]:
-            if step["relation"] not in {"REQUIRES_TOOL", "SELECTS_TOOL", "WORKED_ON", "DEPENDS_ON"}:
+            allowed = {"REQUIRES_TOOL", "SELECTS_TOOL", "WORKED_ON", "DEPENDS_ON"}
+            if extend_reviewed_bridges:
+                allowed.add("USES_TOOL")
+            if step["relation"] not in allowed:
                 continue
-            if not all(re.search(r"(?<!\w)" + re.escape(step[key]) + r"(?!\w)", original["answer"], re.I)
-                       for key in ["source_label", "target_label"]):
+            def named(label, text):
+                return bool(re.search(r"(?<!\w)" + re.escape(label) + r"(?!\w)", text, re.I))
+            anchors = original["answer"] + ("\n" + question if extend_reviewed_bridges else "")
+            connected = all(named(step[key], anchors) for key in ["source_label", "target_label"])
+            if extend_reviewed_bridges:
+                connected = connected and any(named(step[key], original["answer"]) for key in ["source_label", "target_label"])
+                # A reviewed project->tool edge can supply the missing tool,
+                # using only its actually fetched and packed source excerpt.
+                connected = connected or (step["relation"] == "USES_TOOL"
+                    and re.search(r"\b(?:which|what) tool\b", question, re.I)
+                    and named(step["source_label"], original["answer"]))
+            if not connected:
                 continue
             for citation in step["evidence"]:
                 source = selected.get(citation["chunk_id"])
                 excerpt = citation["excerpt"]
-                if (not source or source["citation"] in answer["citations"] or len(bridges) >= 3
+                if (not source or (excerpt in answer["answer"] if extend_reviewed_bridges else source["citation"] in answer["citations"]) or len(bridges) >= 3
                         or not 12 <= len(excerpt) <= 600 or excerpt not in source["text"]):
                     continue
                 bridges.append({"edge_id": step["edge_id"], "relation": step["relation"],
                     "source_label": step["source_label"], "target_label": step["target_label"],
                     "citation": source["citation"], "quote": excerpt, "chunk_id": source["id"]})
                 answer["answer"] += f"\n\nSource-backed relationship excerpt: {excerpt} [{source['citation']}]"
-                answer["citations"].append(source["citation"])
+                if source["citation"] not in answer["citations"]:
+                    answer["citations"].append(source["citation"])
                 texts.append(excerpt)
     if bridges:
         events.append("Added separately labeled verbatim source excerpts for omitted graph relationships between named answer entities.")
@@ -59,13 +73,16 @@ def apply_answer_checks(result, retrieval, sources, question):
         candidates = texts
         if role == "organizational team":
             candidates = [text for text in texts if not re.search(r"\bProject\s+\w+\s+team\b", text)]
+            if extend_reviewed_bridges:
+                candidates = [text for text in candidates if re.search(
+                    r"\b(?:in (?:the )?[A-Z][\w -]+ team|belongs to|member of)\b", text)]
         if re.search(asked, question, re.I) and not any(re.search(stated, text, re.I) for text in candidates):
             missing.append(role)
     if missing and answer["status"] == "answered":
         answer["status"] = "insufficient_evidence"
         answer["answer"] += "\n\nThis answer does not establish the requested " + ", ".join(missing) + "."
         events.append("Downgraded answered status because explicit requested role wording is absent; no missing facts were fabricated.")
-    output["answer_checks"] = {"policy": ANSWER_POLICY, "events": events,
+    output["answer_checks"] = {"policy": "reviewed-question-bridges-v3" if extend_reviewed_bridges else ANSWER_POLICY, "events": events,
         "missing_explicit_roles": missing, "source_backed_bridges": bridges,
         "limitation": "Lexical omission warnings and reviewed graph provenance, not semantic entailment or complete question understanding."}
     output["model_answer"] = original
