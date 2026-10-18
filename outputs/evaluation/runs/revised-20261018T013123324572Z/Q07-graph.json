@@ -1,0 +1,1103 @@
+{
+  "question_id": "Q07",
+  "question": "Who maintains the rule catalogue for the completeness checker required by Atlas's review-process decision, and who approved that decision?",
+  "mode": "graph",
+  "started_utc": "2026-10-18T01:33:17.317869+00:00",
+  "outcome": "success",
+  "report": {
+    "mode": "graph",
+    "question": "Who maintains the rule catalogue for the completeness checker required by Atlas's review-process decision, and who approved that decision?",
+    "answer": {
+      "status": "answered",
+      "answer": "Elena Brooks approved DEC-004 on October 14, 2026. [S4]\n\nPriya Shah maintains the evidence-completeness rule catalogue for LedgerCheck. [S6]\n\nElena Brooks approved DEC-001, which selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. [S2]\n\nDEC-004 approves the completeness-review process for Project Atlas, requiring LedgerCheck's required-evidence checks. [S3]\n\nLedgerCheck checks whether required compliance evidence is complete. [S6]\n\nBeacon Evidence Hub organizes compliance evidence records and their review ownership. [S6]\n\nMaya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor. [S4]\n\nPriya Shah prepared the completeness-review assessment supporting DEC-004 recommendation. [S4]\n\nSource-backed relationship excerpt: ## Decision and project\n\nDecision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026. It concerns internal compliance operations, not investment selection or expected returns. [S1]",
+      "citations": [
+        "S4",
+        "S6",
+        "S2",
+        "S3",
+        "S1"
+      ]
+    },
+    "sources": [
+      {
+        "id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+        "score": null,
+        "text": "## Decision and project\n\nDecision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026. It concerns internal compliance operations, not investment selection or expected returns.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "523",
+          "char_start": "262",
+          "chunk_id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-003",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-003:0.1-draft:section-002",
+          "section": "Decision and project",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "target_overlap_tokens": "32",
+          "title": "Beacon Evidence Hub selection decision",
+          "token_count": "53",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:decision:dec-001:about_project:project:atlas",
+          "rel:decision:dec-001:selects_tool:tool:beacon-evidence-hub"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S1"
+      },
+      {
+        "id": "045ec5b6581aefaf8553149fc8cf41c365f1146575436f4018f06f62b596fc85",
+        "score": null,
+        "text": "## Approval and accountability\n\nElena Brooks, Head of Compliance, approved DEC-001. Priya Shah prepared the evidence workflow assessment supporting the recommendation. Preparing an assessment is a different responsibility from approving the decision.\n\nThe Project Atlas charter records the project's lead and executive sponsor. Those project roles do not establish who approved DEC-001; this decision record is the authority for that approval.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "968",
+          "char_start": "523",
+          "chunk_id": "045ec5b6581aefaf8553149fc8cf41c365f1146575436f4018f06f62b596fc85",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-003",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-003:0.1-draft:section-003",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/03-beacon-selection-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+          "target_overlap_tokens": "32",
+          "title": "Beacon Evidence Hub selection decision",
+          "token_count": "82",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:decision:dec-001:approved_by:person:elena-brooks"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S2"
+      },
+      {
+        "id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+        "score": null,
+        "text": "## Decision and project\n\nDecision DEC-004 approves the completeness-review process for Project Atlas. Before evidence is marked ready for review, the team must run LedgerCheck's required-evidence checks and resolve missing items. Evidence records and their review ownership remain organized in Beacon Evidence Hub.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "574",
+          "char_start": "258",
+          "chunk_id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-008",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-008:0.1-draft:section-002",
+          "section": "Decision and project",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "target_overlap_tokens": "32",
+          "title": "Atlas completeness-review decision",
+          "token_count": "57",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:decision:dec-004:about_project:project:atlas",
+          "rel:decision:dec-004:requires_tool:tool:ledgercheck"
+        ],
+        "retrieval_origins": [
+          "graph_path",
+          "vector"
+        ],
+        "vector_score": 0.71963954,
+        "citation": "S3"
+      },
+      {
+        "id": "ec2e2c775fe406579f22cae10fa87967b11326906dc86c1e44c7348caf3634e4",
+        "score": null,
+        "text": "## Approval and accountability\n\nElena Brooks approved DEC-004 on October 14, 2026. Priya Shah prepared the completeness-review assessment. Maya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor. Their project roles do not make them approvers of DEC-004.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "850",
+          "char_start": "574",
+          "chunk_id": "ec2e2c775fe406579f22cae10fa87967b11326906dc86c1e44c7348caf3634e4",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-008",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-008:0.1-draft:section-003",
+          "section": "Approval and accountability",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "target_overlap_tokens": "32",
+          "title": "Atlas completeness-review decision",
+          "token_count": "64",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:decision:dec-004:approved_by:person:elena-brooks"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S4"
+      },
+      {
+        "id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+        "score": null,
+        "text": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1075",
+          "char_start": "860",
+          "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "40",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:project:atlas:uses_tool:tool:ledgercheck",
+          "rel:project:atlas:uses_tool:tool:beacon-evidence-hub"
+        ],
+        "retrieval_origins": [
+          "graph_path",
+          "vector"
+        ],
+        "vector_score": 0.622263312,
+        "citation": "S5"
+      },
+      {
+        "id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+        "score": null,
+        "text": "## Tool responsibilities\n\nBeacon Evidence Hub organizes compliance evidence records and their review ownership. Its operational owner is the Compliance Office.\n\nLedgerCheck checks whether required compliance evidence is complete. Priya Shah maintains its evidence-completeness rule catalogue. LedgerCheck does not organize the evidence repository itself.\n\nHarbor Access Register records access-request ownership and review outcomes. Its operational owner is the Data Platform team.\n\nSignal Lineage Board records internal risk-reporting dependencies and source lineage. Its operational owner is the Risk Analytics team.\n\nProject charters identify which projects use these tools. A tool owner, rule maintainer, project sponsor, and decision approver are different roles.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "2368",
+          "char_start": "1598",
+          "chunk_id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-009",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-009:0.1-draft:section-007",
+          "section": "Tool responsibilities",
+          "source": "outputs/corpus/09-skills-and-tools-register.md",
+          "source_owner": "Operations Enablement (fictional)",
+          "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+          "target_overlap_tokens": "32",
+          "title": "Skills and tools register",
+          "token_count": "132",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origin": "graph_path",
+        "supporting_edge_ids": [
+          "rel:person:priya-shah:maintains_rules:tool:ledgercheck"
+        ],
+        "retrieval_origins": [
+          "graph_path"
+        ],
+        "citation": "S6"
+      },
+      {
+        "id": "2730e9fe1dc6073ce79cfdad08ce758c96d36fb65a7fc0a7b1d6cee54eac29e7",
+        "score": 0.686422765,
+        "text": "# Atlas completeness-review decision\n\nDocument ID: DOC-008\nCompany: Aster Vale Investments (fictional)\nVersion: 0.1-draft\nUpdated: 2026-10-16\nSource owner: Compliance Office (fictional)\n\nAll entities and events in this document are fictional training data.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "258",
+          "char_start": "0",
+          "chunk_id": "2730e9fe1dc6073ce79cfdad08ce758c96d36fb65a7fc0a7b1d6cee54eac29e7",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-008",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-008:0.1-draft:section-001",
+          "section": "Document header",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "target_overlap_tokens": "32",
+          "title": "Atlas completeness-review decision",
+          "token_count": "68",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S7"
+      },
+      {
+        "id": "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747",
+        "score": 0.586601257,
+        "text": "## Purpose\n\nProject Atlas is Aster Vale Investments' compliance evidence modernization project. Its goal is to organize records showing that internal investment operations follow documented processes. Atlas covers evidence collection, review ownership, and audit preparation. It does not select investments or forecast fund performance.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "591",
+          "char_start": "253",
+          "chunk_id": "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-002",
+          "section": "Purpose",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "53",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        },
+        "retrieval_origins": [
+          "vector"
+        ],
+        "retrieval_origin": "vector",
+        "citation": "S8"
+      }
+    ],
+    "namespace": "development-v1-df1f9b1de3f529d6",
+    "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+    "prompt_version": "grounded-answer-v6-claims-schema",
+    "evidence_budget": 2000,
+    "evidence_budget_method": "pinned Qwen content tokens",
+    "requested_chat_model": "nvidia/Nemotron-3_5-Lightning",
+    "response_model": "nvidia/Nemotron-3_5-Lightning",
+    "usage": {
+      "completion_tokens": 449,
+      "prompt_tokens": 1203,
+      "total_tokens": 1652,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": null,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 1203
+    },
+    "elapsed_seconds": 4.307,
+    "tracing": {
+      "status": "verified",
+      "project": "investment-firm-graphrag",
+      "run_id": "9e7c06c1-a939-491a-b2af-9b1e6cf9f9a4",
+      "url": "https://smith.langchain.com/o/59d2fa80-3bc9-4f6d-a07e-4ccc3acc9249/projects/p/5749cb67-a494-421e-b561-38112c5f48b1/r/9e7c06c1-a939-491a-b2af-9b1e6cf9f9a4?poll=true"
+    },
+    "packing": {
+      "budget": 2000,
+      "method": "pinned Qwen content tokens",
+      "context_tokens": 649,
+      "selected_ids": [
+        "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+        "045ec5b6581aefaf8553149fc8cf41c365f1146575436f4018f06f62b596fc85",
+        "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+        "ec2e2c775fe406579f22cae10fa87967b11326906dc86c1e44c7348caf3634e4",
+        "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+        "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+        "2730e9fe1dc6073ce79cfdad08ce758c96d36fb65a7fc0a7b1d6cee54eac29e7",
+        "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747"
+      ],
+      "dropped_ids": []
+    },
+    "graph_selection": {
+      "question": "Who maintains the rule catalogue for the completeness checker required by Atlas's review-process decision, and who approved that decision?",
+      "selector_version": "schema-lexical-v1",
+      "graph_version": "0.2-reviewed",
+      "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+      "mentions": [
+        {
+          "text": "Atlas",
+          "start": 74,
+          "end": 79,
+          "status": "resolved",
+          "candidates": [
+            {
+              "id": "project:atlas",
+              "label": "Project Atlas",
+              "type": "Project"
+            }
+          ]
+        }
+      ],
+      "requested_relations": [
+        "APPROVED_BY",
+        "MAINTAINS_RULES"
+      ],
+      "seed_entities": [
+        "project:atlas"
+      ],
+      "max_hops": 3,
+      "max_examined_edges": 40,
+      "max_paths": 10,
+      "examined_edges": 37,
+      "truncated": false,
+      "paths": [
+        {
+          "nodes": [
+            "project:atlas",
+            "decision:dec-001",
+            "person:elena-brooks"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:decision:dec-001:about_project:project:atlas",
+              "source": "decision:dec-001",
+              "target": "project:atlas",
+              "source_label": "DEC-001",
+              "target_label": "Project Atlas",
+              "relation": "ABOUT_PROJECT",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "decision:dec-001",
+              "evidence": [
+                {
+                  "document_id": "DOC-003",
+                  "section": "Decision and project",
+                  "source": "outputs/corpus/03-beacon-selection-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+                  "chunk_id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+                  "excerpt": "## Decision and project\n\nDecision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026. It concerns internal compliance operations, not investment selection or expected returns."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:decision:dec-001:approved_by:person:elena-brooks",
+              "source": "decision:dec-001",
+              "target": "person:elena-brooks",
+              "source_label": "DEC-001",
+              "target_label": "Elena Brooks",
+              "relation": "APPROVED_BY",
+              "traversal": "forward",
+              "from_entity": "decision:dec-001",
+              "to_entity": "person:elena-brooks",
+              "evidence": [
+                {
+                  "document_id": "DOC-003",
+                  "section": "Approval and accountability",
+                  "source": "outputs/corpus/03-beacon-selection-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+                  "chunk_id": "045ec5b6581aefaf8553149fc8cf41c365f1146575436f4018f06f62b596fc85",
+                  "excerpt": "## Approval and accountability\n\nElena Brooks, Head of Compliance, approved DEC-001. Priya Shah prepared the evidence workflow assessment supporting the recommendation. Preparing an assessment is a different responsibility from approving the decision.\n\nThe Project Atlas charter records the project's lead and executive sponsor. Those project roles do not establish who approved DEC-001; this decision record is the authority for that approval."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "APPROVED_BY"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "decision:dec-004",
+            "person:elena-brooks"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:decision:dec-004:about_project:project:atlas",
+              "source": "decision:dec-004",
+              "target": "project:atlas",
+              "source_label": "DEC-004",
+              "target_label": "Project Atlas",
+              "relation": "ABOUT_PROJECT",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "decision:dec-004",
+              "evidence": [
+                {
+                  "document_id": "DOC-008",
+                  "section": "Decision and project",
+                  "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+                  "chunk_id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+                  "excerpt": "## Decision and project\n\nDecision DEC-004 approves the completeness-review process for Project Atlas. Before evidence is marked ready for review, the team must run LedgerCheck's required-evidence checks and resolve missing items. Evidence records and their review ownership remain organized in Beacon Evidence Hub."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:decision:dec-004:approved_by:person:elena-brooks",
+              "source": "decision:dec-004",
+              "target": "person:elena-brooks",
+              "source_label": "DEC-004",
+              "target_label": "Elena Brooks",
+              "relation": "APPROVED_BY",
+              "traversal": "forward",
+              "from_entity": "decision:dec-004",
+              "to_entity": "person:elena-brooks",
+              "evidence": [
+                {
+                  "document_id": "DOC-008",
+                  "section": "Approval and accountability",
+                  "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+                  "chunk_id": "ec2e2c775fe406579f22cae10fa87967b11326906dc86c1e44c7348caf3634e4",
+                  "excerpt": "## Approval and accountability\n\nElena Brooks approved DEC-004 on October 14, 2026. Priya Shah prepared the completeness-review assessment. Maya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor. Their project roles do not make them approvers of DEC-004."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "APPROVED_BY"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "tool:ledgercheck",
+            "person:priya-shah"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:project:atlas:uses_tool:tool:ledgercheck",
+              "source": "project:atlas",
+              "target": "tool:ledgercheck",
+              "source_label": "Project Atlas",
+              "target_label": "LedgerCheck",
+              "relation": "USES_TOOL",
+              "traversal": "forward",
+              "from_entity": "project:atlas",
+              "to_entity": "tool:ledgercheck",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:priya-shah:maintains_rules:tool:ledgercheck",
+              "source": "person:priya-shah",
+              "target": "tool:ledgercheck",
+              "source_label": "Priya Shah",
+              "target_label": "LedgerCheck",
+              "relation": "MAINTAINS_RULES",
+              "traversal": "reverse",
+              "from_entity": "tool:ledgercheck",
+              "to_entity": "person:priya-shah",
+              "evidence": [
+                {
+                  "document_id": "DOC-009",
+                  "section": "Tool responsibilities",
+                  "source": "outputs/corpus/09-skills-and-tools-register.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+                  "chunk_id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+                  "excerpt": "LedgerCheck checks whether required compliance evidence is complete. Priya Shah maintains its evidence-completeness rule catalogue. LedgerCheck does not organize the evidence repository itself."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "MAINTAINS_RULES"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "decision:dec-004",
+            "tool:ledgercheck",
+            "person:priya-shah"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:decision:dec-004:about_project:project:atlas",
+              "source": "decision:dec-004",
+              "target": "project:atlas",
+              "source_label": "DEC-004",
+              "target_label": "Project Atlas",
+              "relation": "ABOUT_PROJECT",
+              "traversal": "reverse",
+              "from_entity": "project:atlas",
+              "to_entity": "decision:dec-004",
+              "evidence": [
+                {
+                  "document_id": "DOC-008",
+                  "section": "Decision and project",
+                  "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+                  "chunk_id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+                  "excerpt": "## Decision and project\n\nDecision DEC-004 approves the completeness-review process for Project Atlas. Before evidence is marked ready for review, the team must run LedgerCheck's required-evidence checks and resolve missing items. Evidence records and their review ownership remain organized in Beacon Evidence Hub."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:decision:dec-004:requires_tool:tool:ledgercheck",
+              "source": "decision:dec-004",
+              "target": "tool:ledgercheck",
+              "source_label": "DEC-004",
+              "target_label": "LedgerCheck",
+              "relation": "REQUIRES_TOOL",
+              "traversal": "forward",
+              "from_entity": "decision:dec-004",
+              "to_entity": "tool:ledgercheck",
+              "evidence": [
+                {
+                  "document_id": "DOC-008",
+                  "section": "Decision and project",
+                  "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+                  "chunk_id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+                  "excerpt": "## Decision and project\n\nDecision DEC-004 approves the completeness-review process for Project Atlas. Before evidence is marked ready for review, the team must run LedgerCheck's required-evidence checks and resolve missing items. Evidence records and their review ownership remain organized in Beacon Evidence Hub."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:person:priya-shah:maintains_rules:tool:ledgercheck",
+              "source": "person:priya-shah",
+              "target": "tool:ledgercheck",
+              "source_label": "Priya Shah",
+              "target_label": "LedgerCheck",
+              "relation": "MAINTAINS_RULES",
+              "traversal": "reverse",
+              "from_entity": "tool:ledgercheck",
+              "to_entity": "person:priya-shah",
+              "evidence": [
+                {
+                  "document_id": "DOC-009",
+                  "section": "Tool responsibilities",
+                  "source": "outputs/corpus/09-skills-and-tools-register.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "fd617520bd941ddf65454d79c35c85fdc841005fad58b1cf7e392d88715f6801",
+                  "chunk_id": "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e",
+                  "excerpt": "LedgerCheck checks whether required compliance evidence is complete. Priya Shah maintains its evidence-completeness rule catalogue. LedgerCheck does not organize the evidence repository itself."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "MAINTAINS_RULES"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "tool:beacon-evidence-hub",
+            "decision:dec-001",
+            "person:elena-brooks"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:project:atlas:uses_tool:tool:beacon-evidence-hub",
+              "source": "project:atlas",
+              "target": "tool:beacon-evidence-hub",
+              "source_label": "Project Atlas",
+              "target_label": "Beacon Evidence Hub",
+              "relation": "USES_TOOL",
+              "traversal": "forward",
+              "from_entity": "project:atlas",
+              "to_entity": "tool:beacon-evidence-hub",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:decision:dec-001:selects_tool:tool:beacon-evidence-hub",
+              "source": "decision:dec-001",
+              "target": "tool:beacon-evidence-hub",
+              "source_label": "DEC-001",
+              "target_label": "Beacon Evidence Hub",
+              "relation": "SELECTS_TOOL",
+              "traversal": "reverse",
+              "from_entity": "tool:beacon-evidence-hub",
+              "to_entity": "decision:dec-001",
+              "evidence": [
+                {
+                  "document_id": "DOC-003",
+                  "section": "Decision and project",
+                  "source": "outputs/corpus/03-beacon-selection-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+                  "chunk_id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+                  "excerpt": "## Decision and project\n\nDecision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026. It concerns internal compliance operations, not investment selection or expected returns."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:decision:dec-001:approved_by:person:elena-brooks",
+              "source": "decision:dec-001",
+              "target": "person:elena-brooks",
+              "source_label": "DEC-001",
+              "target_label": "Elena Brooks",
+              "relation": "APPROVED_BY",
+              "traversal": "forward",
+              "from_entity": "decision:dec-001",
+              "to_entity": "person:elena-brooks",
+              "evidence": [
+                {
+                  "document_id": "DOC-003",
+                  "section": "Approval and accountability",
+                  "source": "outputs/corpus/03-beacon-selection-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "9f816c80d1347defcb3673d70f84995663c51aa452040c1ceb392877b5ce2f27",
+                  "chunk_id": "045ec5b6581aefaf8553149fc8cf41c365f1146575436f4018f06f62b596fc85",
+                  "excerpt": "## Approval and accountability\n\nElena Brooks, Head of Compliance, approved DEC-001. Priya Shah prepared the evidence workflow assessment supporting the recommendation. Preparing an assessment is a different responsibility from approving the decision.\n\nThe Project Atlas charter records the project's lead and executive sponsor. Those project roles do not establish who approved DEC-001; this decision record is the authority for that approval."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "APPROVED_BY"
+        },
+        {
+          "nodes": [
+            "project:atlas",
+            "tool:ledgercheck",
+            "decision:dec-004",
+            "person:elena-brooks"
+          ],
+          "steps": [
+            {
+              "edge_id": "rel:project:atlas:uses_tool:tool:ledgercheck",
+              "source": "project:atlas",
+              "target": "tool:ledgercheck",
+              "source_label": "Project Atlas",
+              "target_label": "LedgerCheck",
+              "relation": "USES_TOOL",
+              "traversal": "forward",
+              "from_entity": "project:atlas",
+              "to_entity": "tool:ledgercheck",
+              "evidence": [
+                {
+                  "document_id": "DOC-002",
+                  "section": "Team and tools",
+                  "source": "outputs/corpus/02-project-atlas-charter.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+                  "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+                  "excerpt": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:decision:dec-004:requires_tool:tool:ledgercheck",
+              "source": "decision:dec-004",
+              "target": "tool:ledgercheck",
+              "source_label": "DEC-004",
+              "target_label": "LedgerCheck",
+              "relation": "REQUIRES_TOOL",
+              "traversal": "reverse",
+              "from_entity": "tool:ledgercheck",
+              "to_entity": "decision:dec-004",
+              "evidence": [
+                {
+                  "document_id": "DOC-008",
+                  "section": "Decision and project",
+                  "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+                  "chunk_id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+                  "excerpt": "## Decision and project\n\nDecision DEC-004 approves the completeness-review process for Project Atlas. Before evidence is marked ready for review, the team must run LedgerCheck's required-evidence checks and resolve missing items. Evidence records and their review ownership remain organized in Beacon Evidence Hub."
+                }
+              ]
+            },
+            {
+              "edge_id": "rel:decision:dec-004:approved_by:person:elena-brooks",
+              "source": "decision:dec-004",
+              "target": "person:elena-brooks",
+              "source_label": "DEC-004",
+              "target_label": "Elena Brooks",
+              "relation": "APPROVED_BY",
+              "traversal": "forward",
+              "from_entity": "decision:dec-004",
+              "to_entity": "person:elena-brooks",
+              "evidence": [
+                {
+                  "document_id": "DOC-008",
+                  "section": "Approval and accountability",
+                  "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+                  "version": "0.1-draft",
+                  "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+                  "chunk_id": "ec2e2c775fe406579f22cae10fa87967b11326906dc86c1e44c7348caf3634e4",
+                  "excerpt": "## Approval and accountability\n\nElena Brooks approved DEC-004 on October 14, 2026. Priya Shah prepared the completeness-review assessment. Maya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor. Their project roles do not make them approvers of DEC-004."
+                }
+              ]
+            }
+          ],
+          "matched_seed_count": 1,
+          "terminal_relation": "APPROVED_BY"
+        }
+      ],
+      "evidence_chunk_ids": [
+        "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef",
+        "045ec5b6581aefaf8553149fc8cf41c365f1146575436f4018f06f62b596fc85",
+        "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+        "ec2e2c775fe406579f22cae10fa87967b11326906dc86c1e44c7348caf3634e4",
+        "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+        "f1106f8d020c2cb51de55b3f6001d65763f9a438d5423a53791ddc32c466b20e"
+      ],
+      "status": "candidates_found",
+      "stop_reason": "search_complete_within_hop_limit"
+    },
+    "graph_retrieval": {
+      "status": "verified",
+      "ordering": "graph then vector; deduplicated",
+      "graph_passages": 6,
+      "vector_passages": 4,
+      "merged_passages": 8,
+      "fallback_reason": null
+    },
+    "seed_evidence": [
+      {
+        "id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+        "score": 0.71963954,
+        "text": "## Decision and project\n\nDecision DEC-004 approves the completeness-review process for Project Atlas. Before evidence is marked ready for review, the team must run LedgerCheck's required-evidence checks and resolve missing items. Evidence records and their review ownership remain organized in Beacon Evidence Hub.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "574",
+          "char_start": "258",
+          "chunk_id": "a18f326cff0993ece18f85bdee87c66f650243f1765face2266c63eb3a37649b",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-008",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-008:0.1-draft:section-002",
+          "section": "Decision and project",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "target_overlap_tokens": "32",
+          "title": "Atlas completeness-review decision",
+          "token_count": "57",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "2730e9fe1dc6073ce79cfdad08ce758c96d36fb65a7fc0a7b1d6cee54eac29e7",
+        "score": 0.686422765,
+        "text": "# Atlas completeness-review decision\n\nDocument ID: DOC-008\nCompany: Aster Vale Investments (fictional)\nVersion: 0.1-draft\nUpdated: 2026-10-16\nSource owner: Compliance Office (fictional)\n\nAll entities and events in this document are fictional training data.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "258",
+          "char_start": "0",
+          "chunk_id": "2730e9fe1dc6073ce79cfdad08ce758c96d36fb65a7fc0a7b1d6cee54eac29e7",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-008",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-008:0.1-draft:section-001",
+          "section": "Document header",
+          "source": "outputs/corpus/08-atlas-completeness-review-decision.md",
+          "source_owner": "Compliance Office (fictional)",
+          "source_sha256": "b93d11a478777de9131a35ec263519391fb057f3843bb386df4ddbc660b83a30",
+          "target_overlap_tokens": "32",
+          "title": "Atlas completeness-review decision",
+          "token_count": "68",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-16",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+        "score": 0.622263312,
+        "text": "## Team and tools\n\nMaya Chen and Priya Shah work on Project Atlas. The team uses the fictional Beacon Evidence Hub to organize compliance evidence and the fictional LedgerCheck tool to check evidence completeness.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "1075",
+          "char_start": "860",
+          "chunk_id": "e4b1f83ef80c0ef4eed1567f3fbd8a5ce56de5750cd8d3c6e1d20148267feeea",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-004",
+          "section": "Team and tools",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "40",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        }
+      },
+      {
+        "id": "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747",
+        "score": 0.586601257,
+        "text": "## Purpose\n\nProject Atlas is Aster Vale Investments' compliance evidence modernization project. Its goal is to organize records showing that internal investment operations follow documented processes. Atlas covers evidence collection, review ownership, and audit preparation. It does not select investments or forecast fund performance.\n\n",
+        "metadata": {
+          "actual_overlap_tokens": "0",
+          "char_end": "591",
+          "char_start": "253",
+          "chunk_id": "6a86595522021847983face0e24dc7d1792105f23977b2cb082e7abd0203b747",
+          "chunk_in_section": "1",
+          "chunking_config_id": "d7ca58e444df3858",
+          "chunking_version": "section-token-window-v1",
+          "company": "Aster Vale Investments (fictional)",
+          "corpus_version": "df1f9b1de3f529d62aa0b25edda60f22e9ec6c3d3aac661f7cfff0428c83249e",
+          "document_id": "DOC-002",
+          "embedding_model": "Qwen/Qwen3-Embedding-8B",
+          "max_tokens": "256",
+          "parent_section_id": "DOC-002:0.1-draft:section-002",
+          "section": "Purpose",
+          "source": "outputs/corpus/02-project-atlas-charter.md",
+          "source_owner": "Project Management Office (fictional)",
+          "source_sha256": "2faa7e2d64506df552ab1e1b77725051e15bdd9f1492416bedaf4ba2a21b4221",
+          "target_overlap_tokens": "32",
+          "title": "Project Atlas charter",
+          "token_count": "53",
+          "tokenizer_model": "Qwen/Qwen3-Embedding-8B",
+          "tokenizer_revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+          "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+          "updated": "2026-10-14",
+          "version": "0.1-draft"
+        }
+      }
+    ],
+    "structured_claims": {
+      "status": "answered",
+      "message": "",
+      "claims": [
+        {
+          "text": "Elena Brooks approved DEC-004 on October 14, 2026.",
+          "evidence": [
+            {
+              "source": "S4",
+              "quote": "Elena Brooks approved DEC-004 on October 14, 2026."
+            }
+          ]
+        },
+        {
+          "text": "Priya Shah maintains the evidence-completeness rule catalogue for LedgerCheck.",
+          "evidence": [
+            {
+              "source": "S6",
+              "quote": "Priya Shah maintains its evidence-completeness rule catalogue."
+            }
+          ]
+        },
+        {
+          "text": "Elena Brooks approved DEC-001, which selects Beacon Evidence Hub as the evidence organization tool for Project Atlas.",
+          "evidence": [
+            {
+              "source": "S2",
+              "quote": "Elena Brooks, Head of Compliance, approved DEC-001."
+            }
+          ]
+        },
+        {
+          "text": "DEC-004 approves the completeness-review process for Project Atlas, requiring LedgerCheck's required-evidence checks.",
+          "evidence": [
+            {
+              "source": "S3",
+              "quote": "Decision DEC-004 approves the completeness-review process for Project Atlas."
+            }
+          ]
+        },
+        {
+          "text": "LedgerCheck checks whether required compliance evidence is complete.",
+          "evidence": [
+            {
+              "source": "S6",
+              "quote": "LedgerCheck checks whether required compliance evidence is complete."
+            }
+          ]
+        },
+        {
+          "text": "Beacon Evidence Hub organizes compliance evidence records and their review ownership.",
+          "evidence": [
+            {
+              "source": "S6",
+              "quote": "Beacon Evidence Hub organizes compliance evidence records and their review ownership."
+            }
+          ]
+        },
+        {
+          "text": "Maya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor.",
+          "evidence": [
+            {
+              "source": "S4",
+              "quote": "Maya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor."
+            }
+          ]
+        },
+        {
+          "text": "Priya Shah prepared the completeness-review assessment supporting DEC-004 recommendation.",
+          "evidence": [
+            {
+              "source": "S4",
+              "quote": "Priya Shah prepared the completeness-review assessment."
+            }
+          ]
+        }
+      ]
+    },
+    "answer_checks": {
+      "policy": "coverage-source-bridges-and-quote-spans-v2",
+      "events": [
+        "Added separately labeled verbatim source excerpts for omitted graph relationships between named answer entities."
+      ],
+      "missing_explicit_roles": [],
+      "source_backed_bridges": [
+        {
+          "edge_id": "rel:decision:dec-001:selects_tool:tool:beacon-evidence-hub",
+          "relation": "SELECTS_TOOL",
+          "source_label": "DEC-001",
+          "target_label": "Beacon Evidence Hub",
+          "citation": "S1",
+          "quote": "## Decision and project\n\nDecision DEC-001 selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. The decision was approved on October 12, 2026. It concerns internal compliance operations, not investment selection or expected returns.",
+          "chunk_id": "3f07914b68a1c7261458fc78067bb9750014da97ed7a3b81020734d5b20741ef"
+        }
+      ],
+      "limitation": "Lexical omission warnings and reviewed graph provenance, not semantic entailment or complete question understanding."
+    },
+    "model_answer": {
+      "status": "answered",
+      "answer": "Elena Brooks approved DEC-004 on October 14, 2026. [S4]\n\nPriya Shah maintains the evidence-completeness rule catalogue for LedgerCheck. [S6]\n\nElena Brooks approved DEC-001, which selects Beacon Evidence Hub as the evidence organization tool for Project Atlas. [S2]\n\nDEC-004 approves the completeness-review process for Project Atlas, requiring LedgerCheck's required-evidence checks. [S3]\n\nLedgerCheck checks whether required compliance evidence is complete. [S6]\n\nBeacon Evidence Hub organizes compliance evidence records and their review ownership. [S6]\n\nMaya Chen coordinates Atlas delivery; Daniel Ortiz is the executive sponsor. [S4]\n\nPriya Shah prepared the completeness-review assessment supporting DEC-004 recommendation. [S4]",
+      "citations": [
+        "S4",
+        "S6",
+        "S2",
+        "S3"
+      ]
+    },
+    "timestamp_utc": "2026-10-18T01:33:26.064032+00:00",
+    "receipt_path": "work/answers/answer-20261018T013326064032Z.json"
+  },
+  "diagnostics": {
+    "status_matches_expectation": true,
+    "citation_structure_valid": true,
+    "reference_sections_supplied": [
+      [
+        "DOC-008",
+        "Approval and accountability"
+      ],
+      [
+        "DOC-008",
+        "Decision and project"
+      ],
+      [
+        "DOC-009",
+        "Tool responsibilities"
+      ]
+    ],
+    "reference_sections_not_supplied": [],
+    "semantic_grade": null,
+    "note": "Reference sections are diagnostic targets, not the only possible valid evidence. Manual source review required."
+  },
+  "finished_utc": "2026-10-18T01:33:26.092195+00:00",
+  "wall_seconds": 8.77
+}
