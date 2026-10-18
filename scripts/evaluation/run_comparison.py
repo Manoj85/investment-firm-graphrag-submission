@@ -11,7 +11,8 @@ from scripts.corpus.corpus_pipeline import active_manifest
 from scripts.evaluation.comparison import BENCHMARK_PATH, collect_comparison, runtime_fingerprint, validate_benchmark
 from scripts.graph.knowledge_graph import load_graph, validate_graph
 from scripts.rag.answer_service import run_question
-from scripts.rag.rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, INSTRUCTIONS, COMPLETION_LIMITS
+from scripts.rag.rag_workflow import (EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, INSTRUCTIONS,
+    COMPLETION_LIMITS, generation_response_format, SCHEMA_CLAIMS_PROMPT_VERSION)
 
 
 def main():
@@ -37,6 +38,8 @@ def main():
         "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model,
         "prompt_version": args.prompt_version, "system_instructions_sha256": hashlib.sha256(INSTRUCTIONS[args.prompt_version].encode()).hexdigest(),
         "temperature": 0, "max_completion_tokens": COMPLETION_LIMITS[args.prompt_version], "evidence_budget": EVIDENCE_BUDGET,
+        "response_format_type": generation_response_format(args.prompt_version, [{"citation": "S1"}])["type"],
+        "schema_labels": "bound to actual packed source labels per request; no answer keys" if args.prompt_version == SCHEMA_CLAIMS_PROMPT_VERSION else None,
         "vector_top_k": 4, "order": "odd question: vector then graph; even: graph then vector",
         "answer_content_retries": 0, "cache_policy": "existing shared query embedding cache; no cold-cache performance claim",
         "disclosure": benchmark["disclosure"]}

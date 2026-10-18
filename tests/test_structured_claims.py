@@ -8,7 +8,8 @@ from unittest.mock import patch
 
 import httpx
 
-from scripts.rag.structured_claims import CLAIMS_PROMPT_VERSION, validate_and_render_claims
+from scripts.rag.structured_claims import (CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION,
+    claims_schema, validate_and_render_claims)
 from scripts.rag.rag_workflow import GroundedChat, build_workflow, validate_answer
 from scripts.services.service_clients import ServiceError
 
@@ -26,6 +27,63 @@ PAYLOAD = {"status": "answered", "claims": [
 
 
 class StructuredClaimsTests(unittest.TestCase):
+    def test_schema_is_closed_bounded_and_uses_only_available_labels(self):
+        schema = claims_schema(SOURCES)
+        claim = schema["properties"]["claims"]["items"]
+        evidence = claim["properties"]["evidence"]["items"]
+        self.assertFalse(schema["additionalProperties"])
+        self.assertFalse(claim["additionalProperties"])
+        self.assertFalse(evidence["additionalProperties"])
+        self.assertEqual(schema["properties"]["claims"]["maxItems"], 8)
+        self.assertEqual(evidence["properties"]["source"]["enum"], ["S1", "S2"])
+        self.assertNotIn(SOURCES[0]["text"], json.dumps(schema))
+        self.assertEqual(claims_schema(SOURCES[:1])["properties"]["claims"]["items"]["properties"]["evidence"]["items"]["properties"]["source"]["enum"], ["S1"])
+        for sources in [[], [SOURCES[0], SOURCES[0]]]:
+            with self.assertRaises(ValueError):
+                claims_schema(sources)
+
+    def test_schema_generation_preserves_v5_prompt_limits_and_single_call(self):
+        requests = []
+        def response(request):
+            requests.append(json.loads(request.content))
+            return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": json.dumps(PAYLOAD)}}]})
+        settings = SimpleNamespace(nebius_base_url="https://api.tokenfactory.nebius.com/v1/",
+                                   nebius_api_key="fake", nebius_chat_model="test-model")
+        for version in [CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION]:
+            chat = GroundedChat(settings, prompt_version=version, transport=httpx.MockTransport(response))
+            try:
+                result = chat.generate("Who works on Juniper?", "Same evidence", SOURCES)
+                self.assertEqual(result["structured_claims"], PAYLOAD)
+            finally:
+                chat.close()
+        self.assertEqual(len(requests), 2)
+        self.assertEqual(requests[0]["messages"], requests[1]["messages"])
+        self.assertEqual(requests[0]["max_tokens"], requests[1]["max_tokens"])
+        self.assertEqual(requests[0]["response_format"]["type"], "json_object")
+        self.assertEqual(requests[1]["response_format"]["type"], "json_schema")
+        self.assertTrue(requests[1]["response_format"]["json_schema"]["strict"])
+
+    def test_schema_mode_still_rejects_fabricated_quote_without_retry(self):
+        value = deepcopy(PAYLOAD)
+        value["claims"][0]["evidence"][0]["quote"] = "Lina approved Project Juniper."
+        calls = []
+        def response(request):
+            calls.append(request)
+            return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": json.dumps(value)}}],
+                                             "usage": {"total_tokens": 60}})
+        settings = SimpleNamespace(nebius_base_url="https://api.tokenfactory.nebius.com/v1/",
+                                   nebius_api_key="fake", nebius_chat_model="test-model")
+        chat = GroundedChat(settings, prompt_version=SCHEMA_CLAIMS_PROMPT_VERSION, transport=httpx.MockTransport(response))
+        try:
+            with patch("scripts.rag.rag_workflow.atomic_json") as save:
+                with self.assertRaises(ServiceError):
+                    chat.generate("Who works on Juniper?", "Same evidence", SOURCES)
+            self.assertEqual(len(calls), 1)
+            self.assertEqual(save.call_args.args[1]["usage"]["total_tokens"], 60)
+            self.assertEqual(save.call_args.args[1]["prompt_version"], SCHEMA_CLAIMS_PROMPT_VERSION)
+        finally:
+            chat.close()
+
     def test_separate_relationship_claims_render_consistent_citations(self):
         answer, payload = validate_and_render_claims(json.dumps(PAYLOAD), SOURCES)
         self.assertEqual(answer["citations"], ["S1", "S2"])

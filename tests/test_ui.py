@@ -65,16 +65,20 @@ class WorkspaceTests(unittest.TestCase):
     @patch("scripts.ui.app.run_question")
     def test_structured_format_is_explicit_and_shared_between_modes(self, backend):
         backend.side_effect = lambda question, mode, prompt_version: fake_report(question, mode=mode)
-        app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
-        app.selectbox(key="answer_format").set_value("Structured claims (experimental)").run()
-        backend.assert_not_called()
-        # Form edits are submitted together; a bare rerun does not commit them.
-        app.selectbox(key="answer_format").set_value("Structured claims (experimental)")
-        app.radio(key="retrieval_choice").set_value("Compare both")
-        next(button for button in app.button if button.label == "Run question").click().run()
-        self.assertFalse(app.exception)
-        self.assertEqual(backend.call_count, 2)
-        self.assertTrue(all(call.kwargs["prompt_version"] == "grounded-answer-v5-claims" for call in backend.call_args_list))
+        for label, version in [("Structured claims (experimental)", "grounded-answer-v5-claims"),
+                               ("Schema-constrained claims (experimental)", "grounded-answer-v6-claims-schema")]:
+            with self.subTest(format=label):
+                backend.reset_mock()
+                app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
+                app.selectbox(key="answer_format").set_value(label).run()
+                backend.assert_not_called()
+                # Form edits are submitted together; a bare rerun does not commit them.
+                app.selectbox(key="answer_format").set_value(label)
+                app.radio(key="retrieval_choice").set_value("Compare both")
+                next(button for button in app.button if button.label == "Run question").click().run()
+                self.assertFalse(app.exception)
+                self.assertEqual(backend.call_count, 2)
+                self.assertTrue(all(call.kwargs["prompt_version"] == version for call in backend.call_args_list))
 
     @patch("scripts.ui.app.run_question")
     def test_partial_comparison_failure_keeps_the_successful_side(self, backend):

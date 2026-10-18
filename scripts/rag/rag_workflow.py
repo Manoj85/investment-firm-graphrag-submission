@@ -16,7 +16,8 @@ from scripts.config.project_config import PROJECT_ROOT
 from scripts.corpus.qwen_tokenizer import count_tokens, load_tokenizer
 from scripts.services.service_clients import ServiceError, request_json, tls_context
 from scripts.services.verify_nebius import validate_settings
-from scripts.rag.structured_claims import CLAIMS_PROMPT_VERSION, CLAIMS_INSTRUCTIONS, validate_and_render_claims
+from scripts.rag.structured_claims import (CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION,
+    CLAIMS_INSTRUCTIONS, claims_schema, validate_and_render_claims)
 
 
 PROMPT_VERSION = "grounded-answer-v2"
@@ -91,9 +92,21 @@ INSTRUCTIONS[CLAIMS_PROMPT_VERSION] = CLAIMS_INSTRUCTIONS
 PROMPTS[CLAIMS_PROMPT_VERSION] = ChatPromptTemplate.from_messages([
     ("system", CLAIMS_INSTRUCTIONS),
     ("human", "Question:\n{question}\n\nSource passages:\n{context}")])
+# Isolate API schema enforcement from prompt wording: v5 and v6 use exactly
+# the same instructions and completion allowance, in both retrieval modes.
+INSTRUCTIONS[SCHEMA_CLAIMS_PROMPT_VERSION] = CLAIMS_INSTRUCTIONS
+PROMPTS[SCHEMA_CLAIMS_PROMPT_VERSION] = PROMPTS[CLAIMS_PROMPT_VERSION]
 # Quotes and separate connecting claims need output space. This is disclosed
 # per policy and shared across retrieval modes, not a hidden retry.
-COMPLETION_LIMITS = {version: 1024 if version == CLAIMS_PROMPT_VERSION else 512 for version in PROMPTS}
+CLAIMS_VERSIONS = {CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION}
+COMPLETION_LIMITS = {version: 1024 if version in CLAIMS_VERSIONS else 512 for version in PROMPTS}
+
+
+def generation_response_format(version, sources):
+    if version == SCHEMA_CLAIMS_PROMPT_VERSION:
+        return {"type": "json_schema", "json_schema": {"name": "grounded_claims",
+            "strict": True, "schema": claims_schema(sources)}}
+    return {"type": "json_object"}
 
 
 class AnswerState(TypedDict, total=False):
@@ -169,13 +182,13 @@ class GroundedChat:
             "messages": [{"role": roles[message.type], "content": message.content} for message in messages],
             "temperature": 0, "max_tokens": COMPLETION_LIMITS[self.prompt_version],
             "chat_template_kwargs": {"enable_thinking": False},
-            "response_format": {"type": "json_object"}})
+            "response_format": generation_response_format(self.prompt_version, sources)})
         try:
             choice = result["choices"][0]
             if choice.get("finish_reason") != "stop":
                 raise ServiceError("Answer was not completed normally")
             structured = None
-            if self.prompt_version == CLAIMS_PROMPT_VERSION:
+            if self.prompt_version in CLAIMS_VERSIONS:
                 answer, structured = validate_and_render_claims(choice["message"]["content"], sources)
                 validate_answer(json.dumps(answer), sources)
             else:
