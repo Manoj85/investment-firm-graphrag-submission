@@ -49,6 +49,8 @@ def run_question(question, *, mode="vector", settings=None,
             report["seed_evidence"] = result["retrieval"].get("seed_evidence", [])
         if "structured_claims" in result:
             report["structured_claims"] = result["structured_claims"]
+        if "generation_payload" in result:
+            report["generation_payload"] = result["generation_payload"]
         if expand_source_neighbors:
             report["seed_evidence"] = result["retrieval"]["seed_evidence"]
             report["neighbor_expansion"] = {**result["retrieval"]["neighbor_expansion"],

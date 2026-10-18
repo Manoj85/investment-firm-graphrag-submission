@@ -12,7 +12,7 @@ from scripts.evaluation.comparison import BENCHMARK_PATH, collect_comparison, ru
 from scripts.graph.knowledge_graph import load_graph, validate_graph
 from scripts.rag.answer_service import run_question
 from scripts.rag.rag_workflow import (EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, INSTRUCTIONS,
-    COMPLETION_LIMITS, generation_response_format, SCHEMA_CLAIMS_PROMPT_VERSION)
+    COMPLETION_LIMITS, generation_response_format, SCHEMA_CLAIMS_PROMPT_VERSION, REQUIREMENTS_VERSION)
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
         "prompt_version": args.prompt_version, "system_instructions_sha256": hashlib.sha256(INSTRUCTIONS[args.prompt_version].encode()).hexdigest(),
         "temperature": 0, "max_completion_tokens": COMPLETION_LIMITS[args.prompt_version], "evidence_budget": EVIDENCE_BUDGET,
         "response_format_type": generation_response_format(args.prompt_version, [{"citation": "S1"}])["type"],
-        "schema_labels": "bound to actual packed source labels per request; no answer keys" if args.prompt_version == SCHEMA_CLAIMS_PROMPT_VERSION else None,
+        "schema_labels": "bound to actual packed source labels per request; no answer keys" if args.prompt_version in {SCHEMA_CLAIMS_PROMPT_VERSION, REQUIREMENTS_VERSION} else None,
         "vector_top_k": 4, "order": "odd question: vector then graph; even: graph then vector",
         "answer_content_retries": 0, "cache_policy": "existing shared query embedding cache; no cold-cache performance claim",
         "disclosure": benchmark["disclosure"]}

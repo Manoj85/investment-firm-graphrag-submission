@@ -18,6 +18,8 @@ from scripts.services.service_clients import ServiceError, request_json, tls_con
 from scripts.services.verify_nebius import validate_settings
 from scripts.rag.structured_claims import (CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION,
     CLAIMS_INSTRUCTIONS, claims_schema, validate_and_render_claims)
+from scripts.rag.requirement_claims import (REQUIREMENTS_VERSION, REQUIREMENTS_INSTRUCTIONS,
+    requirements_schema, validate_requirement_claims)
 
 
 PROMPT_VERSION = "grounded-answer-v2"
@@ -96,9 +98,13 @@ PROMPTS[CLAIMS_PROMPT_VERSION] = ChatPromptTemplate.from_messages([
 # the same instructions and completion allowance, in both retrieval modes.
 INSTRUCTIONS[SCHEMA_CLAIMS_PROMPT_VERSION] = CLAIMS_INSTRUCTIONS
 PROMPTS[SCHEMA_CLAIMS_PROMPT_VERSION] = PROMPTS[CLAIMS_PROMPT_VERSION]
+INSTRUCTIONS[REQUIREMENTS_VERSION] = REQUIREMENTS_INSTRUCTIONS
+PROMPTS[REQUIREMENTS_VERSION] = ChatPromptTemplate.from_messages([
+    ("system", REQUIREMENTS_INSTRUCTIONS),
+    ("human", "Question:\n{question}\n\nSource passages:\n{context}")])
 # Quotes and separate connecting claims need output space. This is disclosed
 # per policy and shared across retrieval modes, not a hidden retry.
-CLAIMS_VERSIONS = {CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION}
+CLAIMS_VERSIONS = {CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION, REQUIREMENTS_VERSION}
 COMPLETION_LIMITS = {version: 1024 if version in CLAIMS_VERSIONS else 512 for version in PROMPTS}
 # Promote only after the full v6 paired run: all twenty outcomes were accepted,
 # with improved source-reviewed graph coverage. Historical policies stay mapped.
@@ -107,6 +113,9 @@ PROMPT_VERSION = SCHEMA_CLAIMS_PROMPT_VERSION
 
 
 def generation_response_format(version, sources):
+    if version == REQUIREMENTS_VERSION:
+        return {"type": "json_schema", "json_schema": {"name": "requirement_claims",
+            "strict": True, "schema": requirements_schema(sources)}}
     if version == SCHEMA_CLAIMS_PROMPT_VERSION:
         return {"type": "json_schema", "json_schema": {"name": "grounded_claims",
             "strict": True, "schema": claims_schema(sources)}}
@@ -122,6 +131,7 @@ class AnswerState(TypedDict, total=False):
     usage: dict
     response_model: str
     structured_claims: dict
+    generation_payload: dict
 
 
 def select_evidence(evidence, tokenizer, budget=EVIDENCE_BUDGET):
@@ -192,7 +202,11 @@ class GroundedChat:
             if choice.get("finish_reason") != "stop":
                 raise ServiceError("Answer was not completed normally")
             structured = None
-            if self.prompt_version in CLAIMS_VERSIONS:
+            original = None
+            if self.prompt_version == REQUIREMENTS_VERSION:
+                answer, structured, original = validate_requirement_claims(choice["message"]["content"], sources)
+                validate_answer(json.dumps(answer), sources)
+            elif self.prompt_version in CLAIMS_VERSIONS:
                 answer, structured = validate_and_render_claims(choice["message"]["content"], sources)
                 validate_answer(json.dumps(answer), sources)
             else:
@@ -211,6 +225,8 @@ class GroundedChat:
         report = {"answer": answer, "usage": result.get("usage"), "response_model": result.get("model")}
         if structured is not None:
             report["structured_claims"] = structured
+        if original is not None:
+            report["generation_payload"] = original
         return report
 
 

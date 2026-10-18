@@ -99,6 +99,12 @@ def render_answer(report):
 
 
 def render_sources(report):
+    if report.get("generation_payload"):
+        with st.expander("Question parts and supporting claims"):
+            st.caption("Model-declared coverage; inspect whether the linked claims actually establish each requested relationship.")
+            for part in report["generation_payload"]["requirements"]:
+                st.write(part["part"])
+                st.caption("Claims: " + ", ".join(map(str, part["claim_ids"])) if part["claim_ids"] else "Not established in retrieved evidence")
     if report.get("structured_claims"):
         with st.expander("Claims and their exact source excerpts"):
             st.caption("Excerpts match the cited passages. Check whether they support each claim and cover the question.")
