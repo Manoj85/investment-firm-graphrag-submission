@@ -1,0 +1,3 @@
+# Evaluation receipts and graph snapshots contain recorded byte hashes.
+# Keep their exact UTF-8 bytes on every platform rather than converting CRLF/LF.
+outputs/**/*.json -text
