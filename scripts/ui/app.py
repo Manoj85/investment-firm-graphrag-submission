@@ -225,7 +225,9 @@ def render_app():
         question = st.text_area("Your question", key="question_input", height=90, max_chars=2000)
         choice = st.radio("Retrieval method", list(MODES), index=1, horizontal=True, key="retrieval_choice")
         answer_format = st.selectbox("Answer format", list(ANSWER_FORMATS), key="answer_format")
-        if answer_format != "Original cited answer":
+        if answer_format == "Source excerpts (candidate)":
+            st.caption("Quotes source wording instead of generating factual prose. Candidate: coverage regressions remain; not the default.")
+        elif answer_format != "Original cited answer":
             st.caption("Shows individual claims and exact source excerpts. Stricter checks may reject an answer; matching excerpts do not guarantee correct claims.")
         if answer_format == "Current default":
             st.caption("Current default: schema-constrained claims.")

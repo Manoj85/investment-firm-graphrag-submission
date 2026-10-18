@@ -65,7 +65,8 @@ class WorkspaceTests(unittest.TestCase):
     @patch("scripts.ui.app.run_question")
     def test_structured_format_is_explicit_and_shared_between_modes(self, backend):
         backend.side_effect = lambda question, mode, prompt_version: fake_report(question, mode=mode)
-        for label, version in [("Structured claims (experimental)", "grounded-answer-v5-claims"),
+        for label, version in [("Source excerpts (candidate)", "grounded-answer-v8-source-excerpts"),
+                               ("Structured claims (experimental)", "grounded-answer-v5-claims"),
                                ("Original cited answer", "grounded-answer-v2")]:
             with self.subTest(format=label):
                 backend.reset_mock()
