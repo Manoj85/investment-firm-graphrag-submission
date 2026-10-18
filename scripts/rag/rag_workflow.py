@@ -21,6 +21,8 @@ from scripts.rag.structured_claims import (CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_
 from scripts.rag.requirement_claims import (REQUIREMENTS_VERSION, REQUIREMENTS_INSTRUCTIONS,
     requirements_schema, validate_requirement_claims)
 from scripts.rag.answer_checks import apply_answer_checks
+from scripts.rag.excerpt_selection import (EXCERPT_VERSION, EXCERPT_INSTRUCTIONS,
+    excerpt_catalog, excerpt_schema, selection_context, render_excerpt_selection)
 
 
 PROMPT_VERSION = "grounded-answer-v2"
@@ -106,6 +108,11 @@ PROMPTS[REQUIREMENTS_VERSION] = ChatPromptTemplate.from_messages([
 # Quotes and separate connecting claims need output space. This is disclosed
 # per policy and shared across retrieval modes, not a hidden retry.
 CLAIMS_VERSIONS = {CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION, REQUIREMENTS_VERSION}
+INSTRUCTIONS[EXCERPT_VERSION] = EXCERPT_INSTRUCTIONS
+PROMPTS[EXCERPT_VERSION] = ChatPromptTemplate.from_messages([
+    ("system", EXCERPT_INSTRUCTIONS),
+    ("human", "Question:\n{question}\n\nAvailable source excerpts:\n{context}")])
+CLAIMS_VERSIONS.add(EXCERPT_VERSION)
 COMPLETION_LIMITS = {version: 1024 if version in CLAIMS_VERSIONS else 512 for version in PROMPTS}
 # Promote only after the full v6 paired run: all twenty outcomes were accepted,
 # with improved source-reviewed graph coverage. Historical policies stay mapped.
@@ -114,6 +121,9 @@ PROMPT_VERSION = SCHEMA_CLAIMS_PROMPT_VERSION
 
 
 def generation_response_format(version, sources):
+    if version == EXCERPT_VERSION:
+        return {"type": "json_schema", "json_schema": {"name": "source_excerpt_selection",
+            "strict": True, "schema": excerpt_schema(excerpt_catalog(sources))}}
     if version == REQUIREMENTS_VERSION:
         return {"type": "json_schema", "json_schema": {"name": "requirement_claims",
             "strict": True, "schema": requirements_schema(sources)}}
@@ -135,7 +145,9 @@ class AnswerState(TypedDict, total=False):
     generation_payload: dict
     answer_checks: dict
     model_answer: dict
+    selected_excerpt_answer: dict
     quote_normalizations: list
+    excerpt_selection: dict
 
 
 def select_evidence(evidence, tokenizer, budget=EVIDENCE_BUDGET):
@@ -193,6 +205,10 @@ class GroundedChat:
         self.client.close()
 
     def generate(self, question, context, sources):
+        catalog = None
+        if self.prompt_version == EXCERPT_VERSION:
+            catalog = excerpt_catalog(sources)
+            context = selection_context(sources, catalog)
         messages = self.prompt.format_messages(question=question, context=context)
         roles = {"system": "system", "human": "user", "ai": "assistant"}
         result = request_json(self.client, "POST", "chat/completions", json={
@@ -208,7 +224,10 @@ class GroundedChat:
             structured = None
             original = None
             normalizations = []
-            if self.prompt_version == REQUIREMENTS_VERSION:
+            if self.prompt_version == EXCERPT_VERSION:
+                answer, structured, original = render_excerpt_selection(choice["message"]["content"], sources, catalog)
+                validate_answer(json.dumps(answer), sources)
+            elif self.prompt_version == REQUIREMENTS_VERSION:
                 answer, structured, original = validate_requirement_claims(choice["message"]["content"], sources)
                 validate_answer(json.dumps(answer), sources)
             elif self.prompt_version in CLAIMS_VERSIONS:
@@ -237,6 +256,9 @@ class GroundedChat:
             report["generation_payload"] = original
         if normalizations:
             report["quote_normalizations"] = normalizations
+        if catalog is not None:
+            report["excerpt_selection"] = {"catalog": catalog, "rendering": "source-owned exact excerpts",
+                "limitation": "Excerpt selection does not prove relevance, completeness or source truth."}
         return report
 
 
@@ -262,8 +284,11 @@ def build_workflow(retrieve_evidence, chat):
                 "answer": "No source passages were retrieved for this question.", "citations": []},
                 "usage": None, "response_model": None}
         result = chat.generate(state["question"], state["context"], state["sources"])
-        if getattr(chat, "prompt_version", None) == SCHEMA_CLAIMS_PROMPT_VERSION:
+        if getattr(chat, "prompt_version", None) in {SCHEMA_CLAIMS_PROMPT_VERSION, EXCERPT_VERSION}:
             result = apply_answer_checks(result, state["retrieval"], state["sources"], state["question"])
+            if chat.prompt_version == EXCERPT_VERSION:
+                # These words came from source excerpts; the model selected IDs only.
+                result["selected_excerpt_answer"] = result.pop("model_answer")
             validate_answer(json.dumps(result["answer"]), state["sources"])
         return result
 

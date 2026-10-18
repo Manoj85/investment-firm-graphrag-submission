@@ -15,7 +15,7 @@ def main():
     parser.add_argument("--expand-neighbors", action="store_true",
                         help="Experiment: fetch at most four adjacent source passages after vector search")
     parser.add_argument("--prompt-version", choices=tuple(PROMPTS), default=PROMPT_VERSION,
-                        help="Versioned answer instructions; v2 remains the default")
+                        help="Versioned answer instructions; uses the current tested default unless specified")
     args = parser.parse_args()
     if args.mode == "graph" and args.expand_neighbors:
         parser.error("Use graph mode or the neighbor experiment separately")
