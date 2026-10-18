@@ -119,3 +119,40 @@ def validate_and_render_claims(content, sources):
         rendered.append(message.strip())
     answer = {"status": status, "answer": "\n\n".join(rendered), "citations": all_labels}
     return answer, payload
+
+
+def normalize_quote_punctuation(content, sources):
+    """Resolve only a unique exact clause prefix followed by a source semicolon.
+
+    No fuzzy text/name/verb repair. The actual source substring is retained and
+    every removed model-added period is recorded for inspection.
+    """
+    try:
+        value = json.loads(content)
+    except (ValueError, TypeError):
+        return content, []
+    if not isinstance(value, dict) or not isinstance(value.get("claims"), list):
+        return content, []
+    texts = {source["citation"]: source["text"] for source in sources}
+    changes = []
+    for index, claim in enumerate(value["claims"], 1):
+        if not isinstance(claim, dict) or not isinstance(claim.get("evidence"), list):
+            continue
+        for evidence in claim["evidence"]:
+            if not isinstance(evidence, dict):
+                continue
+            quote, label = evidence.get("quote"), evidence.get("source")
+            if not isinstance(quote, str) or not isinstance(label, str) or label not in texts:
+                continue
+            text = texts[label]
+            if quote in text or not quote.endswith(".") or len(quote) < 13:
+                continue
+            prefix = quote[:-1]
+            if text.count(prefix) != 1:
+                continue
+            end = text.index(prefix) + len(prefix)
+            if end < len(text) and text[end] == ";":
+                evidence["quote"] = prefix
+                changes.append({"claim_id": index, "source": label, "model_quote": quote,
+                    "source_quote": prefix, "reason": "Unique exact source clause before semicolon; removed model-added period."})
+    return json.dumps(value) if changes else content, changes

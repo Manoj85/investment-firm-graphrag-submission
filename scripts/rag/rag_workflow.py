@@ -17,7 +17,7 @@ from scripts.corpus.qwen_tokenizer import count_tokens, load_tokenizer
 from scripts.services.service_clients import ServiceError, request_json, tls_context
 from scripts.services.verify_nebius import validate_settings
 from scripts.rag.structured_claims import (CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION,
-    CLAIMS_INSTRUCTIONS, claims_schema, validate_and_render_claims)
+    CLAIMS_INSTRUCTIONS, claims_schema, validate_and_render_claims, normalize_quote_punctuation)
 from scripts.rag.requirement_claims import (REQUIREMENTS_VERSION, REQUIREMENTS_INSTRUCTIONS,
     requirements_schema, validate_requirement_claims)
 from scripts.rag.answer_checks import apply_answer_checks
@@ -135,6 +135,7 @@ class AnswerState(TypedDict, total=False):
     generation_payload: dict
     answer_checks: dict
     model_answer: dict
+    quote_normalizations: list
 
 
 def select_evidence(evidence, tokenizer, budget=EVIDENCE_BUDGET):
@@ -206,11 +207,15 @@ class GroundedChat:
                 raise ServiceError("Answer was not completed normally")
             structured = None
             original = None
+            normalizations = []
             if self.prompt_version == REQUIREMENTS_VERSION:
                 answer, structured, original = validate_requirement_claims(choice["message"]["content"], sources)
                 validate_answer(json.dumps(answer), sources)
             elif self.prompt_version in CLAIMS_VERSIONS:
-                answer, structured = validate_and_render_claims(choice["message"]["content"], sources)
+                content = choice["message"]["content"]
+                if self.prompt_version == SCHEMA_CLAIMS_PROMPT_VERSION:
+                    content, normalizations = normalize_quote_punctuation(content, sources)
+                answer, structured = validate_and_render_claims(content, sources)
                 validate_answer(json.dumps(answer), sources)
             else:
                 answer = validate_answer(choice["message"]["content"], sources)
@@ -230,6 +235,8 @@ class GroundedChat:
             report["structured_claims"] = structured
         if original is not None:
             report["generation_payload"] = original
+        if normalizations:
+            report["quote_normalizations"] = normalizations
         return report
 
 

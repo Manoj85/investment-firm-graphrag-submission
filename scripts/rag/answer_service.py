@@ -53,7 +53,7 @@ def run_question(question, *, mode="vector", settings=None,
             report["structured_claims"] = result["structured_claims"]
         if "generation_payload" in result:
             report["generation_payload"] = result["generation_payload"]
-        for key in ("answer_checks", "model_answer"):
+        for key in ("answer_checks", "model_answer", "quote_normalizations"):
             if key in result:
                 report[key] = result[key]
         if expand_source_neighbors:

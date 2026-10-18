@@ -9,7 +9,7 @@ from unittest.mock import patch
 import httpx
 
 from scripts.rag.structured_claims import (CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION,
-    claims_schema, validate_and_render_claims)
+    claims_schema, validate_and_render_claims, normalize_quote_punctuation)
 from scripts.rag.rag_workflow import GroundedChat, build_workflow, validate_answer
 from scripts.services.service_clients import ServiceError
 
@@ -27,6 +27,24 @@ PAYLOAD = {"status": "answered", "claims": [
 
 
 class StructuredClaimsTests(unittest.TestCase):
+    def test_only_unique_exact_semicolon_clause_normalizes_with_audit(self):
+        value = deepcopy(PAYLOAD); value["claims"] = value["claims"][:1]
+        value["claims"][0]["evidence"][0]["quote"] = "Lina works on Juniper."
+        sources = [{**SOURCES[0], "text": "Lina works on Juniper; Omar reviews records."}]
+        content, audit = normalize_quote_punctuation(json.dumps(value), sources)
+        answer, canonical = validate_and_render_claims(content, sources)
+        self.assertEqual(canonical["claims"][0]["evidence"][0]["quote"], "Lina works on Juniper")
+        self.assertEqual(audit[0]["model_quote"], "Lina works on Juniper.")
+        self.assertEqual(answer["citations"], ["S1"])
+
+    def test_punctuation_normalizer_does_not_fix_words_or_ambiguous_spans(self):
+        for text in ["Lina does not work on Juniper; Omar reviews records.",
+                     "Lina works on Juniper; Lina works on Juniper;", "Lina works on Juniper today."]:
+            value = deepcopy(PAYLOAD); value["claims"] = value["claims"][:1]
+            original = json.dumps(value)
+            content, audit = normalize_quote_punctuation(original, [{**SOURCES[0], "text": text}])
+            self.assertEqual(content, original)
+            self.assertEqual(audit, [])
     def test_default_promotes_tested_schema_policy_and_retains_legacy(self):
         from inspect import signature
         from scripts.rag.answer_service import run_question

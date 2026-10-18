@@ -2,7 +2,7 @@
 from copy import deepcopy
 import re
 
-ANSWER_POLICY = "coverage-warnings-and-source-bridges-v1"
+ANSWER_POLICY = "coverage-source-bridges-and-quote-spans-v2"
 ROLE_PATTERNS = {
     "project lead": (r"\b(?:leads?|leader)\b", r"\b(?:leads?|leader)\b"),
     "executive sponsor": (r"\bsponsors?\b", r"\bsponsors?\b"),
