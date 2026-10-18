@@ -87,11 +87,12 @@ def complete_approval_proof(result, retrieval, sources, question):
     answer = output["answer"]
     # Remove only application-owned warnings made obsolete by this full proof.
     # Original selection/status and the pre-completion answer stay in the receipt.
-    answer["answer"] = answer["answer"].replace(PARTIAL_MESSAGE, "").strip()
     missing = output.get("answer_checks", {}).get("missing_explicit_roles", [])
     warning = "This answer does not establish the requested " + ", ".join(missing) + "."
-    if missing:
-        answer["answer"] = answer["answer"].replace(warning, "").strip()
+    for message in ([warning] if missing else []) + [PARTIAL_MESSAGE]:
+        suffix = "\n\n" + message
+        if answer["answer"].endswith(suffix):
+            answer["answer"] = answer["answer"][:-len(suffix)].rstrip()
     added = []
     for ref in refs:
         # The graph excerpt may include a heading absent from a selected quote.

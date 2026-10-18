@@ -102,3 +102,15 @@ class ApprovalCompletionTests(unittest.TestCase):
         self.assertEqual(fixed["selected_excerpt_answer"], report["selected_excerpt_answer"])
         self.assertEqual(fixed["answer_checks"]["missing_explicit_roles"], [])
         self.assertEqual(fixed["approval_completion"]["decision_id"], "decision:dec-004")
+
+    def test_only_trailing_application_warning_is_removed_not_identical_source_words(self):
+        result, retrieval, sources, question = fixture()
+        message = "The selected evidence does not establish every requested part of this question."
+        quote = sources[0]["text"] + " " + message
+        sources[0]["text"] = quote
+        retrieval["graph_selection"]["paths"][0]["steps"][0]["evidence"][0]["excerpt"] = quote
+        result["answer"]["answer"] = quote + " [S1]\n\n" + message
+        result["selected_excerpt_answer"] = deepcopy(result["answer"])
+        fixed = complete_approval_proof(result, retrieval, sources, question)
+        self.assertTrue(fixed["answer"]["answer"].startswith(quote + " [S1]"))
+        self.assertEqual(len(fixed["approval_completion"]["added_excerpts"]), 2)
