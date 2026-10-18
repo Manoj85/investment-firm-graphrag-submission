@@ -88,6 +88,8 @@ def render_answer(report):
              "insufficient_evidence": "Insufficient evidence"}.get(status, "Review result")
     st.markdown(f'<span class="status {style}">{label}</span>', unsafe_allow_html=True)
     st.markdown(answer["answer"])
+    if report.get("answer_checks", {}).get("events"):
+        st.caption("Application checks: " + " ".join(report["answer_checks"]["events"]))
     if answer["citations"]:
         st.caption("Cited sources: " + ", ".join(answer["citations"]) + " · Open Sources to read the supporting text.")
     metrics = st.columns(3)

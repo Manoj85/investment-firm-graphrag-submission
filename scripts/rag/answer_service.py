@@ -5,9 +5,10 @@ from time import perf_counter
 
 from scripts.config.project_config import PROJECT_ROOT, load_settings
 from scripts.corpus.corpus_pipeline import atomic_json
-from scripts.rag.rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, GroundedChat, application
+from scripts.rag.rag_workflow import EVIDENCE_BUDGET, PROMPT_VERSION, GroundedChat, application, SCHEMA_CLAIMS_PROMPT_VERSION
 from scripts.services.service_clients import NebiusEmbeddings, PineconeStore
 from scripts.services.tracing_setup import TracingSession
+from scripts.rag.answer_checks import ANSWER_POLICY
 
 
 def run_question(question, *, mode="vector", settings=None,
@@ -31,6 +32,7 @@ def run_question(question, *, mode="vector", settings=None,
         config["run_name"] = "organizational-graph-rag" if mode == "graph" else "organizational-vector-rag"
         config["tags"] = [selected_mode, "graph-integration" if mode == "graph" else "friday-baseline"]
         config["metadata"] = {"prompt_version": chat.prompt_version, "retrieval_mode": selected_mode,
+            "answer_policy": ANSWER_POLICY if chat.prompt_version == SCHEMA_CLAIMS_PROMPT_VERSION else "none",
             "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model}
         started = perf_counter()
         result = workflow.invoke({"question": question}, config=config)
@@ -51,6 +53,9 @@ def run_question(question, *, mode="vector", settings=None,
             report["structured_claims"] = result["structured_claims"]
         if "generation_payload" in result:
             report["generation_payload"] = result["generation_payload"]
+        for key in ("answer_checks", "model_answer"):
+            if key in result:
+                report[key] = result[key]
         if expand_source_neighbors:
             report["seed_evidence"] = result["retrieval"]["seed_evidence"]
             report["neighbor_expansion"] = {**result["retrieval"]["neighbor_expansion"],

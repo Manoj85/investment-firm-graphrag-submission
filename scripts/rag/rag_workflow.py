@@ -20,6 +20,7 @@ from scripts.rag.structured_claims import (CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_
     CLAIMS_INSTRUCTIONS, claims_schema, validate_and_render_claims)
 from scripts.rag.requirement_claims import (REQUIREMENTS_VERSION, REQUIREMENTS_INSTRUCTIONS,
     requirements_schema, validate_requirement_claims)
+from scripts.rag.answer_checks import apply_answer_checks
 
 
 PROMPT_VERSION = "grounded-answer-v2"
@@ -132,6 +133,8 @@ class AnswerState(TypedDict, total=False):
     response_model: str
     structured_claims: dict
     generation_payload: dict
+    answer_checks: dict
+    model_answer: dict
 
 
 def select_evidence(evidence, tokenizer, budget=EVIDENCE_BUDGET):
@@ -251,7 +254,11 @@ def build_workflow(retrieve_evidence, chat):
             return {"answer": {"status": "insufficient_evidence",
                 "answer": "No source passages were retrieved for this question.", "citations": []},
                 "usage": None, "response_model": None}
-        return chat.generate(state["question"], state["context"], state["sources"])
+        result = chat.generate(state["question"], state["context"], state["sources"])
+        if getattr(chat, "prompt_version", None) == SCHEMA_CLAIMS_PROMPT_VERSION:
+            result = apply_answer_checks(result, state["retrieval"], state["sources"], state["question"])
+            validate_answer(json.dumps(result["answer"]), state["sources"])
+        return result
 
     graph = StateGraph(AnswerState)
     graph.add_node("retrieve_evidence", retrieve_node)
