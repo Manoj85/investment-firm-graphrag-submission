@@ -12,6 +12,7 @@ from scripts.evaluation.comparison import BENCHMARK_PATH, collect_comparison, ru
 from scripts.graph.knowledge_graph import load_graph, validate_graph
 from scripts.rag.answer_service import run_question
 from scripts.rag.answer_checks import ANSWER_POLICY
+from scripts.rag.approval_completion import APPROVAL_VERSION, APPROVAL_POLICY
 from scripts.rag.excerpt_selection import EXCERPT_VERSION, REVIEWED_BRIDGE_VERSION, REVIEWED_BRIDGE_POLICY
 from scripts.rag.coverage_excerpts import COVERAGE_VERSION, COVERAGE_POLICY, COVERAGE_VERSIONS
 from scripts.rag.rag_workflow import (EVIDENCE_BUDGET, PROMPT_VERSION, PROMPTS, INSTRUCTIONS,
@@ -40,11 +41,11 @@ def main():
         "namespace": manifest["namespace"], "graph_version": graph["graph_version"],
         "chat_model": settings.nebius_chat_model, "embedding_model": settings.nebius_embedding_model,
         "prompt_version": args.prompt_version, "system_instructions_sha256": hashlib.sha256(INSTRUCTIONS[args.prompt_version].encode()).hexdigest(),
-        "answer_policy": (REVIEWED_BRIDGE_POLICY if args.prompt_version == REVIEWED_BRIDGE_VERSION else COVERAGE_POLICY if args.prompt_version in COVERAGE_VERSIONS else ANSWER_POLICY if args.prompt_version == SCHEMA_CLAIMS_PROMPT_VERSION
+        "answer_policy": (APPROVAL_POLICY if args.prompt_version == APPROVAL_VERSION else REVIEWED_BRIDGE_POLICY if args.prompt_version == REVIEWED_BRIDGE_VERSION else COVERAGE_POLICY if args.prompt_version in COVERAGE_VERSIONS else ANSWER_POLICY if args.prompt_version == SCHEMA_CLAIMS_PROMPT_VERSION
                           else "source-owned-excerpts-with-bridges-v1" if args.prompt_version == EXCERPT_VERSION else "none"),
         "temperature": 0, "max_completion_tokens": COMPLETION_LIMITS[args.prompt_version], "evidence_budget": EVIDENCE_BUDGET,
         "response_format_type": generation_response_format(args.prompt_version, [{"citation": "S1", "text": "Example source excerpt."}])["type"],
-        "schema_labels": ("bound to source-owned excerpt IDs; no free factual text" if args.prompt_version in {EXCERPT_VERSION, REVIEWED_BRIDGE_VERSION, *COVERAGE_VERSIONS}
+        "schema_labels": ("bound to source-owned excerpt IDs; no free factual text" if args.prompt_version in {EXCERPT_VERSION, REVIEWED_BRIDGE_VERSION, APPROVAL_VERSION, *COVERAGE_VERSIONS}
                           else "bound to actual packed source labels per request; no answer keys" if args.prompt_version in {SCHEMA_CLAIMS_PROMPT_VERSION, REQUIREMENTS_VERSION} else None),
         "vector_top_k": 4, "order": "odd question: vector then graph; even: graph then vector",
         "answer_content_retries": 0, "cache_policy": "existing shared query embedding cache; no cold-cache performance claim",
