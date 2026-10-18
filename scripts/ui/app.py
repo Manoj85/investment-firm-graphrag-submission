@@ -8,7 +8,8 @@ import streamlit as st
 
 from scripts.config.project_config import PROJECT_ROOT, load_settings
 from scripts.rag.answer_service import run_question
-from scripts.rag.structured_claims import CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION
+from scripts.rag.structured_claims import CLAIMS_PROMPT_VERSION
+from scripts.rag.rag_workflow import BASELINE_PROMPT_VERSION
 from scripts.services.service_clients import ServiceError
 from scripts.ui.presentation import citation_usage, path_diagram
 
@@ -24,7 +25,7 @@ MODES = {"Vector": ["vector"], "Graph-assisted": ["graph"], "Compare both": ["ve
 MODE_NAMES = {"vector": "Vector", "graph": "Graph-assisted"}
 ANSWER_FORMATS = {"Current default": None,
                   "Structured claims (experimental)": CLAIMS_PROMPT_VERSION,
-                  "Schema-constrained claims (experimental)": SCHEMA_CLAIMS_PROMPT_VERSION}
+                  "Original cited answer": BASELINE_PROMPT_VERSION}
 CSS = """
 <style>
 .block-container {max-width: 1280px; padding-top: 2.2rem; padding-bottom: 3rem;}
@@ -214,8 +215,10 @@ def render_app():
         question = st.text_area("Your question", key="question_input", height=90, max_chars=2000)
         choice = st.radio("Retrieval method", list(MODES), index=1, horizontal=True, key="retrieval_choice")
         answer_format = st.selectbox("Answer format", list(ANSWER_FORMATS), key="answer_format")
-        if ANSWER_FORMATS[answer_format]:
+        if answer_format != "Original cited answer":
             st.caption("Shows individual claims and exact source excerpts. Stricter checks may reject an answer; matching excerpts do not guarantee correct claims.")
+        if answer_format == "Current default":
+            st.caption("Current default: schema-constrained claims.")
         st.caption("Compare both deliberately runs both methods. Changing views or reopening history makes no model request.")
         submitted = st.form_submit_button("Run question", type="primary", width="stretch")
     if submitted:

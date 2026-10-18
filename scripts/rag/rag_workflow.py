@@ -100,6 +100,10 @@ PROMPTS[SCHEMA_CLAIMS_PROMPT_VERSION] = PROMPTS[CLAIMS_PROMPT_VERSION]
 # per policy and shared across retrieval modes, not a hidden retry.
 CLAIMS_VERSIONS = {CLAIMS_PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION}
 COMPLETION_LIMITS = {version: 1024 if version in CLAIMS_VERSIONS else 512 for version in PROMPTS}
+# Promote only after the full v6 paired run: all twenty outcomes were accepted,
+# with improved source-reviewed graph coverage. Historical policies stay mapped.
+BASELINE_PROMPT_VERSION = PROMPT_VERSION
+PROMPT_VERSION = SCHEMA_CLAIMS_PROMPT_VERSION
 
 
 def generation_response_format(version, sources):

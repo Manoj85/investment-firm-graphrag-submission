@@ -27,6 +27,16 @@ PAYLOAD = {"status": "answered", "claims": [
 
 
 class StructuredClaimsTests(unittest.TestCase):
+    def test_default_promotes_tested_schema_policy_and_retains_legacy(self):
+        from inspect import signature
+        from scripts.rag.answer_service import run_question
+        from scripts.rag.rag_workflow import PROMPT_VERSION, BASELINE_PROMPT_VERSION, PROMPTS
+        self.assertEqual(PROMPT_VERSION, SCHEMA_CLAIMS_PROMPT_VERSION)
+        self.assertEqual(BASELINE_PROMPT_VERSION, "grounded-answer-v2")
+        self.assertIn(BASELINE_PROMPT_VERSION, PROMPTS)
+        self.assertEqual(PROMPTS[CLAIMS_PROMPT_VERSION], PROMPTS[SCHEMA_CLAIMS_PROMPT_VERSION])
+        self.assertEqual(signature(run_question).parameters["prompt_version"].default, SCHEMA_CLAIMS_PROMPT_VERSION)
+
     def test_schema_is_closed_bounded_and_uses_only_available_labels(self):
         schema = claims_schema(SOURCES)
         claim = schema["properties"]["claims"]["items"]

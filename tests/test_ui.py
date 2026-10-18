@@ -66,7 +66,7 @@ class WorkspaceTests(unittest.TestCase):
     def test_structured_format_is_explicit_and_shared_between_modes(self, backend):
         backend.side_effect = lambda question, mode, prompt_version: fake_report(question, mode=mode)
         for label, version in [("Structured claims (experimental)", "grounded-answer-v5-claims"),
-                               ("Schema-constrained claims (experimental)", "grounded-answer-v6-claims-schema")]:
+                               ("Original cited answer", "grounded-answer-v2")]:
             with self.subTest(format=label):
                 backend.reset_mock()
                 app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
