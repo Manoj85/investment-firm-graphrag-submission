@@ -20,7 +20,16 @@ def atomic_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(".tmp")
     temporary.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    os.replace(temporary, path)
+    for attempt in range(3):
+        try:
+            os.replace(temporary, path)
+            break
+        except PermissionError as error:
+            # Windows scanners/readers can briefly hold the target open. Retry
+            # only that atomic replace, never the API work that produced it.
+            if getattr(error, "winerror", None) not in {5, 32, 33} or attempt == 2:
+                raise
+            time.sleep(0.05 * (attempt + 1))
 
 
 def prepare_corpus(settings):
