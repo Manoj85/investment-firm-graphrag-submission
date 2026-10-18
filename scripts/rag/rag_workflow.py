@@ -22,6 +22,7 @@ from scripts.rag.requirement_claims import (REQUIREMENTS_VERSION, REQUIREMENTS_I
     requirements_schema, validate_requirement_claims)
 from scripts.rag.answer_checks import apply_answer_checks
 from scripts.rag.coverage_excerpts import (COVERAGE_VERSION, COVERAGE_INSTRUCTIONS,
+    COVERAGE_REVISED_VERSION, COVERAGE_REVISED_INSTRUCTIONS, COVERAGE_VERSIONS,
     question_parts, coverage_schema, render_coverage, bare_name_clarification)
 from scripts.rag.excerpt_selection import (EXCERPT_VERSION, EXCERPT_INSTRUCTIONS,
     excerpt_catalog, excerpt_schema, selection_context, render_excerpt_selection)
@@ -118,7 +119,11 @@ INSTRUCTIONS[COVERAGE_VERSION] = COVERAGE_INSTRUCTIONS
 PROMPTS[COVERAGE_VERSION] = ChatPromptTemplate.from_messages([
     ("system", COVERAGE_INSTRUCTIONS),
     ("human", "Question:\n{question}\n\nQuestion parts: {parts}\n\nAvailable source excerpts:\n{context}")])
-EXCERPT_VERSIONS = {EXCERPT_VERSION, COVERAGE_VERSION}
+INSTRUCTIONS[COVERAGE_REVISED_VERSION] = COVERAGE_REVISED_INSTRUCTIONS
+PROMPTS[COVERAGE_REVISED_VERSION] = ChatPromptTemplate.from_messages([
+    ("system", COVERAGE_REVISED_INSTRUCTIONS),
+    ("human", "Question:\n{question}\n\nQuestion parts: {parts}\n\nAvailable source excerpts:\n{context}")])
+EXCERPT_VERSIONS = {EXCERPT_VERSION, *COVERAGE_VERSIONS}
 CLAIMS_VERSIONS.update(EXCERPT_VERSIONS)
 COMPLETION_LIMITS = {version: 1024 if version in CLAIMS_VERSIONS else 512 for version in PROMPTS}
 # Promote only after the full v6 paired run: all twenty outcomes were accepted,
@@ -128,7 +133,7 @@ PROMPT_VERSION = SCHEMA_CLAIMS_PROMPT_VERSION
 
 
 def generation_response_format(version, sources, question=""):
-    if version == COVERAGE_VERSION:
+    if version in COVERAGE_VERSIONS:
         return {"type": "json_schema", "json_schema": {"name": "coverage_excerpt_selection",
             "strict": True, "schema": coverage_schema(excerpt_catalog(sources), question_parts(question))}}
     if version == EXCERPT_VERSION:
@@ -216,7 +221,7 @@ class GroundedChat:
         self.client.close()
 
     def generate(self, question, context, sources):
-        if self.prompt_version == COVERAGE_VERSION:
+        if self.prompt_version in COVERAGE_VERSIONS:
             clarification = bare_name_clarification(question, sources)
             if clarification:
                 return clarification
@@ -240,7 +245,7 @@ class GroundedChat:
             structured = None
             original = None
             normalizations = []
-            if self.prompt_version == COVERAGE_VERSION:
+            if self.prompt_version in COVERAGE_VERSIONS:
                 answer, structured, original, coverage = render_coverage(choice["message"]["content"], sources, catalog, question_parts(question))
                 validate_answer(json.dumps(answer), sources)
             elif self.prompt_version == EXCERPT_VERSION:

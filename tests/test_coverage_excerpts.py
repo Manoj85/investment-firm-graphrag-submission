@@ -5,7 +5,7 @@ import unittest
 import httpx
 
 from scripts.config.project_config import PROJECT_ROOT
-from scripts.rag.coverage_excerpts import (COVERAGE_VERSION, question_parts,
+from scripts.rag.coverage_excerpts import (COVERAGE_VERSION, COVERAGE_REVISED_VERSION, COVERAGE_REVISED_INSTRUCTIONS, question_parts,
     render_coverage, bare_name_clarification)
 from scripts.rag.excerpt_selection import excerpt_catalog
 from scripts.rag.rag_workflow import GroundedChat
@@ -87,7 +87,7 @@ class CoverageExcerptsTests(unittest.TestCase):
             return httpx.Response(200, json={"choices": [{"finish_reason": "stop", "message": {"content": json.dumps({
                 "status": "answered", "coverage": {"project": [project], "tool": [tool]}})}}]})
         settings = SimpleNamespace(nebius_base_url="https://api.tokenfactory.nebius.com/v1/", nebius_api_key="fake", nebius_chat_model="fake")
-        chat = GroundedChat(settings, prompt_version=COVERAGE_VERSION, transport=httpx.MockTransport(respond))
+        chat = GroundedChat(settings, prompt_version=COVERAGE_REVISED_VERSION, transport=httpx.MockTransport(respond))
         try:
             result = chat.generate(record["question"], "ignored old context", record["sources"])
             schema = calls[0]["response_format"]["json_schema"]["schema"]
@@ -101,3 +101,7 @@ class CoverageExcerptsTests(unittest.TestCase):
             self.assertEqual(len(calls), 1)
         finally:
             chat.close()
+
+    def test_revised_instructions_do_not_request_the_old_response_shape(self):
+        self.assertNotIn("excerpt_ids", COVERAGE_REVISED_INSTRUCTIONS)
+        self.assertIn("status and coverage", COVERAGE_REVISED_INSTRUCTIONS)
