@@ -32,20 +32,51 @@ ANSWER_FORMATS = {"Current default": None,
                   "Reviewed bridges (candidate)": APPROVAL_VERSION,
                   "Structured claims (experimental)": CLAIMS_PROMPT_VERSION,
                   "Original cited answer": BASELINE_PROMPT_VERSION}
+# Scope the dark treatment to the sidebar; input surfaces stay light and legible.
 CSS = """
 <style>
-.block-container {max-width: 1280px; padding-top: 4.5rem; padding-bottom: 3rem;}
-h1 {font-size: 2.5rem !important; letter-spacing: -0.055em; color:#142b40;}
-h2,h3 {letter-spacing: -0.025em;}
-.eyebrow {font-size:.72rem; letter-spacing:.17em; font-weight:700; color:#0f766e; margin-bottom:.45rem;}
-.intro {font-size:1.05rem; color:#526578; max-width:760px; margin-bottom:1.5rem;}
-[data-testid="stSidebar"] {border-right:1px solid #e0e7ed;}
-[data-testid="stMetricValue"] {font-size:1.5rem;}
-[data-testid="stForm"] {background:white; border:1px solid #dce5ec; border-radius:16px; padding:1.25rem;}
-[data-testid="stTabs"] {margin-top:.8rem;}
-.status {display:inline-block; font-size:.75rem; font-weight:650; padding:.25rem .65rem; border-radius:30px; margin-bottom:1rem;}
+.block-container {max-width:1280px; padding-top:3rem; padding-bottom:3rem;}
+h1 {font-size:2.35rem !important; letter-spacing:-.045em; color:#142b40;}
+h2,h3 {letter-spacing:-.025em;}
+.eyebrow {font-size:.7rem; letter-spacing:.17em; font-weight:750; color:#0f766e; margin-bottom:.25rem;}
+.intro {font-size:1rem; color:#526578; max-width:800px; margin-bottom:.8rem;}
+[data-testid="stSidebar"] {background:#142b40; border-right:1px solid #253f54;}
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] label {color:#e0eaf0;}
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"],
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p {color:#beced9 !important;}
+[data-testid="stSidebar"] hr {border-color:#385064;}
+[data-testid="stSidebar"] details {border-color:#496174; background:#1c364b;}
+[data-testid="stSidebar"] summary {color:#eef5f8;}
+[data-testid="stSidebar"] summary svg {fill:#e0eaf0;}
+[data-testid="stSidebar"] button,
+[data-testid="stSidebar"] button p {color:#142b40;}
+[data-testid="stSidebar"] [data-testid="stSelectbox"] [data-baseweb="select"] {color:#142b40;}
+.st-key-corpus_inventory [data-testid="stMetric"] {background:#fff; border:1px solid #dce5ec; border-top:3px solid #168478; border-radius:12px; padding:.7rem 1rem;}
+[data-testid="stMetricValue"] {font-size:1.35rem; color:#142b40; font-weight:650;}
+[data-testid="stMetricLabel"] {color:#526578;}
+[data-testid="stForm"] {background:white; border:1px solid #dce5ec; border-radius:16px; padding:1.15rem 1.35rem; box-shadow:0 4px 18px #142b4006;}
+[data-testid="stTextArea"] textarea {background:#f5f8fa; border-radius:10px;}
+[data-testid="stForm"] [data-testid="stExpander"] details {background:#f7f9fb;}
+[data-testid="stTabs"] {margin-top:.5rem;}
+[data-testid="stTabs"] button[role="tab"] {padding-left:1rem; padding-right:1rem;}
+button:focus-visible, summary:focus-visible, textarea:focus-visible {outline:3px solid #229b8c !important; outline-offset:3px;}
+.mode-heading {font-size:.82rem; font-weight:750; letter-spacing:.06em; padding:.7rem .9rem; border-radius:9px; margin:.6rem 0 1rem; border-left:4px solid;}
+.mode-vector {color:#244d76; background:#eaf1f8; border-color:#507ca4;}
+.mode-graph {color:#0c6759; background:#e6f4ef; border-color:#168478;}
+[class*="st-key-answer_metrics_"] [data-testid="stHorizontalBlock"] {flex-wrap:wrap;}
+[class*="st-key-answer_metrics_"] [data-testid="stColumn"] {min-width:100px; flex:1 1 100px;}
+.status {display:inline-block; font-size:.75rem; font-weight:650; padding:.25rem .65rem; border-radius:30px; margin-bottom:.75rem;}
 .answered {background:#dff3ed;color:#0c6759;} .clarification {background:#fff0cf;color:#805800;}
 .insufficient_evidence {background:#edf1f6;color:#526578;}
+@media (max-width:850px) {
+ .block-container {padding-top:3.5rem; padding-left:1rem; padding-right:1rem;}
+ h1 {font-size:1.9rem !important;}
+ [data-testid="stForm"] {padding:1rem;}
+ .st-key-corpus_inventory [data-testid="stMetric"] {padding:.7rem;}
+}
 </style>
 """
 
@@ -98,11 +129,12 @@ def render_answer(report):
         st.caption("Application checks: " + " ".join(report["answer_checks"]["events"]))
     if answer["citations"]:
         st.caption("Cited sources: " + ", ".join(answer["citations"]) + " · Open Sources to read the supporting text.")
-    metrics = st.columns(3)
-    metrics[0].metric("Answer time", f"{report['elapsed_seconds']:.2f}s")
-    metrics[1].metric("Selected passages", len(report["sources"]))
-    tokens = (report.get("usage") or {}).get("total_tokens")
-    metrics[2].metric("Chat tokens", tokens if tokens is not None else "No model call")
+    with st.container(key="answer_metrics_" + report["mode"]):
+        metrics = st.columns(3)
+        metrics[0].metric("Answer time", f"{report['elapsed_seconds']:.2f}s")
+        metrics[1].metric("Selected passages", len(report["sources"]))
+        tokens = (report.get("usage") or {}).get("total_tokens")
+        metrics[2].metric("Chat tokens", tokens if tokens is not None else "No model call")
     st.caption("An answered status is not an automatic factual-quality grade. Check the cited passages.")
 
 
@@ -214,11 +246,12 @@ def render_app():
         st.caption("Fictional organizational data · Local testing workspace")
 
     st.markdown('<div class="eyebrow">SOURCE-BACKED ORGANIZATIONAL KNOWLEDGE</div>', unsafe_allow_html=True)
-    st.title("Explore the answer. Understand the evidence.")
-    st.markdown('<div class="intro">Ask a question, compare retrieval methods, and follow the sources and relationships behind each answer.</div>', unsafe_allow_html=True)
-    for column, name, value in zip(st.columns(4), ["Documents", "Indexed passages", "Graph entities", "Relationships"],
-                                   [snapshot["documents"], snapshot["passages"], snapshot["entities"], snapshot["relationships"]]):
-        column.metric(name, value)
+    st.title("Organizational knowledge, connected.")
+    st.markdown('<div class="intro">Ask a question. Compare Vector and Graph-assisted answers. Inspect the evidence.</div>', unsafe_allow_html=True)
+    with st.container(key="corpus_inventory"):
+        for column, name, value in zip(st.columns(4), ["Documents", "Indexed passages", "Graph entities", "Relationships"],
+                                       [snapshot["documents"], snapshot["passages"], snapshot["entities"], snapshot["relationships"]]):
+            column.metric(name, value)
     st.caption("Local inventory snapshot · source/version integrity is checked on each submitted run.")
     if snapshot.get("incomplete"):
         st.warning("Local inventory is incomplete. Use the documented setup/ingestion steps before answering.")
@@ -226,19 +259,20 @@ def render_app():
     st.selectbox("Try a question", ["Write your own", *SAMPLES], key="sample_question", on_change=choose_sample)
     st.session_state.setdefault("question_input", "Who approved DEC-002?")
     with st.form("question_form"):
-        question = st.text_area("Your question", key="question_input", height=90, max_chars=2000)
+        question = st.text_area("Your question", key="question_input", height=68, max_chars=2000)
         choice = st.radio("Retrieval method", list(MODES), index=1, horizontal=True, key="retrieval_choice")
-        answer_format = st.selectbox("Answer format", list(ANSWER_FORMATS), key="answer_format")
-        if answer_format == "Reviewed bridges (candidate)":
-            st.caption("Source excerpts with reviewed graph bridges, unique approval proofs and retrieved-name clarification. Candidate: relevance still needs review.")
-        elif answer_format == "Coverage excerpts (candidate)":
-            st.caption("Maps source excerpts to requested question parts. Candidate: mappings still need source review.")
-        elif answer_format == "Source excerpts (candidate)":
-            st.caption("Quotes source wording instead of generating factual prose. Candidate: coverage regressions remain; not the default.")
-        elif answer_format != "Original cited answer":
-            st.caption("Shows individual claims and exact source excerpts. Stricter checks may reject an answer; matching excerpts do not guarantee correct claims.")
-        if answer_format == "Current default":
-            st.caption("Current default: schema-constrained claims.")
+        with st.expander("Answer settings", expanded=False):
+            answer_format = st.selectbox("Answer format", list(ANSWER_FORMATS), key="answer_format")
+            if answer_format == "Reviewed bridges (candidate)":
+                st.caption("Source excerpts with reviewed graph bridges, unique approval proofs and retrieved-name clarification. Candidate: relevance still needs review.")
+            elif answer_format == "Coverage excerpts (candidate)":
+                st.caption("Maps source excerpts to requested question parts. Candidate: mappings still need source review.")
+            elif answer_format == "Source excerpts (candidate)":
+                st.caption("Quotes source wording instead of generating factual prose. Candidate: coverage regressions remain; not the default.")
+            elif answer_format != "Original cited answer":
+                st.caption("Shows individual claims and exact source excerpts. Stricter checks may reject an answer; matching excerpts do not guarantee correct claims.")
+            if answer_format == "Current default":
+                st.caption("Current default: schema-constrained claims.")
         st.caption("Compare both deliberately runs both methods. Changing views or reopening history makes no model request.")
         submitted = st.form_submit_button("Run question", type="primary", width="stretch")
     if submitted:
@@ -284,7 +318,8 @@ def render_app():
             columns = st.columns(len(MODES[entry["choice"]]), gap="large")
             for column, mode in zip(columns, MODES[entry["choice"]]):
                 with column:
-                    st.markdown("#### " + MODE_NAMES[mode])
+                    # Mode labels are fixed application strings, never user-provided HTML.
+                    st.markdown(f'<div class="mode-heading mode-{mode}">{MODE_NAMES[mode]}</div>', unsafe_allow_html=True)
                     if mode in entry["errors"]:
                         st.error(entry["errors"][mode])
                         st.caption("This method did not complete. Any successful result from the other method is preserved.")
