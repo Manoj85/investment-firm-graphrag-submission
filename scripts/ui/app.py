@@ -34,7 +34,7 @@ ANSWER_FORMATS = {"Current default": None,
                   "Original cited answer": BASELINE_PROMPT_VERSION}
 CSS = """
 <style>
-.block-container {max-width: 1280px; padding-top: 2.2rem; padding-bottom: 3rem;}
+.block-container {max-width: 1280px; padding-top: 4.5rem; padding-bottom: 3rem;}
 h1 {font-size: 2.5rem !important; letter-spacing: -0.055em; color:#142b40;}
 h2,h3 {letter-spacing: -0.025em;}
 .eyebrow {font-size:.72rem; letter-spacing:.17em; font-weight:700; color:#0f766e; margin-bottom:.45rem;}
