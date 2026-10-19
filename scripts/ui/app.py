@@ -15,6 +15,8 @@ from scripts.rag.coverage_excerpts import COVERAGE_REVISED_VERSION
 from scripts.rag.rag_workflow import BASELINE_PROMPT_VERSION
 from scripts.services.service_clients import ServiceError
 from scripts.ui.presentation import citation_usage, path_diagram
+from scripts.ui.code_map import render_code_map
+from scripts.ui.appearance import appearance_css
 
 
 SAMPLES = {
@@ -230,6 +232,7 @@ def render_app():
     with st.sidebar:
         st.markdown("### ◈ Aster Vale")
         st.caption("KNOWLEDGE LAB")
+        appearance = st.selectbox("Appearance", ["Light", "Dark", "System"], index=2, key="appearance")
         st.divider()
         st.markdown("**One question. Two ways to find evidence.**")
         st.caption("Vector finds similar passages. Graph-assisted adds source-backed relationships.")
@@ -245,6 +248,7 @@ def render_app():
             st.caption("Corpus: " + str(snapshot["version"] or "No active manifest"))
         st.caption("Fictional organizational data · Local testing workspace")
 
+    st.markdown(appearance_css(appearance), unsafe_allow_html=True)
     st.markdown('<div class="eyebrow">SOURCE-BACKED ORGANIZATIONAL KNOWLEDGE</div>', unsafe_allow_html=True)
     st.title("Organizational knowledge, connected.")
     st.markdown('<div class="intro">Ask a question. Compare Vector and Graph-assisted answers. Inspect the evidence.</div>', unsafe_allow_html=True)
@@ -256,6 +260,15 @@ def render_app():
     if snapshot.get("incomplete"):
         st.warning("Local inventory is incomplete. Use the documented setup/ingestion steps before answering.")
 
+    ask_tab, code_tab = st.tabs(["Ask & compare", "Code map"])
+    with ask_tab:
+        render_workspace()
+    with code_tab:
+        render_code_map()
+
+
+def render_workspace():
+    """Keep answering and session history independent of the code-map viewer."""
     st.selectbox("Try a question", ["Write your own", *SAMPLES], key="sample_question", on_change=choose_sample)
     st.session_state.setdefault("question_input", "Who approved DEC-002?")
     with st.form("question_form"):

@@ -51,7 +51,7 @@ class WorkspaceTests(unittest.TestCase):
         next(button for button in app.button if button.label == "Run question").click().run()
         self.assertFalse(app.exception)
         self.assertEqual([call.kwargs["mode"] for call in backend.call_args_list], ["vector", "graph"])
-        self.assertEqual([tab.label for tab in app.tabs], ["Answer", "Sources", "Graph paths", "Run details"])
+        self.assertEqual([tab.label for tab in app.tabs], ["Ask & compare", "Answer", "Sources", "Graph paths", "Run details", "Code map"])
         self.assertEqual(len(app.session_state.run_history), 1)
         self.assertEqual(len(app.session_state.run_history[0]["reports"]), 2)
         self.assertEqual(sum(item.label == "Claims and their exact source excerpts" for item in app.expander), 2)
@@ -116,3 +116,37 @@ class WorkspaceTests(unittest.TestCase):
         self.assertFalse(app.exception)
         self.assertTrue(any("Alex Morgan" in text.value for text in app.markdown))
         self.assertTrue(any(metric.value == "No model call" for metric in app.metric))
+
+
+class CodeMapTests(unittest.TestCase):
+    @patch("scripts.ui.code_map.st.iframe")
+    @patch("scripts.ui.app.run_question")
+    def test_packaged_map_renders_without_provider_requests(self, backend, viewer):
+        app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
+        self.assertFalse(app.exception)
+        self.assertEqual([tab.label for tab in app.tabs], ["Ask & compare", "Code map"])
+        backend.assert_not_called()
+        viewer.assert_called_once()
+        html = viewer.call_args.args[0]
+        self.assertIn("run_question", html)
+        self.assertNotIn('<script src="https://', html)
+
+    @patch("scripts.ui.code_map.load_code_map", side_effect=OSError("missing snapshot"))
+    @patch("scripts.ui.app.run_question")
+    def test_missing_map_keeps_answer_form_available(self, backend, asset):
+        app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
+        self.assertFalse(app.exception)
+        self.assertTrue(any("snapshot is unavailable" in warning.value for warning in app.warning))
+        self.assertTrue(any(button.label == "Run question" for button in app.button))
+        backend.assert_not_called()
+
+
+class AppearanceTests(unittest.TestCase):
+    @patch("scripts.ui.app.run_question")
+    def test_theme_changes_do_not_request_answers(self, backend):
+        app = AppTest.from_file(ROOT / "streamlit_app.py", default_timeout=20).run()
+        for choice in ["Dark", "Light", "System"]:
+            app.selectbox(key="appearance").set_value(choice).run()
+            self.assertFalse(app.exception)
+            self.assertEqual(app.selectbox(key="appearance").value, choice)
+        backend.assert_not_called()
