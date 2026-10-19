@@ -65,3 +65,22 @@ Pinecone provides persistent passage retrieval across restarts. NetworkX with re
 The ten authored benchmark questions were exposed during development, so their scores do not estimate performance on unseen questions. Structured output and quote checks improve inspectability but cannot establish semantic truth. The reviewed graph is manually authored and would require further work to scale. All people, organizations and events in the source data are fictional.
 
 Codex assisted implementation, debugging, testing and documentation. The Google Doc report explains the dataset, prompts, iterations, comparison results and learnings; the demo shows the running local application.
+
+## Optional code exploration with Graphify
+
+Graphify is a developer aid for exploring this repository's functions and dependencies. It is separate from the organizational knowledge graph used to answer questions. A local Graphify 0.9.92 code-only run over 52 Python files produced 372 nodes and 911 edges without model calls. It traced `render_app → execute_request → run_question`; the first call edge was extracted and the cross-file edge inferred. A broad query exceeded its context budget, so focused symbol/path queries and source verification remain necessary. No answer-quality improvement is claimed.
+
+Install it separately from the application environment if you want to reproduce the inspection:
+
+```powershell
+uv tool install graphifyy==0.9.92
+graphify extract scripts --code-only --no-cluster --out work/graphify-review/result --max-workers 1
+graphify path render_app run_question --graph work/graphify-review/result/graphify-out/graph.json
+graphify export html --graph work/graphify-review/result/graphify-out/graph.json
+```
+
+The official package name is `graphifyy`. This optional workflow does not install assistant hooks, send documents to a semantic backend, or change the app's dependencies, prompts or benchmark results.
+
+[Graphify project](https://github.com/Graphify-Labs/graphify) · [Code-only workflow](https://docs.graphify.com/guides/local-development)
+
+[View the code-graph screenshot](https://github.com/Manoj85/investment-firm-graphrag/blob/main/docs/assets/graphify/run-question-code-graph.png)
