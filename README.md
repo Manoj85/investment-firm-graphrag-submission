@@ -84,3 +84,9 @@ The official package name is `graphifyy`. This optional workflow does not instal
 [Graphify project](https://github.com/Graphify-Labs/graphify) · [Code-only workflow](https://docs.graphify.com/guides/local-development)
 
 [View the code-graph screenshot](https://github.com/Manoj85/investment-firm-graphrag/blob/main/docs/assets/graphify/run-question-code-graph.png)
+
+## Built-in code map and appearance
+
+The app now has two main tabs: **Ask & compare** and **Code map**. The latter displays a packaged, read-only Graphify snapshot of the implementation with search, node selection and an HTML download. It is available before asking a question and requires no Graphify installation or service credentials at runtime. The current snapshot covers 54 Python files, 384 nodes and 931 edges; regenerate after source changes. It is separate from the organizational facts used to answer questions.
+
+Choose **Light**, **Dark** or **System** under Appearance in the sidebar. System follows the browser's color preference; the code-map viewer retains its independent theme controls. Changing appearance or opening the code map makes no provider request. The viewer includes its pinned JavaScript and license notices in assets/code-map, so it does not fetch a CDN script.
